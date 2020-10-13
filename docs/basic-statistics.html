@@ -885,7 +885,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="measures-of-association-for-categorical-data" class="section level4">
 <h4><span class="header-section-number">3.2.5.2</span> Measures of association for categorical data</h4>
-<p>The chi-squared statistics 는 가장 널리 쓰이는 범주형 자료의 연관성 척도로 다음과 같이 정의됩니다. 수식의 “o”와 “e”는 각각 관측값과 예측값을 나타냅니다. 이 값이 클 경우 연관이 크다는 것이고 크고 작음에 대한 검증은 10장에서 다시 다루기로 합니다.</p>
+<p>The chi-squared statistics 는 가장 널리 쓰이는 범주형 자료의 연관성 척도로 다음과 같이 정의됩니다. 수식의 “o”와 “e”는 각각 관측값과 예측값을 나타냅니다. 이 값이 클 경우 연관이 크다는 것입니다.</p>
 <p><span class="math display">\[ chi-squared ~ statistic = \sum \frac{(f_o - f_e)^2}{f_e} \]</span></p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="basic-statistics.html#cb62-1"></a>f &lt;-<span class="st"> </span>Freq <span class="op">~</span><span class="st"> </span>Survived <span class="op">+</span><span class="st"> </span>Class</span>
 <span id="cb62-2"><a href="basic-statistics.html#cb62-2"></a>tbl &lt;-<span class="st"> </span><span class="kw">xtabs</span>(f, <span class="dt">data=</span>titanic, <span class="dt">subset=</span><span class="kw">c</span>(Sex<span class="op">==</span><span class="st">&quot;Female&quot;</span>))</span>
