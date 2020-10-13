@@ -1,0 +1,17 @@
+rmd_files: [
+  "index.Rmd", 
+  "02-Rintro.Rmd",
+  "03-stat-basics.Rmd"
+#  "04-Bioconductor.Rmd",
+#  "03-Rprogbasics.Rmd"
+]
+book_filename: "Rprog"
+#repo: https://github.com/greendaygh/Rprog2020/
+output_dir: docs
+delete_merged_file: true
+language:
+  label:
+    fig: "FIGURE"
+    tab: "TABLE"
+  ui:
+    chapter_name: "Chapter "

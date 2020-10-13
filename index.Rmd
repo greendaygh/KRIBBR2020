@@ -1,0 +1,51 @@
+--- 
+title: "연구데이터 분석과정 (R프로그래밍)"
+author: "한국생명공학연구원 김하성"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+#mainfont: Nanum Myeongjo
+documentclass: book
+#bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Lecture"
+---
+
+
+
+# Introduction 강의 개요 
+- 장소: 코빅 3층 전산교육장(1304호)
+- 강사: 한국생명공학연구원 바이오합성연구센터 김하성
+- 연락처: 042-860-4372, haseong@kribb.re.kr (생명연 연구동 1143)
+
+
+## References books 참고 교제 
+- Using R for Introductory Statistics by John Verzani
+  - Free version of 1st Edition 
+    - https://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf
+  - Second edition
+    - https://www.crcpress.com/Using-R-for-Introductory-Statistics-Second-Edition/Verzani/p/book/9781466590731
+- R for Data Science (https://r4ds.had.co.nz, https://github.com/hadley)
+- Bioinformatics Data Skills by Vince Buffalo (http://2.droppdf.com/files/5aTvl/bioinformatics-data-skills.pdf)
+- First Course in Statistical Programming with R by Braun and
+Murdoch (https://www.cambridge.org/core/books/first-course-in-statistical-programming-with-r/C9F088122AB40517B07FA77F2F0FDE2F)
+- Introductory Statistics with R by Dalgaard (http://www.academia.dk/BiologiskAntropologi/Epidemiologi/PDF/Introductory_Statistics_with_R__2nd_ed.pdf)
+- Modern Applied Statistics with S by Venables and Ripley (http://www.bagualu.net/wordpress/wp-content/uploads/2015/10/Modern_Applied_Statistics_With_S.pdf)
+- 일반통계학 (영지문화사, 김우철 외)
+
+## References 참고 자료
+- R 홈페이지 https://www.r-project.org/
+- Rstudio 홈페이지 https://www.rstudio.com/
+- Packages for biologists https://www.bioconductor.org/
+- R 기본 문서들 (소개, 사용, 설치, 운영) https://cran.r-project.org/manuals.html 
+- R ebooks https://bookdown.org/
+- Cheat Sheets https://www.rstudio.com/resources/cheatsheets/ 
+- https://resources.rstudio.com/
+- http://shiny.rstudio.com/tutorial/
+
+## Schedule 강의 계획
+
+- Day1 - R/Rstudio/Statistics/Sequence basics
+- Day2 - Bioconductor 
+- Day3 - dplyr and ggplot2
+- Day4 - Case study

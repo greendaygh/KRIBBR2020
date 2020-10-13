@@ -1,0 +1,46 @@
+
+# Biostrings
+
+
+```{r, eval=F}
+library(Biostrings)
+b <- BString("I am a BString object")
+b
+length(b)
+
+d <- DNAString("TTGAAAA-CTC-N")
+d
+length(d)
+
+class(d)
+
+d[3]
+d[7:12]
+d[]
+b[length(b):1]
+
+bb <- subseq(b, 3, 6)
+dd1 <- subseq(d, end=7)
+dd2 <- subseq(d, start=8)
+
+toString(dd2)
+
+bb == "am a"
+dd2 != DNAString("TG")
+
+cat('> bb == ""')
+cat('> d == bb')
+
+
+```
+
+
+
+
+
+
+---
+
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 4.0 국제 라이선스</a>에 따라 이용할 수 있습니다.
+
