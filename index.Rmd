@@ -17,7 +17,7 @@ description: "Lecture"
 - 장소: 코빅 3층 전산교육장(1304호)
 - 강사: 한국생명공학연구원 바이오합성연구센터 김하성
 - 연락처: 042-860-4372, haseong@kribb.re.kr (생명연 연구동 1143)
-
+- 강의자료: https://greendaygh.github.io/KRIBBR2020/
 
 ## References books 참고 교제 
 - Using R for Introductory Statistics by John Verzani
