@@ -174,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#univariat-data"><i class="fa fa-check"></i><b>3.1</b> Univariat data</a>
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="basic-statistics.html"><a href="basic-statistics.html#vectors-for-univariate-data"><i class="fa fa-check"></i><b>3.1.1</b> Vectors for univariate data</a></li>
-<li class="chapter" data-level="3.1.2" data-path="basic-statistics.html"><a href="basic-statistics.html#data-type"><i class="fa fa-check"></i><b>3.1.2</b> Data type</a></li>
+<li class="chapter" data-level="3.1.2" data-path="basic-statistics.html"><a href="basic-statistics.html#storage-data-type"><i class="fa fa-check"></i><b>3.1.2</b> Storage data type</a></li>
 <li class="chapter" data-level="3.1.3" data-path="basic-statistics.html"><a href="basic-statistics.html#use-of-functions"><i class="fa fa-check"></i><b>3.1.3</b> Use of functions</a></li>
 <li class="chapter" data-level="3.1.4" data-path="basic-statistics.html"><a href="basic-statistics.html#numeric-summaries"><i class="fa fa-check"></i><b>3.1.4</b> Numeric summaries</a></li>
 <li class="chapter" data-level="3.1.5" data-path="basic-statistics.html"><a href="basic-statistics.html#center-for-a-univariat-variable"><i class="fa fa-check"></i><b>3.1.5</b> Center for a univariat variable</a></li>
@@ -288,11 +288,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="set-a-working-directory" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Set a working directory</h3>
 <ul>
-<li>시작 전 항상 작업 디렉토리 설정하는 것이 좋습니다. 예를 들어 <code>c:\</code> 아래 새로운 디렉토리 rstat01 을 만들고 작업공간으로 설정할 수 있습니다.</li>
+<li>시작 전 항상 작업 디렉토리 설정하는 것이 좋습니다. 예를 들어 <code>c:\</code> 아래 새로운 디렉토리 kribb-r 을 만들고 작업공간으로 설정할 수 있습니다.</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rrstudio-basics.html#cb2-1"></a><span class="kw">getwd</span>()</span>
 <span id="cb2-2"><a href="rrstudio-basics.html#cb2-2"></a><span class="kw">dir</span>()</span>
-<span id="cb2-3"><a href="rrstudio-basics.html#cb2-3"></a><span class="kw">setwd</span>(<span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">rstat01&quot;</span>)</span>
+<span id="cb2-3"><a href="rrstudio-basics.html#cb2-3"></a><span class="kw">setwd</span>(<span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">kribb-r&quot;</span>)</span>
 <span id="cb2-4"><a href="rrstudio-basics.html#cb2-4"></a><span class="kw">getwd</span>()</span>
 <span id="cb2-5"><a href="rrstudio-basics.html#cb2-5"></a><span class="kw">dir</span>()</span></code></pre></div>
 <ul>
@@ -304,7 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p>프로젝트를 만들어서 사용할 경우 파일이나 디렉토리, 내용 등을 쉽게 구분하여 사용 가능합니다. 아래와 같이 원하는 위치에 원하는 이름의 프로젝트를 생성하고 프로젝트를 시작할 때는 해당 디렉토리의 <code>xxx.Rproj</code> 파일을 클릭합니다.</p></li>
 <li><p>File &gt; New Project &gt; New Directory &gt; New Project &gt; “kribb-R” &gt; Create Project</p></li>
-<li><p>File &gt; New File &gt; R Script</p></li>
+<li><p>File &gt; New File &gt; R Script &gt; “day1.R”</p></li>
 </ul>
 </div>
 </div>
@@ -315,19 +315,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rrstudio-basics.html#cb3-1"></a><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span>
 <span id="cb3-2"><a href="rrstudio-basics.html#cb3-2"></a>((<span class="dv">2</span> – <span class="dv">1</span>)<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> – <span class="dv">3</span>)<span class="op">^</span><span class="dv">2</span> )<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
 <span id="cb3-3"><a href="rrstudio-basics.html#cb3-3"></a><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>; <span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
-<ul>
-<li>Ex 1) 다음 공식들을 계산하는 R 코드를 작성하시오</li>
-</ul>
-<p><span class="math display">\[
-\sqrt{(4+3)(2+1)} \\
-2^3 + 3^2 \\
-\frac{0.25 - 0.2}{\sqrt{0.2 (1-0.2)/100}}
-\]</span></p>
+<div id="exercise" class="section level4">
+<h4><span class="header-section-number">2.4.1.1</span> Exercise</h4>
+<p>다음 공식들을 계산하는 R 코드를 작성하시오</p>
+<p><span class="math display">\[ \sqrt{(4+3)(2+1)} \]</span>
+<span class="math display">\[ 2^3 + 3^2 \]</span>
+<span class="math display">\[ \frac{0.25 - 0.2}{\sqrt{0.2 (1-0.2)/100}}\]</span></p>
+</div>
 </div>
 <div id="variables-and-values" class="section level3">
 <h3><span class="header-section-number">2.4.2</span> Variables and values</h3>
 <ul>
-<li>프로그래밍 언에어서 변수, 값 개념</li>
+<li>프로그래밍 언어의 공통적 개념 <code>변수</code>, <code>함수</code>, <code>자료형</code>, <code>조건문</code>, <code>반복문</code><br />
+</li>
 <li>Assignment operator ( <code>&lt;-</code> OR <code>=</code> )
 <ul>
 <li>Valid object name <code>&lt;-</code> value</li>
@@ -370,7 +370,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-7"><a href="rrstudio-basics.html#cb7-7"></a>x <span class="op">+</span><span class="st"> </span>x</span>
 <span id="cb7-8"><a href="rrstudio-basics.html#cb7-8"></a><span class="kw">mean</span>(x)</span>
 <span id="cb7-9"><a href="rrstudio-basics.html#cb7-9"></a><span class="kw">sum</span>(x)<span class="op">/</span><span class="kw">length</span>(x)</span></code></pre></div>
-<div id="exercise" class="section level4">
+<div id="exercise-1" class="section level4">
 <h4><span class="header-section-number">2.4.2.1</span> Exercise</h4>
 <p>변수 <code>x</code>에 1, 3, 5, 7, 9를, 변수 <code>y</code>에 2, 4, 6, 8, 10을 저장하는 코드를 작성하고 <code>x</code>와 <code>y</code>를 더한 값을 <code>z</code>에 저장하는 코드를 작성하시오</p>
 </div>
@@ -400,7 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">2.6.1</span> R packages</h3>
 <ul>
 <li>R 패키지는 함수들의 모음으로 다른 사람들이 만들어 놓은 함수를 가져와서 사용할 수 있음</li>
-<li>예) sum() 은 “base” package에 있고 sd() 함수는 “stats” package에서 제공</li>
+<li>예) <code>sum()</code> 은 <code>base</code> package에 있고 <code>sd()</code> 함수는 <code>stats</code> package에서 제공</li>
 <li>패키지를 구할 수 있는 가장 대표적인 사이트</li>
 <li>The Comprehensive R Archive Network (CRAN) - <a href="http://cran.r-project.org/web/views/" class="uri">http://cran.r-project.org/web/views/</a></li>
 <li>Bioconductor - <a href="http://www.bioconductor.org/packages/release/bioc/" class="uri">http://www.bioconductor.org/packages/release/bioc/</a></li>
