@@ -1,0 +1,949 @@
+
+1. Bull Math Biol. 2020 Oct 12;82(10):135. doi: 10.1007/s11538-020-00812-0.
+
+Cholesterol Regulation in Age-Related Macular Degeneration: A Framework for
+Mathematical Modelling of Drusen Biogenesis.
+
+Scheepers R(1)(2), Pettet GJ(1)(2), van Heijster P(1), Araujo RP(3)(4).
+
+Author information: 
+(1)School of Mathematical Sciences, Queensland University of Technology,
+Brisbane, Qld, 4000, Australia.
+(2)Institute of Health and Biomedical Innovation (IHBI), 60 Musk Avenue, Kelvin
+Grove, Qld, 4059, Australia.
+(3)School of Mathematical Sciences, Queensland University of Technology,
+Brisbane, Qld, 4000, Australia. r.araujo@qut.edu.au.
+(4)Institute of Health and Biomedical Innovation (IHBI), 60 Musk Avenue, Kelvin
+Grove, Qld, 4059, Australia. r.araujo@qut.edu.au.
+
+In age-related macular degeneration (AMD), there is, in common with many other
+age-related diseases, the need to distinguish between changes in the ageing eye
+that lead to disease and those changes that are considered part of a healthy,
+ageing eye. Various studies investigating the multitude of mechanisms involved in
+the aetiology of AMD exist within the field of ophthalmology and related medical 
+fields, yet many aspects of it remain poorly understood and only a limited number
+of therapies are available. A recent study relates drusen's topographically
+cellular characteristics to the neural retina's metabolic needs and associated
+cholesterol involvement within the retina. In particular, there is a need to
+fully understand the maintenance of cholesterol homeostasis in the retina to
+prevent normal ageing processes from being perturbed towards maculopathy. Here,
+we present an extensive review of the clinical and physiological features of the 
+ageing retina, as well as mechanisms implicated in pathology, synthesised from a 
+vast body of the published literature. We use this novel synthesis to construct a
+comprehensive process schematic, encompassing all key species and physiological
+processes such as nutrients, waste and lipoprotein management. We are therefore
+able to express these processes in a mathematical language via a comprehensive
+modelling framework, comprising a set of twenty-three equations spanning three
+distinct biological compartments. This very general modelling framework may now
+be adapted to more focused studies on individual mechanisms, processes or
+components underlying of the many facets of AMD. As an example of such a focused 
+application, we conclude this article with a one-compartment, four-species model 
+of the retinal pigment epithelium, which considers the parametric conditions
+under which either cholesterol homeostasis or unregulated accumulation of
+cholesterol may obtain in the ageing eye.
+
+DOI: 10.1007/s11538-020-00812-0 
+PMID: 33044644 
+
+
+2. Work. 2020 Oct 9. doi: 10.3233/WOR-203288. [Epub ahead of print]
+
+Validity and reliability of the persian version of the quick exposure check in
+Iranian construction workers.
+
+Mokhtarinia HR(1)(2), Abazarpour S(1), Gabel CP(3).
+
+Author information: 
+(1)Department of Ergonomics, University of Social Welfare and Rehabilitation
+Sciences, Tehran, Iran.
+(2)Department of Physotherapy, University of Social Welfare and Rehabilitation
+Sciences, Tehran, Iran.
+(3)Private Researcher, Coolum Beach, Sunshine Coast, QLD, Australia.
+
+BACKGROUND: The Quick Exposure Check (QEC) is an instrument to identify
+occupational risk factors, and to screen subjects for the risk of musculoskeletal
+disorders in their workplace.
+OBJECTIVES: The aim of this prospective observational study was the
+cross-cultural adaptation of the QEC for Persian (QEC-Pr) speaking workers and
+the determination of the minimally required psychometric properties, including
+reliability and validity, in a Persian population.
+METHODS: The forward-backward translation was completed according to the
+published guidelines. A total of 217 male construction workers were recruited.
+The Rapid Upper Limb Assessment (RULA) tool was used as the criterion. The Inter-
+and intra-rater reliability was performed respectively in a sub-sample of n<U+200A>=<U+200A>50 
+and n<U+200A>=<U+200A>30. Convergent validity was determined from the correlation between the
+QEC-Pr and the RULA. Internal consistency was assessed using Cronbach's ¥á.
+RESULTS: High levels of inter-rater reliability (ICC2.1 range<U+200A>=<U+200A>0.79-0.93),
+intra-rater reliability (ICC2.1 range<U+200A>=<U+200A>0.74-0.89) and internal consistency
+(¥á=<U+200A>0.74) were obtained. Concurrent validity between the different sections of
+the QEC and RULA scores were determined to be fair but below the desired level
+(range r<U+200A>=<U+200A>0.41-0.44).
+CONCLUSIONS: The QEC-Pr can be applied as a specific risk assessment instrument
+for different occupational situations, such as the construction industry, in
+Persian language populations.
+
+DOI: 10.3233/WOR-203288 
+PMID: 33044219 
+
+
+3. Circ Cardiovasc Interv. 2020 Oct 12:CIRCINTERVENTIONS120009447. doi:
+10.1161/CIRCINTERVENTIONS.120.009447. [Epub ahead of print]
+
+Use of Natural Language Processing to Improve Identification of Patients With
+Peripheral Artery Disease.
+
+Weissler EH(1), Zhang J(2), Lippmann S(3), Rusincovitch S(4), Henao R(2)(4),
+Jones WS(3)(5).
+
+Author information: 
+(1)Division of Vascular and Endovascular Surgery, Duke University School of
+Medicine, Durham, NC. (E.H.W.).
+(2)Department of Biostatistics and Bioinformatics, Duke University School of
+Medicine, Durham, NC. (J.Z., R.H.).
+(3)Department of Population Health Sciences, Duke University School of Medicine, 
+Durham, NC. (S.L., W.S.J.).
+(4)Duke Forge, Duke University School of Medicine, Durham, NC. (S.R., R.H.).
+(5)Division of Cardiology, Duke University School of Medicine, Durham, NC.
+(W.S.J.).
+
+BACKGROUND: Peripheral artery disease (PAD) is underrecognized, undertreated, and
+understudied: each of these endeavors requires efficient and accurate
+identification of patients with PAD. Currently, PAD patient identification relies
+on diagnosis/procedure codes or lists of patients diagnosed or treated by
+specific providers in specific locations and ways. The goal of this research was 
+to leverage natural language processing to more accurately identify patients with
+PAD in an electronic health record system compared with a structured data-based
+approach.
+METHODS: The clinical notes from a cohort of 6861 patients in our health system
+whose PAD status had previously been adjudicated were used to train, test, and
+validate a natural language processing model using 10-fold cross-validation. The 
+performance of this model was described using the area under the receiver
+operating characteristic and average precision curves; its performance was
+quantitatively compared with an administrative data-based least absolute
+shrinkage and selection operator (LASSO) approach using the DeLong test.
+RESULTS: The median (SD) of the area under the receiver operating characteristic 
+curve for the natural language processing model was 0.888 (0.009) versus 0.801
+(0.017) for the LASSO-based approach alone (DeLong P<0.0001). The median (SD) of 
+the area under the precision curve was 0.909 (0.008) versus 0.816 (0.012) for the
+structured data-based approach. When sensitivity was set at 90%, the precision
+for LASSO was 65% and the machine learning approach was 74%, while the
+specificity for LASSO was 41% and for the machine learning approach was 62%.
+CONCLUSIONS: Using a natural language processing approach in addition to partial 
+cohort preprocessing with a LASSO-based model, we were able to meaningfully
+improve our ability to identify patients with PAD compared with an approach using
+structured data alone. This model has potential applications to both
+interventions targeted at improving patient care as well as efficient,
+large-scale PAD research.
+
+DOI: 10.1161/CIRCINTERVENTIONS.120.009447 
+PMID: 33040585 
+
+
+4. Neuroimaging Clin N Am. 2020 Nov;30(4):447-458. doi: 10.1016/j.nic.2020.08.001.
+
+Review of Natural Language Processing in Radiology.
+
+Luo JW(1), Chong JJR(2).
+
+Author information: 
+(1)Department of Radiology, McGill University, 1001 Decarie Boulevard, Room
+B02.9375, Montreal, QC H4A 3J1, Canada.
+(2)Department of Medical Imaging, Western University, 800 Commissioners Road
+East, Room C1-609, London, ON N6A 5W9, Canada. Electronic address:
+jaron.chong@lhsc.on.ca.
+
+Natural language processing (NLP) is an interdisciplinary field, combining
+linguistics, computer science, and artificial intelligence to enable machines to 
+read and understand human language for meaningful purposes. Recent advancements
+in deep learning have begun to offer significant improvements in NLP task
+performance. These techniques have the potential to create new automated tools
+that could improve clinical workflows and unlock unstructured textual information
+contained in radiology and clinical reports for the development of radiology and 
+clinical artificial intelligence applications. These applications will combine
+the appropriate application of classic linguistic and NLP preprocessing
+techniques, modern NLP techniques, and modern deep learning techniques.
+
+Copyright ¨Ï 2020 Elsevier Inc. All rights reserved.
+
+DOI: 10.1016/j.nic.2020.08.001 
+PMID: 33038995 
+
+Conflict of interest statement: Disclosure J.W. Luo and J.J.R. Chong: no relevant
+disclosures.
+
+
+5. Qual Life Res. 2020 Oct 10. doi: 10.1007/s11136-020-02662-8. [Epub ahead of
+print]
+
+Validation of the Hungarian version of the CarerQol instrument in informal
+caregivers: results from a cross-sectional survey among the general population in
+Hungary.
+
+Baji P(1), Brouwer WBF(2)(3), van Exel J(2)(3), Golicki D(4), Prevolnik Rupel
+V(5), Zrubka Z(1)(6), Gulacsi L(1)(6), Brodszky V(1), Rencz F(1)(7), Pentek
+M(8)(9).
+
+Author information: 
+(1)Department of Health Economics, Corvinus University of Budapest, F<U+0151>vam ter 8, 
+Budapest, 1093, Hungary.
+(2)Erasmus School of Health Policy & Management (ESHPM), Erasmus University
+Rotterdam, PO Box 1738, 3000 DR, Rotterdam, The Netherlands.
+(3)Erasmus School of Economics (ESE), Erasmus University Rotterdam, PO Box 1738, 
+3000 DR, Rotterdam, The Netherlands.
+(4)Department of Experimental and Clinical Pharmacology, Medical University of
+Warsaw, ul. Banacha 1b, 02-097, Warsaw, Poland.
+(5)Institute for Economic Research, Kardeljeva plo<U+0161><U+010D>ad 17, 1000, Ljubljana,
+Slovenia.
+(6)Health Economics Research Center, University Research and Innovation Center,
+Obuda University, Becsi ut 96/B, Budapest, 1034, Hungary.
+(7)Premium Postdoctoral Research Programme, Hungarian Academy of Sciences, Nador 
+u. 7, Budapest, 1051, Hungary.
+(8)Department of Health Economics, Corvinus University of Budapest, F<U+0151>vam ter 8, 
+Budapest, 1093, Hungary. marta.pentek@uni-corvinus.hu.
+(9)Health Economics Research Center, University Research and Innovation Center,
+Obuda University, Becsi ut 96/B, Budapest, 1034, Hungary.
+marta.pentek@uni-corvinus.hu.
+
+PURPOSE: The CarerQol instrument has been designed and validated as an instrument
+able to measure both the positive and the negative impacts of caregiving on the
+quality of life of informal caregivers (CarerQol-7D), as well as their general
+happiness (CarerQol-VAS). The aim of this study was to assess the construct
+validity of the CarerQol in the Hungarian context.
+METHODS: The CarerQol was translated into Hungarian. Subsequently, in a
+cross-sectional online survey, representative for the general Hungarian
+population (N<U+2009>=<U+2009>1000), informal caregivers were identified (N<U+2009>=<U+2009>149, female
+51.2%, mean age 53.2). Clinical, convergent and discriminant validity of the
+CarerQol were evaluated in relation to the caregivers' and care recipients'
+EQ-5D-5L health status, and caregiving situation characteristics.
+RESULTS: Average CarerQol-7D and CarerQol-VAS scores were 76.0 (SD 16.2) and 6.8 
+(SD 2.3), respectively. CarerQol-7D and CarerQol-VAS scores were significantly
+correlated with caregiving time (r<U+2009>=<U+2009>-<U+2009>0.257; -<U+2009>0.212), caregivers' EQ-5D-5L
+scores (r<U+2009>=<U+2009>0.453; 0.326) and the CarerQol-7D also with care recipients' EQ-5D-5L
+scores (r<U+2009>=<U+2009>0.247). CarerQol-7D scores differed significantly with relevant
+caregiving characteristics (e.g. nature and severity of care recipients' health
+status, sharing household) and both the CarerQol-7D and CarerQol-VAS with the
+overall care experience.
+CONCLUSION: Our findings confirmed the validity of the Hungarian language version
+of the CarerQol and support the cross-cultural validity of the instrument.
+CarerQol-7D scores performed better in distinguishing caregiving situation
+characteristics than the general happiness measure CarerQol-VAS. Care recipients'
+health status was only weakly associated with informal caregivers' care-related
+quality of life and happiness. Caregivers' own health and caregiving
+circumstances were more strongly associated with these scores.
+
+DOI: 10.1007/s11136-020-02662-8 
+PMID: 33037979 
+
+
+6. Zhonghua Lao Dong Wei Sheng Zhi Ye Bing Za Zhi. 2020 Sep 20;38(9):696-700. doi:
+10.3760/cma.j.cn121094-20200224-00085.
+
+[Effects of transcranial direct current stimulation on cognitive function in
+delayed encephalopathy after carbon monoxide poisoning].
+
+[Article in Chinese; Abstract available in Chinese from the publisher]
+
+Cao SQ(1), Gao X(1), Zhu BY(1), Liu Q(1), Liu YJ(1), Xiao QM(1), Wang WZ(1), Du
+YX(1).
+
+Author information: 
+(1)Department of Emergency Medicine, Hudson International Peace Hospital, Hebei
+Medical University, Hengshui 053000, China.
+
+Objective: To investigate the effect of transcranial direct current stimulation
+(tDCS) on cognitive function of delayed encephalopathy after carbon monoxide
+poisoning (DEACMP) . Methods: A total of 58 patients with DEACMP admitted to the 
+Emergency Medicine Department of Hudson International Peace Hospital from January
+2018 to January 2020 were included. According to the random number table, the
+patients were randomly divided into study group and control group, with 29
+patients in each group. Patients in both groups were given nutritional nerve
+therapy, improved microcirculation, adrenal cortical hormone and other drugs, as 
+well as hyperbaric oxygen and rehabilitation training, once per day. The study
+group was treated with tDCS (electrode pads were placed and current stimulation
+was given 30 min/time) 1/d on the basis of conventional treatment, while the
+control group was treated with tDCS pseudo stimulation (electrode pads were
+placed and current stimulation was given for 10 s) 1/d for 30 days consecutively.
+The auditory event-related potential P300 (ERP-P300) was tested before and 30
+days after treatment, and the Mini-Mental State Examination (MMSE) scale, Barthel
+index (BI) and the National Institutes of Health Neurological Impairment score
+(NIHSS) were used to evaluate and analyze the patients. Results: There was no
+significant difference in scores between the two groups before treatment (all
+P>0.05) . After 30 days of treatment, the MMSE score, orientation, memory,
+attention and computing power, and language ability of the study group were all
+higher than those of the control group, and the differences were statistically
+significant (P<0.05) . 90 days after treatment, the BI of the study group was
+higher than that of the control group (P<0.05) . After 30 days of treatment, the 
+NIHSS score of the study group was significantly lower than that of the control
+group (P<0.05) . The latency of ERP-P300 in the study group was shorter than that
+in the control group, and the amplitude was higher than that in the control group
+at 30 days after treatment, and the difference was statistically significant
+(P<0.05) . The latency of ERP-P300 was negatively correlated with the total MMSE 
+score before and after DEACMP treatment (r=-0.837, -0.819, P<0.05) . The latency 
+of ERP-P300 was negatively correlated with orientation, attention and computing
+power, and language ability before treatment (r=-0.698, -0.675, -0.742, P<0.05) .
+Conclusion: TDCS treatment can help improve the cognitive function of DEACMP
+patients, and ERP-P300 test can help determine the cognitive function severity of
+patients.
+
+Publisher: ÙÍîÜ£º ÷®<U+8BA8><U+7ECF><U+9885>òÁ×µ<U+7535>í©Ì­£¨tDCS£©<U+5BF9>ìé<U+6C27>ûù<U+78B3>ñéÔ¸<U+8FDF><U+53D1>àõ<U+8111>Ü»£¨DEACMP£©ü´íº<U+8BA4>ò±ÍíÒöîÜç¯<U+54CD>¡£ Û°Ûö£º
+<U+8FDE><U+7EED><U+7EB3>ìý2018Ò´1êÅò¸2020Ò´1êÅéÍùë<U+52B1><U+900A><U+56FD><U+9645>ûúøÁ<U+533B>êÂÐáÏ­<U+533B><U+5B66>Ý»ö¦<U+8BCA>îÜ58ÖÇDEACMPü´íº£¬ÐÆËß<U+968F>Ïõ<U+6570>í®øú<U+5C06>ü´íº<U+968F>ÏõÝÂ<U+4E3A><U+7814>Ï¼<U+7EC4>ûú<U+5BF9>ðÎ<U+7EC4>ÊÀ29ÖÇ¡£<U+4E24><U+7EC4>ü´íºÐ³<U+7ED9>
+åø<U+8425><U+517B>ãê<U+7ECF>¡¢ËÇà¼Ú°âà<U+73AF>¡¢<U+80BE>ß¾àÍÓØù«<U+8D28>Ì­áÈÔõ<U+836F>Úªö½<U+7597>£¬ì¤ÐàÍÔ<U+538B><U+6C27>ÐàË¬<U+590D><U+8BAD><U+7EC3>£¬1ó­/d¡£<U+7814>Ï¼<U+7EC4>î¤ßÈ<U+89C4>ö½<U+7597>îÜÐñ<U+7840>ß¾<U+8F85>ì¤tDCSö½<U+7597>£¨Û¯öÇ<U+7535><U+6781>ø¸£¬<U+7ED9>åø<U+7535>×µí©Ì­30
+min/ó­£©£¬<U+5BF9>ðÎ<U+7EC4>î¤ßÈ<U+89C4>ö½<U+7597>îÜÐñ<U+7840>ß¾<U+8F85>ì¤tDCS<U+4F2A>í©Ì­£¨Û¯öÇ<U+7535><U+6781>ø¸£¬<U+7ED9>åø<U+7535>×µí©Ì­10 s£©£¬1ó­/d£¬<U+8FDE><U+7EED>ö½<U+7597>30 d¡£ÝÂ<U+522B>î¤ö½<U+7597>îñûúö½<U+7597>30
+dý¨<U+5BF9>ü´íºú¼<U+542C><U+89C9>ÞÀËìßÓ<U+5173><U+7535>êÈP300£¨ERP-P300£©<U+68C0><U+6D4B>£¬<U+5E94>éÄ¡¶<U+7B80>æ¶òªÕô<U+72B6><U+6001><U+68C0><U+67E5>Õáøú¡·£¨MMSEÕáøú£©¡¢Barthelò¦<U+6570>£¨BI£©ÐàÚ¸<U+56FD><U+56FD>Ø¡<U+536B>ßæêÂãê<U+7ECF>ÍíÒöÌÀ<U+635F>
+<U+8BC4>ÝÂ£¨NIHSS£©<U+5BF9>ü´íº<U+8FDB>ú¼<U+6D4B><U+8BC4><U+4E0E>ÝÂà°¡£ <U+7ED3>Íý£º ö½<U+7597>îñ<U+4E24><U+7EC4>ü´íºÊÀ<U+8BC4>ÝÂó¬<U+5F02>Ð³Ùé<U+7EDF><U+8BA1><U+5B66>ëò<U+4E49>£¨P>0.05£©¡£ö½<U+7597>30
+dý¨£¬<U+7814>Ï¼<U+7EC4>MMSE<U+603B>ÝÂÐàïÒú¾Õô¡¢<U+8BB0><U+5FC6>Õô¡¢ñ¼ëòÕôûú<U+8BA1>ß©Õô¡¢<U+8BED>åëÒöÕôÔðÝÂÐ³ÍÔéÍ<U+5BF9>ðÎ<U+7EC4>£¨P<0.05£©¡£<U+7814>Ï¼<U+7EC4>ö½<U+7597>90 dý¨BIÍÔéÍ<U+5BF9>ðÎ<U+7EC4>£¬ö½<U+7597>30
+dý¨NIHSS<U+8BC4>ÝÂî¸éÍ<U+5BF9>ðÎ<U+7EC4>£¨P<0.05£©¡£<U+7814>Ï¼<U+7EC4>ö½<U+7597>30
+dý¨ERP-P300<U+6F5C>ÜÑÑ¢Ó­éÍ<U+5BF9>ðÎ<U+7EC4>£¬÷îøëÍÔéÍ<U+5BF9>ðÎ<U+7EC4>£¨P<0.05£©¡£ü´íºö½<U+7597>îñý¨ERP-P300<U+6F5C>ÜÑÑ¢<U+4E0E>MMSE<U+603B>ÝÂÐ³ïÐ<U+8D1F>ßÓ<U+5173>£¨r=-0.837¡¢-0.819£¬
+P<0.05£©£¬ERP-P300<U+6F5C>ÜÑÑ¢<U+4E0E>ö½<U+7597>îñïÒú¾Õô¡¢ñ¼ëòÕôûú<U+8BA1>ß©Õô¡¢<U+8BED>åëÒöÕôÐ³ïÐ<U+8D1F>ßÓ<U+5173>£¨r=-0.698¡¢-0.675¡¢-0.742£¬P<0.05£©¡£ <U+7ED3><U+8BBA>£º 
+tDCSö½<U+7597>êóð¾éÍËÇà¼DEACMPü´íºîÜ<U+8BA4>ò±ÍíÒö£¬ERP-P300<U+68C0><U+6D4B>Òö<U+591F><U+534F>ð¾÷÷<U+65AD>ü´íº<U+8BA4>ò±ÍíÒö<U+4E25>ñìïïÓø¡£.
+DOI: 10.3760/cma.j.cn121094-20200224-00085 
+PMID: 33036537 
+
+
+7. Curr Biol. 2020 Sep 25. pii: S0960-9822(20)31343-9. doi:
+10.1016/j.cub.2020.09.012. [Epub ahead of print]
+
+Sequence Variants in TAAR5 and Other Loci Affect Human Odor Perception and
+Naming.
+
+Gisladottir RS(1), Ivarsdottir EV(2), Helgason A(3), Jonsson L(4), Hannesdottir
+NK(5), Rutsdottir G(5), Arnadottir GA(5), Skuladottir A(5), Jonsson BA(5),
+Norddahl GL(5), Ulfarsson MO(6), Helgason H(5), Halldorsson BV(7), Nawaz MS(5),
+Tragante V(5), Sveinbjornsson G(5), Thorgeirsson T(5), Oddsson A(5), Kristjansson
+RP(5), Bjornsdottir G(5), Thorgeirsson G(8), Jonsdottir I(9), Holm H(5),
+Gudbjartsson DF(2), Thorsteinsdottir U(10), Stefansson H(5), Sulem P(5),
+Stefansson K(11).
+
+Author information: 
+(1)deCODE Genetics/Amgen Inc., Sturlugata 8, 101 Reykjavik, Iceland; School of
+Humanities, University of Iceland, Saemundargata 2, 102 Reykjavik, Iceland.
+Electronic address: rosa.gisladottir@decode.is.
+(2)deCODE Genetics/Amgen Inc., Sturlugata 8, 101 Reykjavik, Iceland; School of
+Engineering and Natural Sciences, University of Iceland, Dunhagi 5, 107
+Reykjavik, Iceland.
+(3)deCODE Genetics/Amgen Inc., Sturlugata 8, 101 Reykjavik, Iceland; Department
+of Anthropology, University of Iceland, Saemundargata 10, 102 Reykjavik, Iceland.
+(4)deCODE Genetics/Amgen Inc., Sturlugata 8, 101 Reykjavik, Iceland; Department
+of Pharmacology, Institute of Neuroscience and Physiology, Sahlgrenska Academy,
+University of Gothenburg, Medicinaregatan 13, SE-405 30, Gothenburg, Sweden; The 
+Department of Psychiatry and Neurochemistry, Institute of Neuroscience and
+Physiology, Sahlgrenska Academy, University of Gothenburg, Bla Straket 15, 413
+45, Gothenburg, Sweden.
+(5)deCODE Genetics/Amgen Inc., Sturlugata 8, 101 Reykjavik, Iceland.
+(6)deCODE Genetics/Amgen Inc., Sturlugata 8, 101 Reykjavik, Iceland; Faculty of
+Electrical and Computer Engineering, University of Iceland, Dunhagi 5, 107
+Reykjavik, Iceland.
+(7)deCODE Genetics/Amgen Inc., Sturlugata 8, 101 Reykjavik, Iceland; School of
+Technology, Reykjavik University, Menntavegur 1, 101 Reykjavik, Iceland.
+(8)deCODE Genetics/Amgen Inc., Sturlugata 8, 101 Reykjavik, Iceland; Faculty of
+Medicine, University of Iceland, Vatnsmyrarvegur 16, 101 Reykjavik, Iceland;
+Division of Cardiology, Department of Internal Medicine, Landspitali, The
+National University Hospital of Iceland, Hringbraut, 101 Reykjavik, Iceland.
+(9)deCODE Genetics/Amgen Inc., Sturlugata 8, 101 Reykjavik, Iceland; Faculty of
+Medicine, University of Iceland, Vatnsmyrarvegur 16, 101 Reykjavik, Iceland;
+Department of Immunology, Landspitali, The National University Hospital of
+Iceland, Hringbraut, 101 Reykjavik, Iceland.
+(10)deCODE Genetics/Amgen Inc., Sturlugata 8, 101 Reykjavik, Iceland; Faculty of 
+Medicine, University of Iceland, Vatnsmyrarvegur 16, 101 Reykjavik, Iceland.
+(11)deCODE Genetics/Amgen Inc., Sturlugata 8, 101 Reykjavik, Iceland; Faculty of 
+Medicine, University of Iceland, Vatnsmyrarvegur 16, 101 Reykjavik, Iceland.
+Electronic address: kstefans@decode.is.
+
+Olfactory receptor (OR) genes in humans form a special class characterized by
+unusually high DNA sequence diversity, which should give rise to differences in
+perception and behavior. In the largest genome-wide association study to date
+based on olfactory testing, we investigated odor perception and naming with smell
+tasks performed by 9,122 Icelanders, with replication in a separate sample of
+2,204 individuals. We discovered an association between a low-frequency missense 
+variant in TAAR5 and reduced intensity rating of fish odor containing
+trimethylamine (p.Ser95Pro, pcombined<U+00A0>= 5.6<U+00A0>¡¿ 10-15). We demonstrate that TAAR5
+genotype affects aversion to fish odor, reflected by linguistic descriptions of
+the odor and pleasantness ratings. We also discovered common sequence variants in
+two canonical olfactory receptor loci that associate with increased intensity and
+naming of licorice odor (trans-anethole: lead variant p.Lys233Asn in OR6C70,
+pcombined<U+00A0>= 8.8<U+00A0>¡¿ 10-16 and pcombined<U+00A0>= 1.4<U+00A0>¡¿ 10-9) and enhanced naming of
+cinnamon (trans-cinnamaldehyde; intergenic variant rs317787-T, pcombined<U+00A0>= 5.0<U+00A0>¡¿ 
+10-17). Together, our results show that TAAR5 genotype variation influences human
+odor responses and highlight that sequence diversity in canonical OR genes can
+lead to enhanced olfactory ability, in contrast to the view that greater
+tolerance for mutations in the human OR repertoire leads to diminished function.
+
+Copyright ¨Ï 2020 The Authors. Published by Elsevier Inc. All rights reserved.
+
+DOI: 10.1016/j.cub.2020.09.012 
+PMID: 33035477 
+
+Conflict of interest statement: Declaration of Interests R.S.G., E.V.I., A.H.,
+N.K.H., G.R., G.A.A., A.S., B.A.J., G.L.N., M.O.U., H. Helgason, B.V.H., M.S.N., 
+V.T., G.S., T.T., A.O., R.P.K., G.B., G. T., I. J., H. Holm, D.F.G., U.T., H.S., 
+P.S., and K.S. are employees of deCODE genetics/Amgen, Inc.
+
+
+8. Photodiagnosis Photodyn Ther. 2020 Oct 5:102046. doi:
+10.1016/j.pdpdt.2020.102046. [Epub ahead of print]
+
+The Impact of Photosensitizers Selection on Bactericidal Efficacy Of PDT against 
+Cariogenic Biofilms: A Systematic Review and Meta-Analysis.
+
+Teofilo MIS(1), de Carvalho Russi TMAZ(1), de Barros Silva PG(1), Balhaddad
+AA(2), Melo MAS(3), Rolim JPML(4).
+
+Author information: 
+(1)Department of Dentistry, Christus University Center (Unichristus), Fortaleza, 
+Brazil.
+(2)Dental Biomedical Sciences Ph.D. Program, University of Maryland School of
+Dentistry, Baltimore, MD 21201, USA; Department of Restorative Dental Sciences,
+Imam Abdulrahman Bin Faisal University, College of Dentistry, Dammam, Saudi
+Arabia.
+(3)Dental Biomedical Sciences Ph.D. Program, University of Maryland School of
+Dentistry, Baltimore, MD 21201, USA; Division of Operative Dentistry, Dept. of
+General Dentistry, University of Maryland School of Dentistry, Baltimore, MD
+21201, USA.
+(4)Department of Dentistry, Christus University Center (Unichristus), Fortaleza, 
+Brazil. Electronic address: julianapml@yahoo.com.br.
+
+BACKGROUND: There are investigations of multiple photosensitizers for modulation 
+of caries-related biofilms using PDT. However, much controversy remains about
+recommended parameters mostly on the selection of an efficient photosensitizer.
+OBJECTIVE: The study performed a systematic review to identify the answer to the 
+following question: What photosensitizers can present high bactericidal efficacy 
+against cariogenic biofilms?
+METHODS: Systematic review with meta-analyses were carried out for English
+language articles from October to December 2019 (PRISMA standards) using MEDLINE,
+Scopus, Biomed Central, EMBASE, LILACS, and Web of Science. Information on study 
+design, biofilm model, photosensitizer, light source, energy delivery, the
+incubation time for photosensitizer, and bacterial reduction outcomes were
+recorded. We performed two meta-analyses to compare bacterial reduction, data was
+expressed by (1) base 10 Logarithm values and (2) Log reduction RESULTS: After
+the eligibility criteria were applied (PEDro scale), the selected studies showed 
+that toluidine Blue Ortho (TBO) and methylene blue (MBO) (5-min incubation time
+and 5-min irradiation) demonstrated better bacterial reduction outcomes. For the 
+data expressed by Log TBO, MBO, curcumin, and Photogem¢ç presented a significant
+bacterial decrease in comparison to the control (p<U+2009>=<U+2009>0.042). For the data
+represented by Log reduction, the bacterial reduction toward S.mutans was not
+significant for any photosensitizer (p<U+2009>=<U+2009>0.679).
+CONCLUSION: While the lack of methodological standardization among the studies
+still hinders the establishment of type of photosensitizer and bactericidal
+efficiency, studies employing TBO, MBO, curcumin, and photogem indicate greater
+PDT-based bacterial reduction on caries-related bacteria.. Further clinical
+studies are necessary in order to obtain conclusive results.
+
+Copyright ¨Ï 2020. Published by Elsevier B.V.
+
+DOI: 10.1016/j.pdpdt.2020.102046 
+PMID: 33031937 
+
+
+9. PM R. 2020 Oct;12(10):E1-E10. doi: 10.1002/pmrj.12494.
+
+Spanish Language Abstracts.
+
+[No authors listed]
+
+DOI: 10.1002/pmrj.12494 
+PMID: 33029943 
+
+
+10. PPAR Res. 2020 Sep 22;2020:6937475. doi: 10.1155/2020/6937475. eCollection 2020.
+
+A New Prognostic Risk Model Based on PPAR Pathway-Related Genes in Kidney Renal
+Clear Cell Carcinoma.
+
+Xu Y(1), Li X(1)(2), Han Y(3), Wang Z(1), Han C(1), Ruan N(4), Li J(1), Yu X(1), 
+Xia Q(1)(5), Wu G(2).
+
+Author information: 
+(1)Department of Urology, Shandong Provincial Hospital, Cheeloo College of
+Medicine, Shandong University, Jinan, Shandong 250021, China.
+(2)Department of Urology, The First Affiliated Hospital of Dalian Medical
+University, Dalian, Liaoning 116011, China.
+(3)Department of Radiology, Shandong Provincial Hospital, Cheeloo College of
+Medicine, Shandong University, Jinan, Shandong 250021, China.
+(4)The Nursing College of Zhengzhou University, Zhengzhou, Henan 450001, China.
+(5)Department of Urology, Shandong Provincial Hospital Affiliated to Shandong
+First Medical University, Jinan, Shandong 250021, China.
+
+Objective: This study is aimed at using genes related to the peroxisome
+proliferator-activated receptor (PPAR) pathway to establish a prognostic risk
+model in kidney renal clear cell carcinoma (KIRC).
+Methods: For this study, we first found the PPAR pathway-related genes on the
+gene set enrichment analysis (GSEA) website and found the KIRC mRNA expression
+data and clinical data through TCGA database. Subsequently, we used R language
+and multiple R language expansion packages to analyze the expression, hazard
+ratio analysis, and coexpression analysis of PPAR pathway-related genes in KIRC. 
+Afterward, using the Search Tool for the Retrieval of Interacting Genes/Proteins 
+(STRING) website, we established the protein-protein interaction (PPI) network of
+genes related to the PPAR pathway. After that, we used LASSO regression curve
+analysis to establish a prognostic survival model in KIRC. Finally, based on the 
+model, we conducted correlation analysis of the clinicopathological
+characteristics, univariate analysis, and multivariate analysis.
+Results: We found that most of the genes related to the PPAR pathway had
+different degrees of expression differences in KIRC. Among them, the high
+expression of 27 genes is related to low survival rate of KIRC patients, and the 
+high expression of 13 other genes is related to their high survival rate. Most
+importantly, we used 13 of these genes successfully to establish a risk model
+that could accurately predict patients' prognosis. There is a clear correlation
+between this model and metastasis, tumor, stage, grade, and fustat.
+Conclusions: To the best of our knowledge, this is the first study to analyze the
+entire PPAR pathway in KIRC in detail and successfully establish a risk model for
+patient prognosis. We believe that our research can provide valuable data for
+future researchers and clinicians.
+
+Copyright ¨Ï 2020 Yingkun Xu et al.
+
+DOI: 10.1155/2020/6937475 
+PMCID: PMC7527891
+PMID: 33029112 
+
+Conflict of interest statement: The authors declare that they have no conflicts
+of interest.
+
+
+11. Eur Neurol. 2020 Oct 7:1-10. doi: 10.1159/000509799. [Epub ahead of print]
+
+The Genetics Analysis of Molecular Pathogenesis for Alzheimer&apos;s Disease.
+
+Lin G(1)(2)(3), Ji K(1), Li S(1), Ma W(1), Pan X(4)(5)(6).
+
+Author information: 
+(1)Department of Biochemistry and Molecular Biology, School of Basic Medical
+Sciences, Southern Medical University, Guangzhou, China.
+(2)Guangdong Provincial Key Laboratory of Single Cell Technology and Application,
+Southern Medical University, Guangzhou, China.
+(3)Guangdong-Hongkong-Macao Great Bar Area Center for Brain Science and
+Brain-Inspired Intelligence, Guangzhou, China.
+(4)Department of Biochemistry and Molecular Biology, School of Basic Medical
+Sciences, Southern Medical University, Guangzhou, China,
+xinghuapan2018@aliyun.com.
+(5)Guangdong Provincial Key Laboratory of Single Cell Technology and Application,
+Southern Medical University, Guangzhou, China, xinghuapan2018@aliyun.com.
+(6)Guangdong-Hongkong-Macao Great Bar Area Center for Brain Science and
+Brain-Inspired Intelligence, Guangzhou, China, xinghuapan2018@aliyun.com.
+
+INTRODUCTION: The molecular pathogenesis of Alzheimer's disease (AD) is still not
+clear, and the relationship between gene expression profile for different brain
+regions has not been studied.
+OBJECTIVE: Bioinformatic analysis at the genetic level has become the best way
+for the pathogenesis research of AD, which can analyze the abovementioned
+relationship.
+METHODS: In this study, the datasets of AD were obtained from the Gene Expression
+Omnibus (GEO), and Qlucore Omics Explorer (QOE) software was used to screen
+differentially expressed genes of GSE36980 and GSE9770 and verify gene expression
+of GSE63060. The Gene Ontology (GO) function enrichment analysis of these
+selected genes was conducted by Database for Annotation, Visualization, and
+Integrated Discovery (DAVID), and then the gene/protein interaction network was
+established by STRING to find the related proteins. R language was used for
+drafting maps and plots.
+RESULTS: There were 20 differentially expressed genes related to AD selected from
+GSE36980 (p = 6.2e-6, q = 2.9422e-4) and GSE9770 (p = 3.3e-4, q = 0.016606).
+Their expression levels of the AD group were lower than those in the control
+group and varied among different brain regions. Cellular morphogenesis and
+establishment or maintenance of cell polarity were enriched, and LRRTM1 and
+RASAL1 were identified by the integration network. Moreover, the analysis of
+GSE63060 verified the expression level of LRRTM1 and RASAL1 in Alzheimer's
+patients, which was much lower than that in normal people aged >65 years.
+CONCLUSIONS: The pathogenesis of AD at molecular levels may link to cell membrane
+structures and signal transduction; hence, a list of 20 genes, including LRRTM1
+and RASAL1,potentially are important for the discovery of treatment target or
+molecular marker of AD.
+
+¨Ï 2020 S. Karger AG, Basel.
+
+DOI: 10.1159/000509799 
+PMID: 33027797 
+
+
+12. Rev Lat Am Enfermagem. 2020 Sep 22;28:e3365. doi: 10.1590/1518-8345.3614.3365.
+eCollection 2020.
+
+Economic and epidemiological evaluation of text message-based interventions in
+patients with the Human Immunodeficiency Virus.
+
+[Article in English, Portuguese, Spanish]
+
+Santos WMD(1), Primeira MR(2)(3), Paiva LG(2), Padoin SMM(2).
+
+Author information: 
+(1)Empresa Brasileira de Servicos Hospitalares, Hospital Universitario de Santa
+Maria, Santa Maria, RS, Brazil.
+(2)Universidade Federal de Santa Maria, Departamento de Enfermagem, Santa Maria, 
+RS, Brazil.
+(3)Scholarship holder at the Coordenacao de Aperfeicoamento de Pessoal de Nivel
+Superior (CAPES), Brazil.
+
+OBJECTIVE: to evaluate the cost-effectiveness ratio and the budget impact of
+sending text messages associated with medical consultations in order to reduce
+the viral load of patients infected with the Human Immunodeficiency Virus.
+METHOD: a randomized clinical trial, basis for the development of a dynamic
+cohort model with Markov states in order to compare medical appointments for
+adults infected with the Human Immunodeficiency Virus versus the alternative
+strategy that associated medical consultations to sending text messages through
+telephone.
+RESULTS: 156 adults participated in the study. As for the viral load, it was
+verified that in the control group there was an increase, in the intervention
+group A (weekly messages) there was a reduction (p = 0.002) and in group B
+(biweekly messages) there was no statistically significant difference. Sending
+text messages would prevent 286,538 new infections by the Human Immunodeficiency 
+Virus and 282 deaths in the 20-year period, compared to the standard treatment.
+The alternative strategy would result in saving R$ 14 billion in treatment costs.
+CONCLUSION: weekly sending messages in association with the standard treatment
+can reduce the circulating viral load due to its effect in decreasing new
+infections, in addition to reducing health costs.
+
+DOI: 10.1590/1518-8345.3614.3365 
+PMID: 33027403  [Indexed for MEDLINE]
+
+
+13. J Med Internet Res. 2020 Oct 7;22(10):e21383. doi: 10.2196/21383.
+
+Low Testosterone on Social Media: Application of Natural Language Processing to
+Understand Patients' Perceptions of Hypogonadism and Its Treatment.
+
+Osadchiy V(1)(2), Jiang T(1)(2), Mills JN(1), Eleswarapu SV(1)(2).
+
+Author information: 
+(1)Division of Andrology, Department of Urology, David Geffen School of Medicine,
+University of California, Los Angeles, Los Angeles, CA, United States.
+(2)Consortium for Health Activity on Social Media, David Geffen School of
+Medicine, University of California, Los Angeles, Los Angeles, CA, United States.
+
+BACKGROUND: Despite the results of the Testosterone Trials, physicians remain
+uncomfortable treating men with hypogonadism. Discouraged, men increasingly turn 
+to social media to discuss medical concerns.
+OBJECTIVE: The goal of the research was to apply natural language processing
+(NLP) techniques to social media posts for identification of themes of discussion
+regarding low testosterone and testosterone replacement therapy (TRT) in order to
+inform how physicians may better evaluate and counsel patients.
+METHODS: We retrospectively extracted posts from the Reddit community
+r/Testosterone from December 2015 through May 2019. We applied an NLP technique
+called the meaning extraction method with principal component analysis (MEM/PCA) 
+to computationally derive discussion themes. We then performed a prospective
+analysis of Twitter data (tweets) that contained the terms low testosterone, low 
+T, and testosterone replacement from June through September 2019.
+RESULTS: A total of 199,335 Reddit posts and 6659 tweets were analyzed. MEM/PCA
+revealed dominant themes of discussion: symptoms of hypogonadism, seeing a
+doctor, results of laboratory tests, derogatory comments and insults, TRT
+medications, and cardiovascular risk. More than 25% of Reddit posts contained the
+term doctor, and more than 5% urologist.
+CONCLUSIONS: This study represents the first NLP evaluation of the social media
+landscape surrounding hypogonadism and TRT. Although physicians traditionally
+limit their practices to within their clinic walls, the ubiquity of social media 
+demands that physicians understand what patients discuss online. Physicians may
+do well to bring up online discussions during clinic consultations for low
+testosterone to pull back the curtain and dispel myths.
+
+¨ÏVadim Osadchiy, Tommy Jiang, Jesse Nelson Mills, Sriram Venkata Eleswarapu.
+Originally published in the Journal of Medical Internet Research
+(http://www.jmir.org), 07.10.2020.
+
+DOI: 10.2196/21383 
+PMID: 33026354 
+
+
+14. Saudi Med J. 2020 Oct;41(10):1139-1143. doi: 10.15537/smj.2020.10.25342.
+
+Validation and inter-rater reliability testing of the Arabic version of speech
+intelligibility rating among children with cochlear implant.
+
+Al-Shawi YA(1), Mesallam TA, Albakheet NM, Alshawi MA, Alfallaj RM, Aldrees TM,
+Algahtani AA, Alotaibi TO.
+
+Author information: 
+(1)Otolaryngology Department, Prince Sultan Military Medical City, Riyadh,
+Kingdom of Saudi Arabia. E-mail. Dr.alshawi@windowslive.com.
+
+OBJECTIVES: To validate and assess the reliability of the new version of an
+Arabic speech intelligibility rating among di erent raters.
+METHODS: This cross-sectional analysis was carried out between December 2018 and 
+January 2019. Thirty cochlear-implant (CI) children (study group) and 30 subjects
+(control group) were enrolled. Study candidates' speech skills were evaluated
+using the translated Arabic SIR by parents and original SIR by professions such
+as speech-language pathologists (SLPs). Inter-rater agreement, test-retest
+reliability, pre- and post-intervention score (responsiveness test), patient
+versus control score comparison (discriminant validity), and cross-validation of 
+Arabic SIR have all been assessed.
+RESULTS: There was a good sense of agreement between the post-operative SIR
+parents' assessments and the professional SLPs' assessments (r=0.920, p less
+than<U+00A0>0.001). The mean of study subjects pre- and post-implantation score of
+Arabic SIR showed a statistically significant difference (p less than<U+00A0>0.001).
+CONCLUSION: The Arabic SIR demonstrated excellent reliability with strong
+consistency. It showed its clinical ability in distinguishing healthy subjects
+from patients along with follow up of speech development skills over time. The
+Arabic SIR can be used by parents to evaluate post-CI progress of their children.
+
+DOI: 10.15537/smj.2020.10.25342 
+PMID: 33026057 
+
+
+15. Usher Syndrome Type I.
+
+Koenekoop RK(1), Arriaga MA(2), Trzupek KM(3), Lentz JJ(4).
+In: Adam MP, Ardinger HH, Pagon RA, Wallace SE, Bean LJH, Stephens K, Amemiya A, 
+editors. GeneReviews¢ç [Internet]. Seattle (WA): University of Washington,
+Seattle; 1993-2020.
+1999 Dec 10.
+
+Author information: 
+(1)Pediatric Surgery, Human Genetics, and Adult Ophthalmology, McGill University 
+Health Center, Montreal, Quebec, Canada
+(2)Otolaryngology and Neurosurgery, Louisiana State University Health Sciences
+Center, New Orleans, Louisiana
+(3)Ocular & Rare Disease Genetics Services, InformedDNA, St Petersburg, Florida
+(4)Neuroscience Center of Excellence, Louisiana State University Health Sciences 
+Center, New Orleans, Louisiana
+
+CLINICAL CHARACTERISTICS: Usher syndrome type I (USH1) is characterized by
+congenital, bilateral, profound sensorineural hearing loss, vestibular areflexia,
+and adolescent-onset retinitis pigmentosa (RP). Unless fitted with a cochlear
+implant, individuals do not typically develop speech. RP, a progressive,
+bilateral, symmetric degeneration of rod and cone functions of the retina,
+develops in adolescence, resulting in progressively constricted visual fields and
+impaired visual acuity.
+DIAGNOSIS/TESTING: The diagnosis of USH1 is established in a proband using
+electrophysiologic and subjective tests of hearing and retinal function.
+Identification of biallelic pathogenic variants in one of six genes <U+2013> MYO7A,
+USH1C, CDH23, PCDH15, USH1G, and CIB2 <U+2013> establishes the diagnosis if clinical
+features are inconclusive. Possible digenic inheritance has been reported in a
+few families.
+MANAGEMENT: Treatment of manifestations: In infants: an initial trial of hearing 
+aids to stimulate residual hearing and accustom the infant to auditory
+stimulation. Cochlear implantation should be considered as young as medically
+feasible. Sign language and tactile signs (once visual loss occurs) for families 
+who choose non-auditory communication. Specialized training from educators of the
+hearing impaired. Vestibular compensation therapy for children with residual
+balance function and sensory substitution therapy for individuals with complete
+absence of vestibular function. Standard treatments for retinitis pigmentosa.
+Surveillance: Annual audiometry and tympanometry in those with cochlear implant
+or hearing aids to assure adequate auditory stimulation. Annual otoscopic exam
+with tympanometry in children with profound loss to evaluate for chronic otitis
+media. Annual ophthalmologic evaluation, fundus photography, visual acuity,
+visual field testing, electroretinography, optical coherence tomography, and
+fundus autofluorescence from age 20 years. Agents/circumstances to avoid:
+Competition in sports requiring acute vision and/or good balance may be difficult
+and possibly dangerous. Because of the high risk for disorientation when
+submerged in water, swimming needs to be undertaken with caution. Progressive
+loss of peripheral vision impairs the ability to safely drive a car. Evaluation
+of relatives at risk: The hearing of at-risk sibs should be assessed as soon
+after birth as possible to allow early diagnosis and treatment of hearing loss.
+GENETIC COUNSELING: USH1 is inherited in an autosomal recessive manner. At
+conception, each sib of an affected individual has a 25% chance of being
+affected, a 50% chance of being an asymptomatic carrier, and a 25% chance of
+being unaffected and not a carrier. Once the USH1-causing pathogenic variants
+have been identified in an affected family member, carrier testing for at-risk
+relatives, prenatal diagnosis for a pregnancy at increased risk, and
+preimplantation genetic testing are possible.
+
+PMID: 20301442 
+
+
+16. Hum Brain Mapp. 2020 Oct 6. doi: 10.1002/hbm.25219. [Epub ahead of print]
+
+Cortical reorganization following auditory deprivation predicts cochlear implant 
+performance in postlingually deaf adults.
+
+Sun Z(1), Seo JW(2), Park HJ(3), Lee JY(3), Kwak MY(3), Kim Y(3), Lee JY(4), Park
+JW(3), Kang WS(3), Ahn JH(3), Chung JW(3), Kim H(1).
+
+Author information: 
+(1)USC Stevens Neuroimaging and Informatics Institute, Department of Neurology,
+Keck School of Medicine, University of Southern California, Los Angeles,
+California, USA.
+(2)Department of Otorhinolaryngology-Head and Neck Surgery, Samsung Changwon
+Hospital, Sungkyunkwan University School of Medicine, Changwon, South Korea.
+(3)Department of Otorhinolaryngology-Head and Neck Surgery, Asan Medical Center, 
+University of Ulsan College of Medicine, Seoul, South Korea.
+(4)Department of Otorhinolaryngology, Inje University Sanggye Paik Hospital,
+Seoul, South Korea.
+
+Long-term hearing loss in postlingually deaf (PD) adults may lead to brain
+structural changes that affect the outcomes of cochlear implantation. We studied 
+94 PD patients who underwent cochlear implantation and 37 patients who were
+MRI-scanned within 2<U+2009>weeks after the onset of sudden hearing loss and expected
+with minimal brain structural changes in relation to deafness. Compared with
+those with sudden hearing loss, we found lower gray matter (GM) probabilities in 
+bilateral thalami, superior, middle, inferior temporal cortices as well as the
+central cortical regions corresponding to the movement and sensation of the lips,
+tongue, and larynx in the PD group. Among these brain areas, the GM in the middle
+temporal cortex showed negative correlation with disease duration, whereas the
+other areas displayed positive correlations. Left superior, middle temporal
+cortical, and bilateral thalamic GMs were the most accurate predictors of
+post-cochlear implantation word recognition scores (mean absolute error [MAE] =
+10.1, r = .82), which was superior to clinical variables used (MAE: 12.1,
+p<U+2009><<U+2009>.05). Using the combined brain morphological and clinical features, we
+achieved the best prediction of the outcome (MAE: 8.51, r = .90). Our findings
+suggest that the cross-modal plasticity allowing the superior temporal cortex and
+thalamus to process other modal sensory inputs reverses the initially lower
+volume when deafness becomes persistent. The middle temporal cortex processing
+higher-level language comprehension shows persistent negative correlations with
+disease duration, suggesting this area's association with degraded speech
+comprehensions due to long-term deafness. Morphological features combined with
+clinical variables might play a key role in predicting outcomes of cochlear
+implantation.
+
+¨Ï 2020 The Authors. Human Brain Mapping published by Wiley Periodicals LLC.
+
+DOI: 10.1002/hbm.25219 
+PMID: 33022826 
+
+
+17. IEEE Trans Pattern Anal Mach Intell. 2020 Oct 6;PP. doi:
+10.1109/TPAMI.2020.3029008. [Epub ahead of print]
+
+Revisiting Image-Language Networks for Open-ended Phrase Detection.
+
+Plummer BA, Shih K, Li Y, Xu K, Lazebnik S, Sclaroff S, Saenko K.
+
+Most existing work that grounds natural language phrases in images starts with
+the assumption that the phrase in question is relevant to the image. In this
+paper we address a more realistic version of the natural language grounding task 
+where we must both identify whether the phrase is relevant to an image
+\textbf{and} localize the phrase. This can also be viewed as a generalization of 
+object detection to an open-ended vocabulary, introducing elements of few- and
+zero-shot detection. We propose an approach for this task that extends Faster
+R-CNN to relate image regions and phrases. By carefully initializing the
+classification layers of our network using canonical correlation analysis (CCA), 
+we encourage a solution that is more discerning when reasoning between similar
+phrases, resulting in over double the performance compared to a naive adaptation 
+on three popular phrase grounding datasets, Flickr30K Entities, ReferIt Game, and
+Visual Genome, with test-time phrase vocabulary sizes of 5K, 32K, and 159K,
+respectively.
+
+DOI: 10.1109/TPAMI.2020.3029008 
+PMID: 33021939 
+
+
+18. BMJ Open. 2020 Oct 5;10(10):e036960. doi: 10.1136/bmjopen-2020-036960.
+
+Antihypertensive therapies in moderate or severe aortic stenosis: a systematic
+review and meta-analysis.
+
+Sen J(1)(2), Chung E(3), Neil C(1)(2), Marwick T(4)(2).
+
+Author information: 
+(1)Baker Heart and Diabetes Institute, Melbourne, Victoria, Australia.
+(2)Faculty of Medicine, Dentistry and Health Sciences, University of Melbourne,
+Melbourne, Victoria, Australia.
+(3)Graduate Department of Pharmaceutical Sciences, University of Toronto,
+Toronto, Ontario, Canada.
+(4)Baker Heart and Diabetes Institute, Melbourne, Victoria, Australia
+tom.marwick@bakeridi.edu.au.
+
+BACKGROUND: Hypertension confers a poor prognosis in moderate or severe aortic
+stenosis (AS), however, antihypertensive therapy (AHT) is often not prescribed
+due to the perceived deleterious effects of vasodilation and negative inotropes.
+OBJECTIVE: To assess the efficacy and safety outcomes of AHT in adults with
+moderate or severe AS.
+DESIGN: Systematic review and meta-analysis.
+DATA SOURCES: The Cochrane Central Register of Controlled Trials, MEDLINE, EMBASE
+and grey literature were searched without language restrictions up to 9 September
+2019.
+STUDY ELIGIBILITY CRITERIA, APPRAISAL AND SYNTHESIS METHODS: Two independent
+reviewers performed screening, data extraction and risk of bias assessments from 
+a systematic search of observational studies and randomised controlled trials
+comparing AHT with a placebo or no AHT in adults with moderate or severe AS for
+any parameter of efficacy and safety outcomes. Conflicts were resolved by the
+third reviewer. Meta-analysis with pooled effect sizes using random-effects
+model, were estimated in R.
+MAIN OUTCOME MEASURES: Mortality, Left Ventricular (LV) Mass Index, systolic
+blood pressure, diastolic blood pressure and LV ejection fraction RESULTS: From
+3025 publications, 31 studies (26<U+2009>500 patients) were included in the qualitative 
+synthesis and 24 studies in the meta-analysis. AHT was not associated with
+mortality when all studies were pooled, but heterogeneity was substantial across 
+studies. The effect size of AHT differed according to drug class.
+Renin-angiotensin-aldosterone system inhibitors (RAASi) were associated with
+reduced risk of mortality (Pooled HR 0.58, 95% CI 0.43 to 0.80, p=0.006), The
+differences in changes of haemodynamic or echocardiographic parameters from
+baseline with and without AHT did not reach statistical significance.
+CONCLUSION: AHT appears safe, is well tolerated. RAASi were associated with
+clinical benefit in patients with moderate or severe AS.
+
+¨Ï Author(s) (or their employer(s)) 2020. Re-use permitted under CC BY-NC. No
+commercial re-use. See rights and permissions. Published by BMJ.
+
+DOI: 10.1136/bmjopen-2020-036960 
+PMCID: PMC7537451
+PMID: 33020089 
+
+Conflict of interest statement: Competing interests: All authors have completed
+the ICMJE uniform disclosure form at www.icmje.org/coi_disclosure.pdf and
+declare: support from Australian Government Research Training Program (Research
+Scholarship) for the submitted work; no financial relationships with any
+organisations that might have an interest in the submitted work in the previous
+three years; no other relationships or activities that could appear to have
+influenced the submitted work.
+
+
+19. Medicine (Baltimore). 2020 Oct 2;99(40):e21668. doi: 10.1097/MD.0000000000021668.
+
+The effectiveness of different teaching methods on medical or nursing students:
+Protocol for a systematic review and network meta-analysis.
+
+Yun B(1), Su Q(2), Cai YT(1), Chen L(1), Qu CR(1), Han L(1)(2).
+
+Author information: 
+(1)School of nursing, Lanzhou University.
+(2)Department of nursing, Gansu Provincial Hospital, China.
+
+BACKGROUND: One of the major challenges in nursing and medical education is to
+foster the critical thinking ability and autonomous learning ability for
+students. But the effect of different teaching methods on these abilities of
+nursing or medical students has not been conclusive, and few studies have
+directly compared the differences in the effects of different teaching methods.
+As a result, it is necessary for students to evaluate the impact of different
+teaching methods on critical thinking ability and autonomous learning ability.
+METHODS: A systematic search will be performed using Chinese National Knowledge
+Infrastructure, Wanfang Data (Chinese database), VIP Information (Chinese
+database), Chinese Biomedical Literature, and English language databases,
+including PubMed and Embase, Web of Science, CINAHL Complete (EBSCO0, Cochrane
+library to identify relevant studies from inception to July 10, 2020. We will
+include random controlled trials that evaluated the different teaching methods.
+The Quality Assessment of Diagnostic Accuracy Studies 2 quality assessment tool
+will be used to assess the risk of bias in each study. Standard pairwise
+meta-analysis and network meta-analysis will be performed using STATA V.12.0,
+MetaDiSc 1.40, and R 3.4.1 software to compare the diagnostic efficacy of
+different hormonal biomarkers.
+RESULTS: The results of this study will be published in a peer-reviewed journal.
+CONCLUSION: This study will summarize the direct and indirect evidence to
+determine the effectiveness of different teaching methods for medical or nursing 
+students and attempt to find the most effective teaching method.
+ETHICS AND DISSEMINATION: Ethics approval and patient consent are not required,
+because this study is a meta-analysis based on published studies.
+INPLASY REGISTRATION NUMBER: INPLASY202070017.
+
+DOI: 10.1097/MD.0000000000021668 
+PMID: 33019384 
+
+
+20. Annu Int Conf IEEE Eng Med Biol Soc. 2020 Jul;2020:2528-2531. doi:
+10.1109/EMBC44109.2020.9176697.
+
+State-space models of evoked potentials to localize the seizure onset zone.
+
+Smith RJ, Kamali G, Hays M, Coogan CG, Crone NE, Sarma SV, Kang JY.
+
+Surgical removal of the seizure onset zone (SOZ) in epilepsy patients is a
+potentially curative treatment, but the process heavily relies on accurate
+localization of the SOZ via visual inspection. SPES (Single-pulse electrical
+stimulation) is a method recently used to explore inter-areal connectivity in
+vivo to probe functional brain networks such as language and motor networks, and 
+to a much lesser degree, seizure networks. We hypothesized that a dynamical
+quantification of the connectivity networks derived from the evoked responses
+induced by SPES could also be used to localize the SOZ. To test our hypothesis,
+we used an intracranial EEG (iEEG) data set in which five epilepsy patients
+underwent extensive SPES evaluation. For each patient, and for each dataset that 
+stimulated a different pair of electrodes, we constructed a state-space model
+from the patient's data. Specifically, we simultaneously estimated model
+parameters under an exogenous pulse input to a dynamical system whose state
+vector consisted of the response iEEG signals. Then, the size of the reachable
+state space, as quantified by the maximum singular value of the reachability
+matrix, ¥òmax(R), was computed and denoted as the "largest" network response
+possible when stimulating the given pair. Our results suggest high agreement
+between ¥òmax(R) and clinically annotated SOZ for patients with localizable
+SOZs.Clinical Relevance- Our study applies dynamical systems theory to identify
+epileptogenic brain regions, creating a novel tool that clinicians may use in
+surgical planning for medically-refractory epilepsy patients.
+
+DOI: 10.1109/EMBC44109.2020.9176697 
+PMID: 33018521 
+
+

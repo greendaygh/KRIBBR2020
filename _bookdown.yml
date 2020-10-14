@@ -1,8 +1,8 @@
 rmd_files: [
   "index.Rmd", 
   "02-Rintro.Rmd",
-  "03-stat-basics.Rmd"
-#  "04-Bioconductor.Rmd",
+  "03-stat-basics.Rmd",
+  "04-Bioconductor.Rmd",
 #  "03-Rprogbasics.Rmd"
 ]
 book_filename: "Rprog"
