@@ -1,4 +1,82 @@
 
+
+## Analysis example (ALL dataset)
+
+* 성별별로 각 유전자들의 발현값 차이 검정 하기
+```{r, eval=F}
+##
+ex_data_male <- ex_data[,ph_data$sex=="M"]
+ex_data_female <- ex_data[,ph_data$sex=="F"]
+
+x <- ex_data_male[1,]
+y <- ex_data_female[1,]
+fit <- t.test(x, y)
+
+##
+mytest <- function(z){
+  x <- z[1:86]
+  y <- z[87:128] ## no good coding
+  fit <- t.test(x, y)
+  z <- c(tstat=fit$statistic, pval=fit$p.value)
+  return(z)
+}
+newd <- c(x,y)
+mytest(newd)
+
+new_data <- cbind(ex_data_male, ex_data_female)
+test_results <- apply(new_data, 1, mytest)
+test_results <- t(test_results)
+test_results <- data.frame(test_results)
+
+barplot(test_results$tstat.t, col="green")
+
+mycol <- rep("green", length(test_results$pval))
+barplot(test_results$tstat.t, col=mycol)
+
+mycol[test_results$pval<0.1] <- "red"
+barplot(test_results$tstat.t, col=mycol)
+```
+
+```{r, eval=F}
+
+library(ALL)
+library(hgu95av2.db)
+
+data(ALL)
+
+## data
+ex_data <- exprs(ALL)[1:100,]
+ph_data <- pData(ALL)
+feature_names <- featureNames(ALL)[1:100]
+gene_names <- unlist(as.list(hgu95av2SYMBOL[feature_names]))
+
+## remove missing \ average the values of the same genes
+idx <- which(is.na(gene_names) | duplicated(gene_names))
+ex_data2 <- data.frame(ex_data[-idx,])
+rownames(ex_data2) <- gene_names[-idx]
+
+head(ex_data2)[,1:5]
+head(ph_data)[,1:5]
+
+```
+* BT 수준별로 각 유전자들의 평균 발현양 구하기
+
+```{r, eval=F}
+tmp <- pivot_longer(ex_data2, everything())
+tmp$name
+ph_data %>% dplyr::select(c("cod", "BT"))
+colnames(ex_data2)
+tmp2 <- ph_data %>%
+  mutate(name=paste("X", cod, sep="")) %>%
+  dplyr::select(name, BT)
+
+full_join(tmp, tmp2, by="name")
+```
+
+
+
+
+
 # Data science and tidyverse 
 
 tidyverse (https://www.tidyverse.org/)는 데이터 사이언스를 위한 R 기반의 독창적인 패키지들의 모음입니다. Rstudio의 핵심 전문가인 해들리위컴이 (Hadley Wickham) 중심이 되어 만들어 졌으며 기존의 툴보다 쉽고 효율적으로 데이터 분석을 수행할 수 있습니다. 

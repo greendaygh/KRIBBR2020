@@ -372,6 +372,7 @@ translate(x1)
 `DNAStringSet` class는 여러개의 `DNAString` 을 모아 놓은 집합이라고 보면 됩니다. `length` 함수는 DNA string의 갯수이며 `width` 또는 `nchar` 함수로 각 string의 길이를 구할 수 있으며 이 외 대부분의 `DNAString` 에서 사용되는 함수가 동일하게 사용될 수 있습니다. 
 
 ```{r eval=FALSE}
+
 x0 <- c("CTC-NACCAGTAT", "TTGA", "TACCTAGAG")
 x1 <- DNAStringSet(x0)
 class(x0)
@@ -383,8 +384,16 @@ width(x1)
 subseq(x1, 2, 4)
 x1[[1]]
 x1[1]
+
+
+x3 <- DNAString("ATGAGTAGTTAG")
+x4 <- c(x1, DNAStringSet(x3))
+x4[-1]
+x4
 alphabetFrequency(x1, baseOnly=TRUE, as.prob=TRUE)
 letterFrequency(x1, c("G", "C"), as.prob=TRUE)
+rowSums(letterFrequency(x1, c("G", "C"), as.prob=TRUE))
+subseq(x4, 2, 4)
 ```
 
 
@@ -408,6 +417,8 @@ random_dna <- function(len){
   x0 <- paste("ATG", tmp, "TAG", sep="")
   return(x0)
 }
+random_dna(len=30)
+random_dna(len=40)
 ```
 
 파라메터로 넘겨진 len 값이 sample 함수의 len에 사용된 것을 참고하세요. 
@@ -428,6 +439,8 @@ x0
 ```{r, eval=F}
 x0 <- replicate(10, random_dna(30))
 x0
+x1 <- DNAStringSet(x0)
+x1
 ```
 
 위 x0 스트링들을 XStringSet으로 바꾸고 GC 비율을 구한 후  bargraph를 그리겠습니다. gc_ratio가 G와 C의 비율값을 저장한 10x2 테이블이므로 x축에 10개의 서열과 각 서열의 GC비율을 나타내고 y축에 비율 값을 그리는 것으로 생각한 후 ggplot의 aes와 파라메터를 적절히 지정해 줍니다.  
@@ -513,7 +526,7 @@ entrez_db_summary("nuccore")
 
 ##
 acc <- c("NC_001477", "NC_001474", "NC_001475", "NC_002640")
-all_recs <- entrez_fetch(db="nuccore", id=acc, rettype="fasta")
+all_recs <- entrez_fetch(db="nuccore", id=acc[1], rettype="fasta")
 cat(strwrap(substr(all_recs, 1, 500)), sep="\n")
 write(all_recs, file="myseq.fasta")
 dang <- readDNAStringSet("myseq.fasta", format="fasta")

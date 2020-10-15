@@ -490,8 +490,16 @@ GEO는 microarray, next-generation sequencing 등의 high-throughput 유전체 �
 <span id="cb86-9"><a href="bioconductor.html#cb86-9"></a><span class="kw">subseq</span>(x1, <span class="dv">2</span>, <span class="dv">4</span>)</span>
 <span id="cb86-10"><a href="bioconductor.html#cb86-10"></a>x1[[<span class="dv">1</span>]]</span>
 <span id="cb86-11"><a href="bioconductor.html#cb86-11"></a>x1[<span class="dv">1</span>]</span>
-<span id="cb86-12"><a href="bioconductor.html#cb86-12"></a><span class="kw">alphabetFrequency</span>(x1, <span class="dt">baseOnly=</span><span class="ot">TRUE</span>, <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span>
-<span id="cb86-13"><a href="bioconductor.html#cb86-13"></a><span class="kw">letterFrequency</span>(x1, <span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<span id="cb86-12"><a href="bioconductor.html#cb86-12"></a></span>
+<span id="cb86-13"><a href="bioconductor.html#cb86-13"></a></span>
+<span id="cb86-14"><a href="bioconductor.html#cb86-14"></a>x3 &lt;-<span class="st"> </span><span class="kw">DNAString</span>(<span class="st">&quot;ATGAGTAGTTAG&quot;</span>)</span>
+<span id="cb86-15"><a href="bioconductor.html#cb86-15"></a>x4 &lt;-<span class="st"> </span><span class="kw">c</span>(x1, <span class="kw">DNAStringSet</span>(x3))</span>
+<span id="cb86-16"><a href="bioconductor.html#cb86-16"></a>x4[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb86-17"><a href="bioconductor.html#cb86-17"></a>x4</span>
+<span id="cb86-18"><a href="bioconductor.html#cb86-18"></a><span class="kw">alphabetFrequency</span>(x1, <span class="dt">baseOnly=</span><span class="ot">TRUE</span>, <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span>
+<span id="cb86-19"><a href="bioconductor.html#cb86-19"></a><span class="kw">letterFrequency</span>(x1, <span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span>
+<span id="cb86-20"><a href="bioconductor.html#cb86-20"></a><span class="kw">rowSums</span>(<span class="kw">letterFrequency</span>(x1, <span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">as.prob=</span><span class="ot">TRUE</span>))</span>
+<span id="cb86-21"><a href="bioconductor.html#cb86-21"></a><span class="kw">subseq</span>(x4, <span class="dv">2</span>, <span class="dv">4</span>)</span></code></pre></div>
 <p>아래는 가장 직관적으로 생각할 수 있는 <code>for</code>를 이용한 방법입니다. 즉, 10개 저장소를 갖는 x0 변수를 미리 생성해 두고 for 문을 돌면서 서열을 하나씩 만들어 저장하는 방법입니다.</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="bioconductor.html#cb87-1"></a>x0 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;&quot;</span>, <span class="dv">10</span>)</span>
 <span id="cb87-2"><a href="bioconductor.html#cb87-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x0)){</span>
@@ -504,7 +512,9 @@ GEO는 microarray, next-generation sequencing 등의 high-throughput 유전체 �
 <span id="cb88-2"><a href="bioconductor.html#cb88-2"></a>  tmp &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">sample</span>(DNA_BASES, len, <span class="dt">replace =</span> T), <span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)</span>
 <span id="cb88-3"><a href="bioconductor.html#cb88-3"></a>  x0 &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;ATG&quot;</span>, tmp, <span class="st">&quot;TAG&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
 <span id="cb88-4"><a href="bioconductor.html#cb88-4"></a>  <span class="kw">return</span>(x0)</span>
-<span id="cb88-5"><a href="bioconductor.html#cb88-5"></a>}</span></code></pre></div>
+<span id="cb88-5"><a href="bioconductor.html#cb88-5"></a>}</span>
+<span id="cb88-6"><a href="bioconductor.html#cb88-6"></a><span class="kw">random_dna</span>(<span class="dt">len=</span><span class="dv">30</span>)</span>
+<span id="cb88-7"><a href="bioconductor.html#cb88-7"></a><span class="kw">random_dna</span>(<span class="dt">len=</span><span class="dv">40</span>)</span></code></pre></div>
 <p>파라메터로 넘겨진 len 값이 sample 함수의 len에 사용된 것을 참고하세요.</p>
 <p>이제 길이 30bp짜리 10개의 서열을 반복해서 만들 때 위 함수를 앞서와 같이 for문을 이용하여 10번 반복해서 실행해 주면 같은 결과를 얻습니다. 위와 같이 함수를 만들어 두면 언제든 DNA 서열을 만들 때 재사용 할 수 있습니다.</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="bioconductor.html#cb89-1"></a>x0 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;&quot;</span>, <span class="dv">10</span>)</span>
@@ -514,7 +524,9 @@ GEO는 microarray, next-generation sequencing 등의 high-throughput 유전체 �
 <span id="cb89-5"><a href="bioconductor.html#cb89-5"></a>x0</span></code></pre></div>
 <p>그런데 R에는 <code>apply</code> 와 같은 행렬연산 함수가 있어서 for문을 사용하지 않고 편리하게 반복문을 실행할 수 있습니다. <code>replicate</code> 함수는 <code>apply</code>와 같은 기능으로 list나 vector 변수에 대해서 사용할 수 있습니다. 즉, 다음과 같이 사용자가 원하는 함수를 반복해서 실행하고 반복 수 만큼의 길이를 갖는 결과를 반환합니다.</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="bioconductor.html#cb90-1"></a>x0 &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10</span>, <span class="kw">random_dna</span>(<span class="dv">30</span>))</span>
-<span id="cb90-2"><a href="bioconductor.html#cb90-2"></a>x0</span></code></pre></div>
+<span id="cb90-2"><a href="bioconductor.html#cb90-2"></a>x0</span>
+<span id="cb90-3"><a href="bioconductor.html#cb90-3"></a>x1 &lt;-<span class="st"> </span><span class="kw">DNAStringSet</span>(x0)</span>
+<span id="cb90-4"><a href="bioconductor.html#cb90-4"></a>x1</span></code></pre></div>
 <p>위 x0 스트링들을 XStringSet으로 바꾸고 GC 비율을 구한 후 bargraph를 그리겠습니다. gc_ratio가 G와 C의 비율값을 저장한 10x2 테이블이므로 x축에 10개의 서열과 각 서열의 GC비율을 나타내고 y축에 비율 값을 그리는 것으로 생각한 후 ggplot의 aes와 파라메터를 적절히 지정해 줍니다.</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="bioconductor.html#cb91-1"></a>x1 &lt;-<span class="st"> </span><span class="kw">DNAStringSet</span>(x0)</span>
 <span id="cb91-2"><a href="bioconductor.html#cb91-2"></a>gc_ratio1 &lt;-<span class="st"> </span><span class="kw">letterFrequency</span>(x1, <span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">as.prob=</span><span class="ot">TRUE</span>)</span>
@@ -565,7 +577,7 @@ ECitMatch (batch citation searching in PubMed)</p>
 <span id="cb95-4"><a href="bioconductor.html#cb95-4"></a></span>
 <span id="cb95-5"><a href="bioconductor.html#cb95-5"></a><span class="co">##</span></span>
 <span id="cb95-6"><a href="bioconductor.html#cb95-6"></a>acc &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NC_001477&quot;</span>, <span class="st">&quot;NC_001474&quot;</span>, <span class="st">&quot;NC_001475&quot;</span>, <span class="st">&quot;NC_002640&quot;</span>)</span>
-<span id="cb95-7"><a href="bioconductor.html#cb95-7"></a>all_recs &lt;-<span class="st"> </span><span class="kw">entrez_fetch</span>(<span class="dt">db=</span><span class="st">&quot;nuccore&quot;</span>, <span class="dt">id=</span>acc, <span class="dt">rettype=</span><span class="st">&quot;fasta&quot;</span>)</span>
+<span id="cb95-7"><a href="bioconductor.html#cb95-7"></a>all_recs &lt;-<span class="st"> </span><span class="kw">entrez_fetch</span>(<span class="dt">db=</span><span class="st">&quot;nuccore&quot;</span>, <span class="dt">id=</span>acc[<span class="dv">1</span>], <span class="dt">rettype=</span><span class="st">&quot;fasta&quot;</span>)</span>
 <span id="cb95-8"><a href="bioconductor.html#cb95-8"></a><span class="kw">cat</span>(<span class="kw">strwrap</span>(<span class="kw">substr</span>(all_recs, <span class="dv">1</span>, <span class="dv">500</span>)), <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb95-9"><a href="bioconductor.html#cb95-9"></a><span class="kw">write</span>(all_recs, <span class="dt">file=</span><span class="st">&quot;myseq.fasta&quot;</span>)</span>
 <span id="cb95-10"><a href="bioconductor.html#cb95-10"></a>dang &lt;-<span class="st"> </span><span class="kw">readDNAStringSet</span>(<span class="st">&quot;myseq.fasta&quot;</span>, <span class="dt">format=</span><span class="st">&quot;fasta&quot;</span>)</span>

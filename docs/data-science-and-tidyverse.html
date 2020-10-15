@@ -274,59 +274,71 @@ Tidy data. <em>The Journal of Statistical Software</em>, vol. 59, 2014). Long�
 <span id="cb97-5"><a href="data-science-and-tidyverse.html#cb97-5"></a></span>
 <span id="cb97-6"><a href="data-science-and-tidyverse.html#cb97-6"></a><span class="co">## data</span></span>
 <span id="cb97-7"><a href="data-science-and-tidyverse.html#cb97-7"></a>ex_data &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALL)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,]</span>
-<span id="cb97-8"><a href="data-science-and-tidyverse.html#cb97-8"></a>ph_data &lt;-<span class="st"> </span><span class="kw">pData</span>(ALL)</span>
-<span id="cb97-9"><a href="data-science-and-tidyverse.html#cb97-9"></a>feature_names &lt;-<span class="st"> </span><span class="kw">featureNames</span>(ALL)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]</span>
-<span id="cb97-10"><a href="data-science-and-tidyverse.html#cb97-10"></a>gene_names &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">as.list</span>(hgu95av2SYMBOL[feature_names]))</span>
-<span id="cb97-11"><a href="data-science-and-tidyverse.html#cb97-11"></a></span>
-<span id="cb97-12"><a href="data-science-and-tidyverse.html#cb97-12"></a><span class="co">## remove missing | average the same genes</span></span>
-<span id="cb97-13"><a href="data-science-and-tidyverse.html#cb97-13"></a><span class="kw">sum</span>(<span class="kw">is.na</span>(ex_data))</span>
-<span id="cb97-14"><a href="data-science-and-tidyverse.html#cb97-14"></a><span class="kw">sum</span>(<span class="kw">is.na</span>(gene_names))</span>
-<span id="cb97-15"><a href="data-science-and-tidyverse.html#cb97-15"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(gene_names) <span class="op">|</span><span class="st"> </span><span class="kw">duplicated</span>(gene_names))</span>
-<span id="cb97-16"><a href="data-science-and-tidyverse.html#cb97-16"></a>ex_data &lt;-<span class="st"> </span>ex_data[<span class="op">-</span>idx,]</span>
-<span id="cb97-17"><a href="data-science-and-tidyverse.html#cb97-17"></a><span class="kw">rownames</span>(ex_data) &lt;-<span class="st"> </span>gene_names[<span class="op">-</span>idx]</span>
-<span id="cb97-18"><a href="data-science-and-tidyverse.html#cb97-18"></a></span>
-<span id="cb97-19"><a href="data-science-and-tidyverse.html#cb97-19"></a><span class="kw">head</span>(ex_data)</span>
-<span id="cb97-20"><a href="data-science-and-tidyverse.html#cb97-20"></a><span class="kw">head</span>(ph_data)</span></code></pre></div>
+<span id="cb97-8"><a href="data-science-and-tidyverse.html#cb97-8"></a>ph_data &lt;-<span class="st"> </span><span class="kw">pData</span>(ALL)[,<span class="kw">c</span>(<span class="st">&quot;cod&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;BT&quot;</span>)]</span>
+<span id="cb97-9"><a href="data-science-and-tidyverse.html#cb97-9"></a></span>
+<span id="cb97-10"><a href="data-science-and-tidyverse.html#cb97-10"></a><span class="co">## remove missing | duplicated genes</span></span>
+<span id="cb97-11"><a href="data-science-and-tidyverse.html#cb97-11"></a>ph_data &lt;-<span class="st"> </span>ph_data[<span class="kw">complete.cases</span>(ph_data),]</span>
+<span id="cb97-12"><a href="data-science-and-tidyverse.html#cb97-12"></a>feature_names &lt;-<span class="st"> </span><span class="kw">featureNames</span>(ALL)[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>]</span>
+<span id="cb97-13"><a href="data-science-and-tidyverse.html#cb97-13"></a>gene_names &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">as.list</span>(hgu95av2SYMBOL[feature_names]))</span>
+<span id="cb97-14"><a href="data-science-and-tidyverse.html#cb97-14"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(gene_names) <span class="op">|</span><span class="st"> </span><span class="kw">duplicated</span>(gene_names))</span>
+<span id="cb97-15"><a href="data-science-and-tidyverse.html#cb97-15"></a>ex_data &lt;-<span class="st"> </span>ex_data[<span class="op">-</span>idx,]</span>
+<span id="cb97-16"><a href="data-science-and-tidyverse.html#cb97-16"></a><span class="kw">rownames</span>(ex_data) &lt;-<span class="st"> </span>gene_names[<span class="op">-</span>idx]</span>
+<span id="cb97-17"><a href="data-science-and-tidyverse.html#cb97-17"></a>ex_data[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span></code></pre></div>
 <ul>
 <li>성별별로 각 유전자들의 평균 발현양 구하기</li>
 </ul>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="data-science-and-tidyverse.html#cb98-1"></a><span class="co">###</span></span>
-<span id="cb98-2"><a href="data-science-and-tidyverse.html#cb98-2"></a>ex_data_male &lt;-<span class="st"> </span>ex_data[,ph_data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;M&quot;</span>]</span>
-<span id="cb98-3"><a href="data-science-and-tidyverse.html#cb98-3"></a>ex_data_female &lt;-<span class="st"> </span>ex_data[,ph_data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;F&quot;</span>]</span>
-<span id="cb98-4"><a href="data-science-and-tidyverse.html#cb98-4"></a>male_mean &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(ex_data_male)</span>
-<span id="cb98-5"><a href="data-science-and-tidyverse.html#cb98-5"></a>female_mean &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(ex_data_female)</span>
-<span id="cb98-6"><a href="data-science-and-tidyverse.html#cb98-6"></a>exp_mean &lt;-<span class="st"> </span><span class="kw">data.frame</span>(male_mean, female_mean)</span>
-<span id="cb98-7"><a href="data-science-and-tidyverse.html#cb98-7"></a><span class="kw">rownames</span>(exp_mean) &lt;-<span class="st"> </span><span class="kw">rownames</span>(ex_data_male)</span>
-<span id="cb98-8"><a href="data-science-and-tidyverse.html#cb98-8"></a><span class="kw">barplot</span>(<span class="kw">t</span>(exp_mean), <span class="dt">beside=</span>T)</span>
-<span id="cb98-9"><a href="data-science-and-tidyverse.html#cb98-9"></a></span>
-<span id="cb98-10"><a href="data-science-and-tidyverse.html#cb98-10"></a><span class="co">###</span></span>
-<span id="cb98-11"><a href="data-science-and-tidyverse.html#cb98-11"></a>diff &lt;-<span class="st"> </span>male_mean<span class="op">-</span>female_mean</span>
-<span id="cb98-12"><a href="data-science-and-tidyverse.html#cb98-12"></a><span class="kw">plot</span>(diff)</span>
-<span id="cb98-13"><a href="data-science-and-tidyverse.html#cb98-13"></a><span class="kw">plot</span>(male_mean, female_mean)</span>
-<span id="cb98-14"><a href="data-science-and-tidyverse.html#cb98-14"></a><span class="kw">abline</span>(<span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="data-science-and-tidyverse.html#cb98-1"></a><span class="co">## tip</span></span>
+<span id="cb98-2"><a href="data-science-and-tidyverse.html#cb98-2"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb98-3"><a href="data-science-and-tidyverse.html#cb98-3"></a><span class="kw">sprintf</span>(<span class="st">&quot;%05d&quot;</span>, x)</span>
+<span id="cb98-4"><a href="data-science-and-tidyverse.html#cb98-4"></a></span>
+<span id="cb98-5"><a href="data-science-and-tidyverse.html#cb98-5"></a><span class="co">## male </span></span>
+<span id="cb98-6"><a href="data-science-and-tidyverse.html#cb98-6"></a>selnames &lt;-<span class="st"> </span>ph_data<span class="op">$</span>cod[ph_data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;M&quot;</span>]</span>
+<span id="cb98-7"><a href="data-science-and-tidyverse.html#cb98-7"></a>selnames &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;%05d&quot;</span>, <span class="kw">as.numeric</span>(selnames))</span>
+<span id="cb98-8"><a href="data-science-and-tidyverse.html#cb98-8"></a>selnames2 &lt;-<span class="st"> </span>selnames[<span class="op">!</span><span class="kw">is.na</span>(selnames)]</span>
+<span id="cb98-9"><a href="data-science-and-tidyverse.html#cb98-9"></a>ex_data_male &lt;-<span class="st"> </span>ex_data[,selnames2]</span>
+<span id="cb98-10"><a href="data-science-and-tidyverse.html#cb98-10"></a>colidx &lt;-<span class="st"> </span><span class="kw">complete.cases</span>(<span class="kw">t</span>(ex_data_male))</span>
+<span id="cb98-11"><a href="data-science-and-tidyverse.html#cb98-11"></a>ex_data_male2 &lt;-<span class="st"> </span>ex_data_male[,colidx]</span>
+<span id="cb98-12"><a href="data-science-and-tidyverse.html#cb98-12"></a></span>
+<span id="cb98-13"><a href="data-science-and-tidyverse.html#cb98-13"></a><span class="co">## female</span></span>
+<span id="cb98-14"><a href="data-science-and-tidyverse.html#cb98-14"></a>selnames &lt;-<span class="st"> </span>ph_data<span class="op">$</span>cod[ph_data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;F&quot;</span>]</span>
+<span id="cb98-15"><a href="data-science-and-tidyverse.html#cb98-15"></a>selnames &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;%05d&quot;</span>, <span class="kw">as.numeric</span>(selnames))</span>
+<span id="cb98-16"><a href="data-science-and-tidyverse.html#cb98-16"></a>selnames2 &lt;-<span class="st"> </span>selnames[<span class="op">!</span><span class="kw">is.na</span>(selnames)]</span>
+<span id="cb98-17"><a href="data-science-and-tidyverse.html#cb98-17"></a>ex_data_female &lt;-<span class="st"> </span>ex_data[,selnames2]</span>
+<span id="cb98-18"><a href="data-science-and-tidyverse.html#cb98-18"></a>colidx &lt;-<span class="st"> </span><span class="kw">complete.cases</span>(<span class="kw">t</span>(ex_data_female))</span>
+<span id="cb98-19"><a href="data-science-and-tidyverse.html#cb98-19"></a>ex_data_female2 &lt;-<span class="st"> </span>ex_data_female[,colidx]</span>
+<span id="cb98-20"><a href="data-science-and-tidyverse.html#cb98-20"></a></span>
+<span id="cb98-21"><a href="data-science-and-tidyverse.html#cb98-21"></a></span>
+<span id="cb98-22"><a href="data-science-and-tidyverse.html#cb98-22"></a><span class="co">## average</span></span>
+<span id="cb98-23"><a href="data-science-and-tidyverse.html#cb98-23"></a>male_mean &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(ex_data_male2)</span>
+<span id="cb98-24"><a href="data-science-and-tidyverse.html#cb98-24"></a>female_mean &lt;-<span class="st"> </span><span class="kw">rowMeans</span>(ex_data_female2)</span>
+<span id="cb98-25"><a href="data-science-and-tidyverse.html#cb98-25"></a>exp_mean &lt;-<span class="st"> </span><span class="kw">data.frame</span>(male_mean, female_mean)</span>
+<span id="cb98-26"><a href="data-science-and-tidyverse.html#cb98-26"></a><span class="kw">head</span>(exp_mean)</span>
+<span id="cb98-27"><a href="data-science-and-tidyverse.html#cb98-27"></a></span>
+<span id="cb98-28"><a href="data-science-and-tidyverse.html#cb98-28"></a><span class="co">## visualization</span></span>
+<span id="cb98-29"><a href="data-science-and-tidyverse.html#cb98-29"></a><span class="kw">barplot</span>(<span class="kw">t</span>(exp_mean), <span class="dt">beside=</span>T)</span>
+<span id="cb98-30"><a href="data-science-and-tidyverse.html#cb98-30"></a><span class="co">##</span></span>
+<span id="cb98-31"><a href="data-science-and-tidyverse.html#cb98-31"></a>diff &lt;-<span class="st"> </span>male_mean<span class="op">-</span>female_mean</span>
+<span id="cb98-32"><a href="data-science-and-tidyverse.html#cb98-32"></a><span class="kw">plot</span>(diff)</span>
+<span id="cb98-33"><a href="data-science-and-tidyverse.html#cb98-33"></a><span class="kw">plot</span>(male_mean, female_mean)</span>
+<span id="cb98-34"><a href="data-science-and-tidyverse.html#cb98-34"></a><span class="kw">abline</span>(<span class="dt">a=</span><span class="dv">0</span>, <span class="dt">b=</span><span class="dv">1</span>)</span></code></pre></div>
 <ul>
 <li>성별별로 각 유전자들의 최고 발현값 구하기</li>
 </ul>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="data-science-and-tidyverse.html#cb99-1"></a>ex_data_male &lt;-<span class="st"> </span>ex_data[,ph_data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;M&quot;</span>]</span>
-<span id="cb99-2"><a href="data-science-and-tidyverse.html#cb99-2"></a>ex_data_female &lt;-<span class="st"> </span>ex_data[,ph_data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;F&quot;</span>]</span>
-<span id="cb99-3"><a href="data-science-and-tidyverse.html#cb99-3"></a></span>
-<span id="cb99-4"><a href="data-science-and-tidyverse.html#cb99-4"></a><span class="co">## male max</span></span>
-<span id="cb99-5"><a href="data-science-and-tidyverse.html#cb99-5"></a>male_val &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">nrow</span>(ex_data_male))</span>
-<span id="cb99-6"><a href="data-science-and-tidyverse.html#cb99-6"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(ex_data_male)){</span>
-<span id="cb99-7"><a href="data-science-and-tidyverse.html#cb99-7"></a>  male_val[i] &lt;-<span class="st"> </span><span class="kw">max</span>(ex_data_male[i,])</span>
-<span id="cb99-8"><a href="data-science-and-tidyverse.html#cb99-8"></a>}</span>
-<span id="cb99-9"><a href="data-science-and-tidyverse.html#cb99-9"></a><span class="kw">names</span>(male_val) &lt;-<span class="st"> </span><span class="kw">rownames</span>(ex_data_male)</span>
-<span id="cb99-10"><a href="data-science-and-tidyverse.html#cb99-10"></a></span>
-<span id="cb99-11"><a href="data-science-and-tidyverse.html#cb99-11"></a><span class="co">## female max</span></span>
-<span id="cb99-12"><a href="data-science-and-tidyverse.html#cb99-12"></a>female_val &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">nrow</span>(ex_data_female))</span>
-<span id="cb99-13"><a href="data-science-and-tidyverse.html#cb99-13"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(ex_data_female)){</span>
-<span id="cb99-14"><a href="data-science-and-tidyverse.html#cb99-14"></a>  female_val[i] &lt;-<span class="st"> </span><span class="kw">max</span>(ex_data_female[i,])</span>
-<span id="cb99-15"><a href="data-science-and-tidyverse.html#cb99-15"></a>}</span>
-<span id="cb99-16"><a href="data-science-and-tidyverse.html#cb99-16"></a><span class="kw">names</span>(female_val) &lt;-<span class="st"> </span><span class="kw">rownames</span>(ex_data_female)</span>
-<span id="cb99-17"><a href="data-science-and-tidyverse.html#cb99-17"></a></span>
-<span id="cb99-18"><a href="data-science-and-tidyverse.html#cb99-18"></a>exp_val &lt;-<span class="st"> </span><span class="kw">data.frame</span>(male_val, female_val)</span>
-<span id="cb99-19"><a href="data-science-and-tidyverse.html#cb99-19"></a><span class="kw">rownames</span>(exp_val) &lt;-<span class="st"> </span><span class="kw">rownames</span>(ex_data)</span>
-<span id="cb99-20"><a href="data-science-and-tidyverse.html#cb99-20"></a><span class="kw">barplot</span>(<span class="kw">t</span>(exp_mean), <span class="dt">beside=</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="data-science-and-tidyverse.html#cb99-1"></a>male_val &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">nrow</span>(ex_data_male2))</span>
+<span id="cb99-2"><a href="data-science-and-tidyverse.html#cb99-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(ex_data_male2)){</span>
+<span id="cb99-3"><a href="data-science-and-tidyverse.html#cb99-3"></a>  male_val[i] &lt;-<span class="st"> </span><span class="kw">max</span>(ex_data_male2[i,])</span>
+<span id="cb99-4"><a href="data-science-and-tidyverse.html#cb99-4"></a>}</span>
+<span id="cb99-5"><a href="data-science-and-tidyverse.html#cb99-5"></a><span class="kw">names</span>(male_val) &lt;-<span class="st"> </span><span class="kw">rownames</span>(ex_data_male2)</span>
+<span id="cb99-6"><a href="data-science-and-tidyverse.html#cb99-6"></a></span>
+<span id="cb99-7"><a href="data-science-and-tidyverse.html#cb99-7"></a>female_val &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">nrow</span>(ex_data_female))</span>
+<span id="cb99-8"><a href="data-science-and-tidyverse.html#cb99-8"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(ex_data_female)){</span>
+<span id="cb99-9"><a href="data-science-and-tidyverse.html#cb99-9"></a>  female_val[i] &lt;-<span class="st"> </span><span class="kw">max</span>(ex_data_female[i,])</span>
+<span id="cb99-10"><a href="data-science-and-tidyverse.html#cb99-10"></a>}</span>
+<span id="cb99-11"><a href="data-science-and-tidyverse.html#cb99-11"></a><span class="kw">names</span>(female_val) &lt;-<span class="st"> </span><span class="kw">rownames</span>(ex_data_female)</span>
+<span id="cb99-12"><a href="data-science-and-tidyverse.html#cb99-12"></a></span>
+<span id="cb99-13"><a href="data-science-and-tidyverse.html#cb99-13"></a>exp_val &lt;-<span class="st"> </span><span class="kw">data.frame</span>(male_val, female_val)</span>
+<span id="cb99-14"><a href="data-science-and-tidyverse.html#cb99-14"></a><span class="kw">rownames</span>(exp_val) &lt;-<span class="st"> </span><span class="kw">rownames</span>(ex_data)</span>
+<span id="cb99-15"><a href="data-science-and-tidyverse.html#cb99-15"></a><span class="kw">barplot</span>(<span class="kw">t</span>(exp_mean), <span class="dt">beside=</span>T)</span></code></pre></div>
 <ul>
 <li>성별별로 각 유전자들의 발현값 차이 검정 하기</li>
 </ul>
@@ -336,60 +348,70 @@ Tidy data. <em>The Journal of Statistical Software</em>, vol. 59, 2014). Long�
 <p><code>apply</code>는 데이터를 변형하기 위한 함수라기 보다는 데이터를 다룰 때 각 원소별, 그룹별, row, 또는 column 별로 반복적으로 수행되는 작업을 효율적으로 수행할 수 있도록 해주는 함수입니다. <code>apply</code> 계열의 함수를 적절히 사용하면 효율성이나 편리성 뿐만 아니라 코드의 간결성 등 많은 장점이 있습니다. <code>apply</code>의 두 번째 인자인 margin의 값으로 (<code>?apply</code>참고) 여기서는 <code>2</code>가 사용되었으며 margin 값이 1인지 2인지에 따라서 다음과 같이 작동을 합니다.</p>
 <p><img src="images/05/01.png" /></p>
 <p><code>mean</code>외에도 다양한 함수들이 사용될 수 있으며 아래와 같이 임의의 함수를 만들어서 사용할 수 도 있습니다. 아래 코드에서는 <code>function(x)...</code>로 바로 함수의 정의를 넣어서 사용했으나 그 아래 <code>mysd</code> 함수와 같이 미리 함수 하나를 만들고 난 후 함수 이름을 이용해서 <code>apply</code>를 적용할 수 있습니다.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="data-science-and-tidyverse.html#cb100-1"></a><span class="kw">apply</span>(df, <span class="dv">2</span>, sd, <span class="dt">na.rm=</span>T)</span>
-<span id="cb100-2"><a href="data-science-and-tidyverse.html#cb100-2"></a><span class="kw">apply</span>(df, <span class="dv">2</span>, <span class="cf">function</span>(x){ </span>
-<span id="cb100-3"><a href="data-science-and-tidyverse.html#cb100-3"></a>  xmean &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm=</span>T) </span>
-<span id="cb100-4"><a href="data-science-and-tidyverse.html#cb100-4"></a>  <span class="kw">return</span>(xmean)</span>
-<span id="cb100-5"><a href="data-science-and-tidyverse.html#cb100-5"></a>  })</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="data-science-and-tidyverse.html#cb100-1"></a>nums &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dt">replace =</span> T)</span>
+<span id="cb100-2"><a href="data-science-and-tidyverse.html#cb100-2"></a>df &lt;-<span class="st"> </span><span class="kw">matrix</span>(nums, <span class="dt">nrow=</span><span class="dv">20</span>, <span class="dt">ncol=</span><span class="dv">5</span>)</span>
+<span id="cb100-3"><a href="data-science-and-tidyverse.html#cb100-3"></a><span class="kw">apply</span>(df, <span class="dv">2</span>, sd)</span>
+<span id="cb100-4"><a href="data-science-and-tidyverse.html#cb100-4"></a><span class="kw">apply</span>(df, <span class="dv">2</span>, mean)</span>
+<span id="cb100-5"><a href="data-science-and-tidyverse.html#cb100-5"></a><span class="kw">apply</span>(df, <span class="dv">1</span>, sd)</span>
+<span id="cb100-6"><a href="data-science-and-tidyverse.html#cb100-6"></a><span class="kw">sd</span>(df[<span class="dv">1</span>,])</span>
+<span id="cb100-7"><a href="data-science-and-tidyverse.html#cb100-7"></a></span>
+<span id="cb100-8"><a href="data-science-and-tidyverse.html#cb100-8"></a><span class="kw">apply</span>(df, <span class="dv">2</span>, sd, <span class="dt">na.rm=</span>T)</span>
+<span id="cb100-9"><a href="data-science-and-tidyverse.html#cb100-9"></a><span class="kw">apply</span>(df, <span class="dv">2</span>, <span class="cf">function</span>(x){ </span>
+<span id="cb100-10"><a href="data-science-and-tidyverse.html#cb100-10"></a>  xmean &lt;-<span class="st"> </span><span class="kw">mean</span>(x, <span class="dt">na.rm=</span>T) </span>
+<span id="cb100-11"><a href="data-science-and-tidyverse.html#cb100-11"></a>  <span class="kw">return</span>(xmean)</span>
+<span id="cb100-12"><a href="data-science-and-tidyverse.html#cb100-12"></a>  })</span></code></pre></div>
 <p><code>apply</code> 함수 외에도 <code>sapply</code>, <code>lapply</code>, <code>mapply</code> 등의 다양한 <code>apply</code>계열 함수가 쓰일 수 있습니다. 먼저 <code>lapply</code>는 <code>matrix</code> 형태 데이터가 아닌 <code>list</code> 데이터에 사용되어 각 <code>list</code> 원소별로 주어진 기능을 반복해서 수행하며 <code>sapply</code>는 <code>lapply</code>와 유사하나 벡터, 리스트, 데이터프레임 등에 함수를 적용할 수 있고 그 결과를 벡터 또는 행렬로 반환합니다.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="data-science-and-tidyverse.html#cb101-1"></a>l &lt;-<span class="st"> </span><span class="kw">list</span>()</span>
+<span id="cb101-2"><a href="data-science-and-tidyverse.html#cb101-2"></a>l[[<span class="dv">1</span>]] &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dt">replace =</span> T)</span>
+<span id="cb101-3"><a href="data-science-and-tidyverse.html#cb101-3"></a>l[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dt">replace =</span> T)</span>
+<span id="cb101-4"><a href="data-science-and-tidyverse.html#cb101-4"></a>l[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dt">replace =</span> T)</span>
+<span id="cb101-5"><a href="data-science-and-tidyverse.html#cb101-5"></a>l[[<span class="dv">4</span>]] &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dt">replace =</span> T)</span>
+<span id="cb101-6"><a href="data-science-and-tidyverse.html#cb101-6"></a></span>
+<span id="cb101-7"><a href="data-science-and-tidyverse.html#cb101-7"></a><span class="kw">lapply</span>(l, sd)</span>
+<span id="cb101-8"><a href="data-science-and-tidyverse.html#cb101-8"></a><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(x){</span>
+<span id="cb101-9"><a href="data-science-and-tidyverse.html#cb101-9"></a>  <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="dt">replace =</span> T)</span>
+<span id="cb101-10"><a href="data-science-and-tidyverse.html#cb101-10"></a>  })</span></code></pre></div>
 <ul>
 <li>성별별로 각 유전자들의 최고 발현값 구하기</li>
 </ul>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="data-science-and-tidyverse.html#cb101-1"></a><span class="co">##</span></span>
-<span id="cb101-2"><a href="data-science-and-tidyverse.html#cb101-2"></a>ex_data_male &lt;-<span class="st"> </span>ex_data[,ph_data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;M&quot;</span>]</span>
-<span id="cb101-3"><a href="data-science-and-tidyverse.html#cb101-3"></a>ex_data_female &lt;-<span class="st"> </span>ex_data[,ph_data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;F&quot;</span>]</span>
-<span id="cb101-4"><a href="data-science-and-tidyverse.html#cb101-4"></a></span>
-<span id="cb101-5"><a href="data-science-and-tidyverse.html#cb101-5"></a>male_val &lt;-<span class="st"> </span><span class="kw">apply</span>(ex_data_male, <span class="dv">1</span>, max)</span>
-<span id="cb101-6"><a href="data-science-and-tidyverse.html#cb101-6"></a>female_val &lt;-<span class="st"> </span><span class="kw">apply</span>(ex_data_female, <span class="dv">1</span>, max)</span>
-<span id="cb101-7"><a href="data-science-and-tidyverse.html#cb101-7"></a></span>
-<span id="cb101-8"><a href="data-science-and-tidyverse.html#cb101-8"></a>exp_val &lt;-<span class="st"> </span><span class="kw">data.frame</span>(male_val, female_val)</span>
-<span id="cb101-9"><a href="data-science-and-tidyverse.html#cb101-9"></a><span class="kw">rownames</span>(exp_val) &lt;-<span class="st"> </span><span class="kw">rownames</span>(ex_data)</span>
-<span id="cb101-10"><a href="data-science-and-tidyverse.html#cb101-10"></a><span class="kw">barplot</span>(<span class="kw">t</span>(exp_mean), <span class="dt">beside=</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="data-science-and-tidyverse.html#cb102-1"></a><span class="co">##</span></span>
+<span id="cb102-2"><a href="data-science-and-tidyverse.html#cb102-2"></a>male_val &lt;-<span class="st"> </span><span class="kw">apply</span>(ex_data_male2, <span class="dv">1</span>, max)</span>
+<span id="cb102-3"><a href="data-science-and-tidyverse.html#cb102-3"></a>female_val &lt;-<span class="st"> </span><span class="kw">apply</span>(ex_data_female2, <span class="dv">1</span>, max)</span>
+<span id="cb102-4"><a href="data-science-and-tidyverse.html#cb102-4"></a></span>
+<span id="cb102-5"><a href="data-science-and-tidyverse.html#cb102-5"></a>exp_val &lt;-<span class="st"> </span><span class="kw">data.frame</span>(male_val, female_val)</span>
+<span id="cb102-6"><a href="data-science-and-tidyverse.html#cb102-6"></a><span class="kw">rownames</span>(exp_val) &lt;-<span class="st"> </span><span class="kw">rownames</span>(ex_data)</span>
+<span id="cb102-7"><a href="data-science-and-tidyverse.html#cb102-7"></a><span class="kw">barplot</span>(<span class="kw">t</span>(exp_mean), <span class="dt">beside=</span>T)</span></code></pre></div>
 <ul>
 <li>성별별로 각 유전자들의 발현값 차이 검정 하기</li>
 </ul>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="data-science-and-tidyverse.html#cb102-1"></a><span class="co">##</span></span>
-<span id="cb102-2"><a href="data-science-and-tidyverse.html#cb102-2"></a>ex_data_male &lt;-<span class="st"> </span>ex_data[,ph_data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;M&quot;</span>]</span>
-<span id="cb102-3"><a href="data-science-and-tidyverse.html#cb102-3"></a>ex_data_female &lt;-<span class="st"> </span>ex_data[,ph_data<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;F&quot;</span>]</span>
-<span id="cb102-4"><a href="data-science-and-tidyverse.html#cb102-4"></a></span>
-<span id="cb102-5"><a href="data-science-and-tidyverse.html#cb102-5"></a>x &lt;-<span class="st"> </span>ex_data_male[<span class="dv">1</span>,]</span>
-<span id="cb102-6"><a href="data-science-and-tidyverse.html#cb102-6"></a>y &lt;-<span class="st"> </span>ex_data_female[<span class="dv">1</span>,]</span>
-<span id="cb102-7"><a href="data-science-and-tidyverse.html#cb102-7"></a>fit &lt;-<span class="st"> </span><span class="kw">t.test</span>(x, y)</span>
-<span id="cb102-8"><a href="data-science-and-tidyverse.html#cb102-8"></a></span>
-<span id="cb102-9"><a href="data-science-and-tidyverse.html#cb102-9"></a><span class="co">##</span></span>
-<span id="cb102-10"><a href="data-science-and-tidyverse.html#cb102-10"></a>mytest &lt;-<span class="st"> </span><span class="cf">function</span>(z){</span>
-<span id="cb102-11"><a href="data-science-and-tidyverse.html#cb102-11"></a>  x &lt;-<span class="st"> </span>z[<span class="dv">1</span><span class="op">:</span><span class="dv">86</span>]</span>
-<span id="cb102-12"><a href="data-science-and-tidyverse.html#cb102-12"></a>  y &lt;-<span class="st"> </span>z[<span class="dv">87</span><span class="op">:</span><span class="dv">128</span>] <span class="co">## no good coding</span></span>
-<span id="cb102-13"><a href="data-science-and-tidyverse.html#cb102-13"></a>  fit &lt;-<span class="st"> </span><span class="kw">t.test</span>(x, y)</span>
-<span id="cb102-14"><a href="data-science-and-tidyverse.html#cb102-14"></a>  z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">tstat=</span>fit<span class="op">$</span>statistic, <span class="dt">pval=</span>fit<span class="op">$</span>p.value)</span>
-<span id="cb102-15"><a href="data-science-and-tidyverse.html#cb102-15"></a>  <span class="kw">return</span>(z)</span>
-<span id="cb102-16"><a href="data-science-and-tidyverse.html#cb102-16"></a>}</span>
-<span id="cb102-17"><a href="data-science-and-tidyverse.html#cb102-17"></a>newd &lt;-<span class="st"> </span><span class="kw">c</span>(x,y)</span>
-<span id="cb102-18"><a href="data-science-and-tidyverse.html#cb102-18"></a><span class="kw">mytest</span>(newd)</span>
-<span id="cb102-19"><a href="data-science-and-tidyverse.html#cb102-19"></a></span>
-<span id="cb102-20"><a href="data-science-and-tidyverse.html#cb102-20"></a>new_data &lt;-<span class="st"> </span><span class="kw">cbind</span>(ex_data_male, ex_data_female)</span>
-<span id="cb102-21"><a href="data-science-and-tidyverse.html#cb102-21"></a>test_results &lt;-<span class="st"> </span><span class="kw">apply</span>(new_data, <span class="dv">1</span>, mytest)</span>
-<span id="cb102-22"><a href="data-science-and-tidyverse.html#cb102-22"></a>test_results &lt;-<span class="st"> </span><span class="kw">t</span>(test_results)</span>
-<span id="cb102-23"><a href="data-science-and-tidyverse.html#cb102-23"></a>test_results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(test_results)</span>
-<span id="cb102-24"><a href="data-science-and-tidyverse.html#cb102-24"></a></span>
-<span id="cb102-25"><a href="data-science-and-tidyverse.html#cb102-25"></a><span class="kw">barplot</span>(test_results<span class="op">$</span>tstat.t, <span class="dt">col=</span><span class="st">&quot;green&quot;</span>)</span>
-<span id="cb102-26"><a href="data-science-and-tidyverse.html#cb102-26"></a></span>
-<span id="cb102-27"><a href="data-science-and-tidyverse.html#cb102-27"></a>mycol &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;green&quot;</span>, <span class="kw">length</span>(test_results<span class="op">$</span>pval))</span>
-<span id="cb102-28"><a href="data-science-and-tidyverse.html#cb102-28"></a><span class="kw">barplot</span>(test_results<span class="op">$</span>tstat.t, <span class="dt">col=</span>mycol)</span>
-<span id="cb102-29"><a href="data-science-and-tidyverse.html#cb102-29"></a></span>
-<span id="cb102-30"><a href="data-science-and-tidyverse.html#cb102-30"></a>mycol[test_results<span class="op">$</span>pval<span class="op">&lt;</span><span class="fl">0.1</span>] &lt;-<span class="st"> &quot;red&quot;</span></span>
-<span id="cb102-31"><a href="data-science-and-tidyverse.html#cb102-31"></a><span class="kw">barplot</span>(test_results<span class="op">$</span>tstat.t, <span class="dt">col=</span>mycol)</span></code></pre></div>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="data-science-and-tidyverse.html#cb103-1"></a>ph_data<span class="op">$</span>BT</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="data-science-and-tidyverse.html#cb103-1"></a><span class="co">##</span></span>
+<span id="cb103-2"><a href="data-science-and-tidyverse.html#cb103-2"></a>x &lt;-<span class="st"> </span>ex_data_male2[<span class="dv">1</span>,]</span>
+<span id="cb103-3"><a href="data-science-and-tidyverse.html#cb103-3"></a>y &lt;-<span class="st"> </span>ex_data_female2[<span class="dv">1</span>,]</span>
+<span id="cb103-4"><a href="data-science-and-tidyverse.html#cb103-4"></a>fit &lt;-<span class="st"> </span><span class="kw">t.test</span>(x, y)</span>
+<span id="cb103-5"><a href="data-science-and-tidyverse.html#cb103-5"></a></span>
+<span id="cb103-6"><a href="data-science-and-tidyverse.html#cb103-6"></a><span class="co">##</span></span>
+<span id="cb103-7"><a href="data-science-and-tidyverse.html#cb103-7"></a>mytest &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb103-8"><a href="data-science-and-tidyverse.html#cb103-8"></a>  fit &lt;-<span class="st"> </span><span class="kw">t.test</span>(x[<span class="dv">1</span><span class="op">:</span><span class="dv">86</span>], x[<span class="dv">87</span><span class="op">:</span><span class="dv">128</span>]) <span class="co">## no good</span></span>
+<span id="cb103-9"><a href="data-science-and-tidyverse.html#cb103-9"></a>  z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">tstat=</span>fit<span class="op">$</span>statistic, <span class="dt">pval=</span>fit<span class="op">$</span>p.value)</span>
+<span id="cb103-10"><a href="data-science-and-tidyverse.html#cb103-10"></a>  <span class="kw">return</span>(z)</span>
+<span id="cb103-11"><a href="data-science-and-tidyverse.html#cb103-11"></a>}</span>
+<span id="cb103-12"><a href="data-science-and-tidyverse.html#cb103-12"></a></span>
+<span id="cb103-13"><a href="data-science-and-tidyverse.html#cb103-13"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(x, y)</span>
+<span id="cb103-14"><a href="data-science-and-tidyverse.html#cb103-14"></a><span class="kw">mytest</span>(a)</span>
+<span id="cb103-15"><a href="data-science-and-tidyverse.html#cb103-15"></a></span>
+<span id="cb103-16"><a href="data-science-and-tidyverse.html#cb103-16"></a>new_data &lt;-<span class="st"> </span><span class="kw">cbind</span>(ex_data_male, ex_data_female)</span>
+<span id="cb103-17"><a href="data-science-and-tidyverse.html#cb103-17"></a>test_results &lt;-<span class="st"> </span><span class="kw">apply</span>(new_data, <span class="dv">1</span>, mytest)</span>
+<span id="cb103-18"><a href="data-science-and-tidyverse.html#cb103-18"></a>test_results &lt;-<span class="st"> </span><span class="kw">t</span>(test_results)</span>
+<span id="cb103-19"><a href="data-science-and-tidyverse.html#cb103-19"></a>test_results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(test_results)</span>
+<span id="cb103-20"><a href="data-science-and-tidyverse.html#cb103-20"></a></span>
+<span id="cb103-21"><a href="data-science-and-tidyverse.html#cb103-21"></a><span class="kw">barplot</span>(test_results<span class="op">$</span>tstat.t, <span class="dt">col=</span><span class="st">&quot;green&quot;</span>)</span>
+<span id="cb103-22"><a href="data-science-and-tidyverse.html#cb103-22"></a></span>
+<span id="cb103-23"><a href="data-science-and-tidyverse.html#cb103-23"></a>mycol &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;green&quot;</span>, <span class="kw">length</span>(test_results<span class="op">$</span>pval))</span>
+<span id="cb103-24"><a href="data-science-and-tidyverse.html#cb103-24"></a><span class="kw">barplot</span>(test_results<span class="op">$</span>tstat.t, <span class="dt">col=</span>mycol)</span>
+<span id="cb103-25"><a href="data-science-and-tidyverse.html#cb103-25"></a></span>
+<span id="cb103-26"><a href="data-science-and-tidyverse.html#cb103-26"></a>mycol[test_results<span class="op">$</span>pval<span class="op">&lt;</span><span class="fl">0.1</span>] &lt;-<span class="st"> &quot;red&quot;</span></span>
+<span id="cb103-27"><a href="data-science-and-tidyverse.html#cb103-27"></a><span class="kw">barplot</span>(test_results<span class="op">$</span>tstat.t, <span class="dt">col=</span>mycol)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="data-science-and-tidyverse.html#cb104-1"></a>ph_data<span class="op">$</span>BT</span></code></pre></div>
 </div>
 <div id="data-manipulation-with-dplyr" class="section level2">
 <h2><span class="header-section-number">5.4</span> Data manipulation with dplyr</h2>
@@ -398,26 +420,26 @@ Tidy data. <em>The Journal of Statistical Software</em>, vol. 59, 2014). Long�
 <div id="dplyr---pipe-operator" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> dplyr - pipe operator</h3>
 <p><code>dplyr</code>의 사용을 위해서는 여러 명령을 연속적으로 수행하도록 해주는 <code>%&gt;%</code> 파이프 오퍼레이터의 이해가 필요합니다. 파이프 오퍼레이터의 작동법은 간단히 <code>%&gt;%</code>의 왼쪽 코드의 결과를 출력으로 받아 오른쪽 코드의 입력 (첫번째 파라미터의 값)으로 받아들이는 작동을 합니다 (<strong>단축키: Shift+Ctrl+m</strong>). 다음 예에서 보면 <code>sin(pi)</code> 와 같은 함수의 일반적인 사용법 대신 <code>pi %&gt;% sin</code> 처럼 사용해도 똑같은 결과를 보여줍니다. <code>cos(sin(pi))</code>와 같이 여러 합수를 중첩하여 사용할 경우와 비교해서 코드의 가독성이나 효율 측면에서 크게 향상된 방법을 제공해 줍니다.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="data-science-and-tidyverse.html#cb104-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb104-2"><a href="data-science-and-tidyverse.html#cb104-2"></a></span>
-<span id="cb104-3"><a href="data-science-and-tidyverse.html#cb104-3"></a>pi <span class="op">%&gt;%</span><span class="st"> </span>sin</span>
-<span id="cb104-4"><a href="data-science-and-tidyverse.html#cb104-4"></a><span class="kw">sin</span>(pi)</span>
-<span id="cb104-5"><a href="data-science-and-tidyverse.html#cb104-5"></a>pi <span class="op">%&gt;%</span><span class="st"> </span>sin <span class="op">%&gt;%</span><span class="st"> </span>cos</span>
-<span id="cb104-6"><a href="data-science-and-tidyverse.html#cb104-6"></a><span class="kw">cos</span>(<span class="kw">sin</span>(pi))</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="data-science-and-tidyverse.html#cb105-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb105-2"><a href="data-science-and-tidyverse.html#cb105-2"></a></span>
+<span id="cb105-3"><a href="data-science-and-tidyverse.html#cb105-3"></a>pi <span class="op">%&gt;%</span><span class="st"> </span>sin</span>
+<span id="cb105-4"><a href="data-science-and-tidyverse.html#cb105-4"></a><span class="kw">sin</span>(pi)</span>
+<span id="cb105-5"><a href="data-science-and-tidyverse.html#cb105-5"></a>pi <span class="op">%&gt;%</span><span class="st"> </span>sin <span class="op">%&gt;%</span><span class="st"> </span>cos</span>
+<span id="cb105-6"><a href="data-science-and-tidyverse.html#cb105-6"></a><span class="kw">cos</span>(<span class="kw">sin</span>(pi))</span></code></pre></div>
 <p>특히 <code>%&gt;%</code>는 이후 설명할 <code>dplyr</code>의 <code>group_by</code>, <code>split</code>, <code>filter</code>, <code>summary</code> 등의 행렬 편집/연산 함수를 빈번히 다양한 조합으로 쓰게되는 상황에서 더 큰 효과를 발휘할 수 있습니다.</p>
 <p><img src="images/05/02.PNG" /></p>
 <p>pipe operator의 왼쪽 구문의 결과가 오른쪽 구문의 첫 번째 파라미터의 입력 값으로 처리된다고 말씀 드렸습니다. 즉, 함수에서 사용되는 파라미터가 여러개일 경우가 있으므로 기본적으로 <code>%&gt;%</code> 의 왼쪽 구문의 출력 값은 오른쪽 구문 (함수)의 첫 번째 인자의 입력값으로 들어가는 것 입니다. 이는 다음 예들을 통해서 명확히 알 수 있습니다. 먼저 <code>paste</code>함수는 그 파라미터로 <code>,</code>로 구분되는 여러개의 입력 값을 가질 수 있습니다. 따라서 다음 코드는 <code>x</code>가 <code>paste</code>의 첫 번째 파라미터로 들어가게 되어 <code>"1a", "2a", "3a", "4a", "5a"</code>로 a 앞에 x 값들이 붙어서 출력된 것을 알 수 있습니다.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="data-science-and-tidyverse.html#cb105-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
-<span id="cb105-2"><a href="data-science-and-tidyverse.html#cb105-2"></a>x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;a&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="data-science-and-tidyverse.html#cb106-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
+<span id="cb106-2"><a href="data-science-and-tidyverse.html#cb106-2"></a>x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;a&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>특정 데이터셋의 컬럼별 평균을 구하고 각 평균의 합을 구할 경우를 생각해 봅시다. R에서는 <code>colMeans</code>라는 특별한 함수를 제공하여 컬럼별로 평균을 계산해 줍니다. 그 후 sum 함수를 사용하여 최종 원하는 값을 얻을 수 있습니다. 이러한 코드를 <code>%&gt;%</code> 오퍼레이터를 사용한 경우의 코드와 비교해 볼 수 있습니다.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="data-science-and-tidyverse.html#cb106-1"></a>x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>), <span class="dt">y=</span><span class="kw">c</span>(<span class="dv">201</span><span class="op">:</span><span class="dv">300</span>))</span>
-<span id="cb106-2"><a href="data-science-and-tidyverse.html#cb106-2"></a><span class="kw">sum</span>(<span class="kw">colMeans</span>(x))</span>
-<span id="cb106-3"><a href="data-science-and-tidyverse.html#cb106-3"></a></span>
-<span id="cb106-4"><a href="data-science-and-tidyverse.html#cb106-4"></a>x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>), <span class="dt">y=</span><span class="kw">c</span>(<span class="dv">201</span><span class="op">:</span><span class="dv">300</span>))</span>
-<span id="cb106-5"><a href="data-science-and-tidyverse.html#cb106-5"></a>x <span class="op">%&gt;%</span><span class="st"> </span>colMeans <span class="op">%&gt;%</span><span class="st"> </span>sum</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="data-science-and-tidyverse.html#cb107-1"></a>x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>), <span class="dt">y=</span><span class="kw">c</span>(<span class="dv">201</span><span class="op">:</span><span class="dv">300</span>))</span>
+<span id="cb107-2"><a href="data-science-and-tidyverse.html#cb107-2"></a><span class="kw">sum</span>(<span class="kw">colMeans</span>(x))</span>
+<span id="cb107-3"><a href="data-science-and-tidyverse.html#cb107-3"></a></span>
+<span id="cb107-4"><a href="data-science-and-tidyverse.html#cb107-4"></a>x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>), <span class="dt">y=</span><span class="kw">c</span>(<span class="dv">201</span><span class="op">:</span><span class="dv">300</span>))</span>
+<span id="cb107-5"><a href="data-science-and-tidyverse.html#cb107-5"></a>x <span class="op">%&gt;%</span><span class="st"> </span>colMeans <span class="op">%&gt;%</span><span class="st"> </span>sum</span></code></pre></div>
 <p>그럼 만약 두 번째 파라미터에 입력으로 왼쪽 구문의 출력을 받아들이고 싶을 경우는 place holer <code>.</code> 을 사용하면 되겠습니다. <code>round</code> 함수는 두 개의 파라미터를 설정할 있 이으며 digits 라는 두 번째 파라미터에 값을 pipe operator로 넘겨주고 싶을 경우 아래와 같이 표현할 수 있습니다.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="data-science-and-tidyverse.html#cb107-1"></a><span class="dv">6</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(pi, <span class="dt">digits=</span>.)</span>
-<span id="cb107-2"><a href="data-science-and-tidyverse.html#cb107-2"></a><span class="kw">round</span>(pi, <span class="dt">digits=</span><span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="data-science-and-tidyverse.html#cb108-1"></a><span class="dv">6</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(pi, <span class="dt">digits=</span>.)</span>
+<span id="cb108-2"><a href="data-science-and-tidyverse.html#cb108-2"></a><span class="kw">round</span>(pi, <span class="dt">digits=</span><span class="dv">6</span>)</span></code></pre></div>
 </div>
 <div id="dplyr---important-functions" class="section level3">
 <h3><span class="header-section-number">5.4.2</span> dplyr - Important functions</h3>
@@ -433,20 +455,20 @@ Tidy data. <em>The Journal of Statistical Software</em>, vol. 59, 2014). Long�
 </ul>
 <p>이 함수들은 <code>%&gt;%</code>와 함께 쓰이면서 강력한 성능을 발휘합니다. <code>summarise</code> 함수는 특정 값들의 통계 값을 계산해 주는 함수이며 그 외 5개 함수들은 행렬 편집을 위한 함수들로 보시면 되겠습니다. 간단한 예제를 수행하면서 각각의 기능을 살펴보고 왜 <code>dplyr</code>이 널리 사용되고 그 장점이 무엇인지 파악해 보도록 하겠습니다.</p>
 <p><code>iris</code> 데이터는 세 종류의 iris 품종에 대한 꽃잎과 꽃받침의 length와 with를 측정해 놓은 데이터 입니다. <code>head</code>와 <code>str</code> 명령어를 <code>%&gt;%</code>를 이용해서 데이터를 살펴 봅니다.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="data-science-and-tidyverse.html#cb108-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">10</span>)</span>
-<span id="cb108-2"><a href="data-science-and-tidyverse.html#cb108-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span>str</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="data-science-and-tidyverse.html#cb109-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">10</span>)</span>
+<span id="cb109-2"><a href="data-science-and-tidyverse.html#cb109-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span>str</span></code></pre></div>
 <div id="filter" class="section level4">
 <h4><span class="header-section-number">5.4.2.1</span> filter</h4>
 <p>먼저 아래와 같이 <code>filter</code> 함수를 사용해서 원하는 조건의 데이터 (샘플)을 골라낼 수 있습니다.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="data-science-and-tidyverse.html#cb109-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb109-2"><a href="data-science-and-tidyverse.html#cb109-2"></a></span>
-<span id="cb109-3"><a href="data-science-and-tidyverse.html#cb109-3"></a><span class="kw">head</span>(iris)</span>
-<span id="cb109-4"><a href="data-science-and-tidyverse.html#cb109-4"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>)</span>
-<span id="cb109-5"><a href="data-science-and-tidyverse.html#cb109-5"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span> <span class="op">|</span><span class="st"> </span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>)</span>
-<span id="cb109-6"><a href="data-science-and-tidyverse.html#cb109-6"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>)</span>
-<span id="cb109-7"><a href="data-science-and-tidyverse.html#cb109-7"></a>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb109-8"><a href="data-science-and-tidyverse.html#cb109-8"></a><span class="st">  </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span> <span class="op">|</span><span class="st"> </span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb109-9"><a href="data-science-and-tidyverse.html#cb109-9"></a><span class="st">  </span>dim</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-science-and-tidyverse.html#cb110-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb110-2"><a href="data-science-and-tidyverse.html#cb110-2"></a></span>
+<span id="cb110-3"><a href="data-science-and-tidyverse.html#cb110-3"></a><span class="kw">head</span>(iris)</span>
+<span id="cb110-4"><a href="data-science-and-tidyverse.html#cb110-4"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>)</span>
+<span id="cb110-5"><a href="data-science-and-tidyverse.html#cb110-5"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span> <span class="op">|</span><span class="st"> </span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>)</span>
+<span id="cb110-6"><a href="data-science-and-tidyverse.html#cb110-6"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span> <span class="op">&amp;</span><span class="st"> </span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>)</span>
+<span id="cb110-7"><a href="data-science-and-tidyverse.html#cb110-7"></a>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-8"><a href="data-science-and-tidyverse.html#cb110-8"></a><span class="st">  </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span> <span class="op">|</span><span class="st"> </span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-9"><a href="data-science-and-tidyverse.html#cb110-9"></a><span class="st">  </span>dim</span></code></pre></div>
 <p><code>filter</code>의 <code>,</code>로 구분되는 매개변수는 <code>and</code> 로직으로 묶인 조건입니다. 지난 강좌에서 보셨듯 R에서 <code>and</code>는 <code>&amp;</code>, <code>or</code>는 <code>|</code>, 그리고 not은 <code>!</code> 으로 사용하면 되며 <code>filter</code>에서 <code>,</code>로 구분된 조건은 <code>and</code>와 같다고 보시면 되겠습니다.</p>
 <p><img src="images/05/03.png" /></p>
 <p>Image from (<a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a>)</p>
@@ -454,9 +476,9 @@ Tidy data. <em>The Journal of Statistical Software</em>, vol. 59, 2014). Long�
 <div id="arrange" class="section level4">
 <h4><span class="header-section-number">5.4.2.2</span> arrange</h4>
 <p><code>arrange()</code>는 지정된 변수를 기준으로 값의 크기순서로 샘플들의 배열 순서 즉, row의 순서를 바꾸는 기능을 수행합니다. 기본으로 크기가 커지는 순서로 정렬이 진행되며 작아지는 순서를 원할 경우 <code>desc</code> 함수를 사용할 수 있습니다.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-science-and-tidyverse.html#cb110-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(Sepal.Length)</span>
-<span id="cb110-2"><a href="data-science-and-tidyverse.html#cb110-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Sepal.Length))</span>
-<span id="cb110-3"><a href="data-science-and-tidyverse.html#cb110-3"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(Sepal.Length, Sepal.Width)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="data-science-and-tidyverse.html#cb111-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(Sepal.Length)</span>
+<span id="cb111-2"><a href="data-science-and-tidyverse.html#cb111-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Sepal.Length))</span>
+<span id="cb111-3"><a href="data-science-and-tidyverse.html#cb111-3"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(Sepal.Length, Sepal.Width)</span></code></pre></div>
 </div>
 <div id="select" class="section level4">
 <h4><span class="header-section-number">5.4.2.3</span> select</h4>
@@ -467,175 +489,96 @@ ends_with(“xyz”) - “xyz”으로 끝나는 문자열을 갖는 변수 이�
 contains(“ijk”) - “ijk” 문자열을 포함하는 변수 이름
 matches(“(.)\1”) - 정규식, 반복되는 문자</p>
 </blockquote>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="data-science-and-tidyverse.html#cb111-1"></a><span class="kw">head</span>(iris)</span>
-<span id="cb111-2"><a href="data-science-and-tidyverse.html#cb111-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Species, <span class="kw">everything</span>())</span>
-<span id="cb111-3"><a href="data-science-and-tidyverse.html#cb111-3"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Species)</span>
-<span id="cb111-4"><a href="data-science-and-tidyverse.html#cb111-4"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&#39;S&#39;</span>))</span>
-<span id="cb111-5"><a href="data-science-and-tidyverse.html#cb111-5"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">obs =</span> <span class="kw">starts_with</span>(<span class="st">&#39;S&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-science-and-tidyverse.html#cb112-1"></a><span class="kw">head</span>(iris)</span>
+<span id="cb112-2"><a href="data-science-and-tidyverse.html#cb112-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Species, <span class="kw">everything</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">5</span>)</span>
+<span id="cb112-3"><a href="data-science-and-tidyverse.html#cb112-3"></a>iris <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Species, <span class="kw">everything</span>())</span>
+<span id="cb112-4"><a href="data-science-and-tidyverse.html#cb112-4"></a>iris <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>Species)</span>
+<span id="cb112-5"><a href="data-science-and-tidyverse.html#cb112-5"></a>iris <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&#39;S&#39;</span>))</span>
+<span id="cb112-6"><a href="data-science-and-tidyverse.html#cb112-6"></a>iris <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">obs =</span> <span class="kw">starts_with</span>(<span class="st">&#39;S&#39;</span>))</span></code></pre></div>
 <p>아래는 <code>matches</code> 함수를 사용한 방법 입니다. 좀 더 복잡한 패턴을 적용하여 변수들을 선택할 수 있으며 <code>grep</code> 함수를 사용할 경우도 정규식 패턴을 적용할 수 있습니다. 아래 <code>(.)\\1</code>은 하나의 문자 <code>.</code>가 (어떤 문자든) 한 번 더 <code>\\1</code> 사용된 변수 이름을 말하며 이는 <code>aavar</code> 의 <code>aa</code>밖에 없으므로 <code>aavar</code>가 선택됩니다. <code>grep</code>에서 <code>^</code> 표시는 맨 처음을 나타내므로 <code>^S</code>는 S로 시작하는 문자가 되겠습니다. 따라서 <code>grep("^S", colnames(iris))</code>의 경우 컬럼 이름 중 S로 시작하는 이름은 True로 그렇지 않으면 False 값을 리턴합니다.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-science-and-tidyverse.html#cb112-1"></a>iris2 &lt;-<span class="st"> </span><span class="kw">rename</span>(iris, <span class="dt">aavar =</span> Petal.Length)</span>
-<span id="cb112-2"><a href="data-science-and-tidyverse.html#cb112-2"></a><span class="kw">select</span>(iris2, <span class="kw">matches</span>(<span class="st">&quot;(.)</span><span class="ch">\\</span><span class="st">1&quot;</span>))</span>
-<span id="cb112-3"><a href="data-science-and-tidyverse.html#cb112-3"></a>tmp &lt;-iris[,<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>]</span>
-<span id="cb112-4"><a href="data-science-and-tidyverse.html#cb112-4"></a><span class="kw">colnames</span>(iris)[<span class="kw">grep</span>(<span class="st">&quot;^S&quot;</span>, <span class="kw">colnames</span>(iris))]</span>
-<span id="cb112-5"><a href="data-science-and-tidyverse.html#cb112-5"></a>iris[,<span class="kw">grep</span>(<span class="st">&quot;^S&quot;</span>, <span class="kw">colnames</span>(iris))]</span>
-<span id="cb112-6"><a href="data-science-and-tidyverse.html#cb112-6"></a>tmp</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="data-science-and-tidyverse.html#cb113-1"></a>iris2 &lt;-<span class="st"> </span><span class="kw">rename</span>(iris, <span class="dt">aavar =</span> Petal.Length)</span>
+<span id="cb113-2"><a href="data-science-and-tidyverse.html#cb113-2"></a><span class="kw">select</span>(iris2, <span class="kw">matches</span>(<span class="st">&quot;(.)</span><span class="ch">\\</span><span class="st">1&quot;</span>))</span>
+<span id="cb113-3"><a href="data-science-and-tidyverse.html#cb113-3"></a>tmp &lt;-iris[,<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>]</span>
+<span id="cb113-4"><a href="data-science-and-tidyverse.html#cb113-4"></a><span class="kw">colnames</span>(iris)[<span class="kw">grep</span>(<span class="st">&quot;^S&quot;</span>, <span class="kw">colnames</span>(iris))]</span>
+<span id="cb113-5"><a href="data-science-and-tidyverse.html#cb113-5"></a>iris[,<span class="kw">grep</span>(<span class="st">&quot;^S&quot;</span>, <span class="kw">colnames</span>(iris))]</span>
+<span id="cb113-6"><a href="data-science-and-tidyverse.html#cb113-6"></a>tmp</span></code></pre></div>
 </div>
 <div id="mutate" class="section level4">
 <h4><span class="header-section-number">5.4.2.4</span> mutate</h4>
 <p><code>mutate()</code> 함수는 새로운 변수를 추가할 수 있는 기능을 제공하며 앞에서 배웠던 <code>within()</code>과 비슷하다고 볼 수 있습니다. 아래와 같이 <code>mutate</code>함수는 sepal_ratio라는 변수를 새로 만들어서 기존 iris 데이터들과 함께 반환해 줍니다.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="data-science-and-tidyverse.html#cb113-1"></a>iris2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">sepal_ratio =</span> Sepal.Length<span class="op">/</span>Sepal.Width)</span>
-<span id="cb113-2"><a href="data-science-and-tidyverse.html#cb113-2"></a><span class="kw">head</span>(iris2)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="data-science-and-tidyverse.html#cb114-1"></a>iris2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">sepal_ratio =</span> Sepal.Length<span class="op">/</span>Sepal.Width)</span>
+<span id="cb114-2"><a href="data-science-and-tidyverse.html#cb114-2"></a><span class="kw">head</span>(iris2)</span></code></pre></div>
 </div>
 <div id="summarise" class="section level4">
 <h4><span class="header-section-number">5.4.2.5</span> summarise</h4>
 <p><code>summarise()</code>는 <code>data.frame</code>내 특정 변수의 값들로 하나의 요약값/대푯값을 만들어 줍니다. <code>summarise</code> 함수는 단독으로 쓰이기 보다는 <code>group_by()</code> 기능과 병행해서 쓰이는 경우에 유용하게 쓰입니다. <code>summarise_all()</code> 함수를 사용하면 모든 변수에 대해서 지정된 함수를 실행합니다.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="data-science-and-tidyverse.html#cb114-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(Sepal.Length), <span class="dt">m=</span><span class="kw">mean</span>(Sepal.Width))</span>
-<span id="cb114-2"><a href="data-science-and-tidyverse.html#cb114-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(Sepal.Width))</span>
-<span id="cb114-3"><a href="data-science-and-tidyverse.html#cb114-3"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise_all</span>(mean)</span>
-<span id="cb114-4"><a href="data-science-and-tidyverse.html#cb114-4"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise_all</span>(sd)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-science-and-tidyverse.html#cb115-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(Sepal.Length), <span class="dt">m=</span><span class="kw">mean</span>(Sepal.Width))</span>
+<span id="cb115-2"><a href="data-science-and-tidyverse.html#cb115-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(Sepal.Width))</span>
+<span id="cb115-3"><a href="data-science-and-tidyverse.html#cb115-3"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise_all</span>(mean)</span>
+<span id="cb115-4"><a href="data-science-and-tidyverse.html#cb115-4"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise_all</span>(sd)</span></code></pre></div>
 </div>
 <div id="join" class="section level4">
 <h4><span class="header-section-number">5.4.2.6</span> join</h4>
 <p><code>join</code> 함수는 데이터를 합해주는 기능을 수행하는 <code>dplyr</code> 패키지에 속한 함수 입니다. 네 가지 종류의 함수가 있으며 (<code>left_join()</code>, ’right_join()<code>, 'inner_join()</code>, ’full_join()<code>) 기본적으로 공통되는 이름의 변수를 (key) 이용해서 공통되는 샘플끼리 자동으로 병합해 주는 기능을 수행합니다.</code>by`에서 지정해준 파라메터의 값을 기준으로 기능이 수행 됩니다.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-science-and-tidyverse.html#cb115-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="dt">age=</span><span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">41</span>, <span class="dv">33</span>, <span class="dv">56</span>, <span class="dv">20</span>, <span class="dv">17</span>))</span>
-<span id="cb115-2"><a href="data-science-and-tidyverse.html#cb115-2"></a>df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>), <span class="dt">gender=</span><span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>))</span>
-<span id="cb115-3"><a href="data-science-and-tidyverse.html#cb115-3"></a></span>
-<span id="cb115-4"><a href="data-science-and-tidyverse.html#cb115-4"></a><span class="kw">inner_join</span>(df1, df2, <span class="dt">by=</span><span class="st">&quot;id&quot;</span>)</span>
-<span id="cb115-5"><a href="data-science-and-tidyverse.html#cb115-5"></a><span class="kw">left_join</span>(df1, df2, <span class="st">&quot;id&quot;</span>)</span>
-<span id="cb115-6"><a href="data-science-and-tidyverse.html#cb115-6"></a><span class="kw">right_join</span>(df1, df2, <span class="st">&quot;id&quot;</span>)</span>
-<span id="cb115-7"><a href="data-science-and-tidyverse.html#cb115-7"></a><span class="kw">full_join</span>(df1, df2, <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="data-science-and-tidyverse.html#cb116-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="dt">age=</span><span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">41</span>, <span class="dv">33</span>, <span class="dv">56</span>, <span class="dv">20</span>, <span class="dv">17</span>))</span>
+<span id="cb116-2"><a href="data-science-and-tidyverse.html#cb116-2"></a>df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>), <span class="dt">gender=</span><span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>))</span>
+<span id="cb116-3"><a href="data-science-and-tidyverse.html#cb116-3"></a></span>
+<span id="cb116-4"><a href="data-science-and-tidyverse.html#cb116-4"></a><span class="kw">inner_join</span>(df1, df2, <span class="dt">by=</span><span class="st">&quot;id&quot;</span>)</span>
+<span id="cb116-5"><a href="data-science-and-tidyverse.html#cb116-5"></a><span class="kw">left_join</span>(df1, df2, <span class="st">&quot;id&quot;</span>)</span>
+<span id="cb116-6"><a href="data-science-and-tidyverse.html#cb116-6"></a><span class="kw">right_join</span>(df1, df2, <span class="st">&quot;id&quot;</span>)</span>
+<span id="cb116-7"><a href="data-science-and-tidyverse.html#cb116-7"></a><span class="kw">full_join</span>(df1, df2, <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="code-comparison" class="section level3">
 <h3><span class="header-section-number">5.4.3</span> code comparison</h3>
 <p>이제 <code>split</code>, <code>apply</code>, <code>combine</code>을 활용하여 평균을 구하는 코드와 <code>dplyr</code> 패키지를 사용하여 만든 코드를 비교해 보도록 하겠습니다. <code>split</code>은 <code>factor</code>형 변수인 Species를 기준으로 <code>iris</code> 데이터를 나누어 주는 역할을 하며 <code>lapply</code>는 <code>list</code> 형 데이터인 <code>iris_split</code>을 각 리스트의 각각의 원소들에 대해서 임의의 함수 <code>function(x)...</code> 를 수행하는 역할을 합니다. 마지막 <code>data.frame</code>으로 최종 경로를 combine 합니다.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="data-science-and-tidyverse.html#cb116-1"></a>iris_split &lt;-<span class="st"> </span><span class="kw">split</span>(iris, iris<span class="op">$</span>Species)</span>
-<span id="cb116-2"><a href="data-science-and-tidyverse.html#cb116-2"></a>iris_means &lt;-<span class="st"> </span><span class="kw">lapply</span>(iris_split, <span class="cf">function</span>(x){<span class="kw">colMeans</span>(x[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])})</span>
-<span id="cb116-3"><a href="data-science-and-tidyverse.html#cb116-3"></a>iris_means_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(iris_means)</span>
-<span id="cb116-4"><a href="data-science-and-tidyverse.html#cb116-4"></a>iris_means_df</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="data-science-and-tidyverse.html#cb117-1"></a>iris_split &lt;-<span class="st"> </span><span class="kw">split</span>(iris, iris<span class="op">$</span>Species)</span>
+<span id="cb117-2"><a href="data-science-and-tidyverse.html#cb117-2"></a>iris_means &lt;-<span class="st"> </span><span class="kw">lapply</span>(iris_split, <span class="cf">function</span>(x){<span class="kw">colMeans</span>(x[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])})</span>
+<span id="cb117-3"><a href="data-science-and-tidyverse.html#cb117-3"></a>iris_means_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(iris_means)</span>
+<span id="cb117-4"><a href="data-science-and-tidyverse.html#cb117-4"></a>iris_means_df</span></code></pre></div>
 <p>위 코드를 한 줄로 사용하여 최종 iris_means_df 데이터를 를 구한다면 다음과 같이 됩니다. 한눈에 코드가 들어오지 않고 이렇게 중첩해서 함수를 사용하는 습관은 어떤 프로그래밍 언어에서도 권장하지 않습니다.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="data-science-and-tidyverse.html#cb117-1"></a>iris_means_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">lapply</span>(<span class="kw">split</span>(iris, iris<span class="op">$</span>Species),</span>
-<span id="cb117-2"><a href="data-science-and-tidyverse.html#cb117-2"></a>                                   <span class="cf">function</span>(x){<span class="kw">colMeans</span>(x[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])}))</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="data-science-and-tidyverse.html#cb118-1"></a>iris_means_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">lapply</span>(<span class="kw">split</span>(iris, iris<span class="op">$</span>Species),</span>
+<span id="cb118-2"><a href="data-science-and-tidyverse.html#cb118-2"></a>                                   <span class="cf">function</span>(x){<span class="kw">colMeans</span>(x[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])}))</span></code></pre></div>
 <p>아래는 <code>dplyr</code> 패키지를 사용한 코드 입니다.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="data-science-and-tidyverse.html#cb118-1"></a>iris_means_df2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb118-2"><a href="data-science-and-tidyverse.html#cb118-2"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb118-3"><a href="data-science-and-tidyverse.html#cb118-3"></a><span class="st">  </span><span class="kw">summarise_all</span>(mean)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="data-science-and-tidyverse.html#cb119-1"></a>iris_means_df2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb119-2"><a href="data-science-and-tidyverse.html#cb119-2"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb119-3"><a href="data-science-and-tidyverse.html#cb119-3"></a><span class="st">  </span><span class="kw">summarise_all</span>(mean)</span></code></pre></div>
 <p>위에서 보듯 <code>dplyr</code> 패키지를 사용할 경우 그 결과는 같으나 코드의 가독성과 효율성면에서 장점을 보여줍니다. <code>iris</code> 데이터를 받아서 Species에 명시된 그룹으로 나누고 <code>mean</code> 함수를 모든 컬럼에 대해서 사용하라는 의미 입니다.</p>
 <p><code>ggplot</code>을 이용하여 각 평균에 대한 <code>barplot</code>을 그려보도록 하겠습니다. <code>ggplot</code>에서는 data만 명시해 주고 <code>geom_bar</code>에 <code>aes</code>와 <code>stat</code>을 모두 사용한 것이 다릅니다. ggplot 구문에서 지정해주는 <code>aes</code> 등의 옵션은 하위 geom_xxx 레이어들에 모두 적용이 되고 각 geom_xxx 레이어에서 지정해주는 <code>aes</code>는 해당 레이어에서만 효과를 나타냅니다.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="data-science-and-tidyverse.html#cb119-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb119-2"><a href="data-science-and-tidyverse.html#cb119-2"></a><span class="kw">ggplot</span>(iris_means_df2) <span class="op">+</span></span>
-<span id="cb119-3"><a href="data-science-and-tidyverse.html#cb119-3"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length), <span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
-<p><code>dplyr</code> 패키지의 기능을 <code>ggplot2</code> 패키지의 기능들과 함께 사용할 수도 있습니다. 보통은 앞서와 같이 결과를 특정 변수에 저장한 후 도표 등을 그리지만 다음과 같이 <code>%&gt;%</code> 를 사용하여 <code>plot</code> 까지 함께 볼 수도 있습니다.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data-science-and-tidyverse.html#cb120-1"></a>iris <span class="op">%&gt;%</span></span>
-<span id="cb120-2"><a href="data-science-and-tidyverse.html#cb120-2"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></span>
-<span id="cb120-3"><a href="data-science-and-tidyverse.html#cb120-3"></a><span class="st">  </span><span class="kw">summarise_all</span>(mean) <span class="op">%&gt;%</span></span>
-<span id="cb120-4"><a href="data-science-and-tidyverse.html#cb120-4"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb120-5"><a href="data-science-and-tidyverse.html#cb120-5"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length), <span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data-science-and-tidyverse.html#cb120-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb120-2"><a href="data-science-and-tidyverse.html#cb120-2"></a></span>
+<span id="cb120-3"><a href="data-science-and-tidyverse.html#cb120-3"></a><span class="kw">ggplot</span>(iris_means_df) <span class="op">+</span></span>
+<span id="cb120-4"><a href="data-science-and-tidyverse.html#cb120-4"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Species, <span class="dt">y=</span>Sepal.Length), <span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
 </div>
 <div id="dplyr-example-iris" class="section level3">
 <h3><span class="header-section-number">5.4.4</span> dplyr example iris</h3>
-<p><code>dplyr</code>패키지를 이용해서 <code>iris</code> 품종별로 꽃과 꽃받침의 넓이와 길이의 평균을 비교하는 bar그래프를 (error bar 포함) 그려보겠습니다. 이를 위해서는 먼저 iris 데이터를 품종별로 grouping 할 필요가 있습니다.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="data-science-and-tidyverse.html#cb121-1"></a>iris2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species)</span>
-<span id="cb121-2"><a href="data-science-and-tidyverse.html#cb121-2"></a><span class="kw">str</span>(iris2)</span></code></pre></div>
-<p>이제 그룹별로 꽃과 꽃받침 길이와 넓이의 평균을 일괄적으로 구합니다.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-science-and-tidyverse.html#cb122-1"></a>iris3 &lt;-<span class="st"> </span>iris2 <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb122-2"><a href="data-science-and-tidyverse.html#cb122-2"></a><span class="st">  </span><span class="kw">summarize_all</span>(mean)</span>
-<span id="cb122-3"><a href="data-science-and-tidyverse.html#cb122-3"></a>iris3</span></code></pre></div>
-<!-- error bar를 위한 표준편차까지 일괄적으로 구하기 위해서는 다음과 같이 수행합니다. 사용되는 함수 (mean, sd)를 여러개 전달할 필요가 있으므로 `list` 형태로 진행합니다. -->
-<!-- ```{r, eval=F} -->
-<!-- iris3 <- iris2 %>%  -->
-<!--   summarize_all(list(mean=mean, sd=sd)) -->
-<!-- str(iris3) -->
-<!-- ``` -->
+<p><code>dplyr</code>패키지를 이용해서 <code>iris</code> 품종별로 꽃과 꽃받침의 넓이와 길이의 평균을 비교하는 bar그래프를 (error bar 포함) 그려보겠습니다.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="data-science-and-tidyverse.html#cb121-1"></a>iris_mean &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb121-2"><a href="data-science-and-tidyverse.html#cb121-2"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb121-3"><a href="data-science-and-tidyverse.html#cb121-3"></a><span class="st">  </span><span class="kw">summarise_all</span>(mean)</span></code></pre></div>
 <p>이제 이 값들을 이용해서 barplot으로 그려봅니다. 그래프의 x축은 species별 Length나 Width mean 값으로 하고 y축은 각 해당하는 값들로 `stat=“identity”’로 넣어주면 될 듯 합니다. ggplot을 이용해서 그래프를 그리기 위한 long형 데이터로 전환해보면 다음과 같습니다.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-science-and-tidyverse.html#cb123-1"></a>iris4 &lt;-<span class="st"> </span>iris3 <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb123-2"><a href="data-science-and-tidyverse.html#cb123-2"></a><span class="st">  </span><span class="kw">melt</span>(<span class="dt">id.var=</span><span class="st">&quot;Species&quot;</span>)</span>
-<span id="cb123-3"><a href="data-science-and-tidyverse.html#cb123-3"></a>iris4</span></code></pre></div>
-<p>위 데이터로 barplot을 그릴 수 있습니다.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-science-and-tidyverse.html#cb124-1"></a><span class="kw">ggplot</span>(iris4, <span class="kw">aes</span>(<span class="dt">x=</span>variable, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) <span class="op">+</span></span>
-<span id="cb124-2"><a href="data-science-and-tidyverse.html#cb124-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
-<p>위 일련의 과정을 다음과 같이 %&gt;% 로 연속적으로 구현할 수 있습니다.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-science-and-tidyverse.html#cb125-1"></a>iris_mean &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb125-2"><a href="data-science-and-tidyverse.html#cb125-2"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb125-3"><a href="data-science-and-tidyverse.html#cb125-3"></a><span class="st">  </span><span class="kw">summarize_all</span>(mean) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb125-4"><a href="data-science-and-tidyverse.html#cb125-4"></a><span class="st">  </span><span class="kw">melt</span>(<span class="dt">id.var=</span><span class="st">&quot;Species&quot;</span>)</span>
-<span id="cb125-5"><a href="data-science-and-tidyverse.html#cb125-5"></a></span>
-<span id="cb125-6"><a href="data-science-and-tidyverse.html#cb125-6"></a><span class="kw">ggplot</span>(iris2, <span class="kw">aes</span>(<span class="dt">x=</span>variable, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) <span class="op">+</span></span>
-<span id="cb125-7"><a href="data-science-and-tidyverse.html#cb125-7"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-science-and-tidyverse.html#cb122-1"></a>iris_mean_mlt &lt;-<span class="st"> </span>iris_mean <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb122-2"><a href="data-science-and-tidyverse.html#cb122-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="op">-</span>Species)</span>
+<span id="cb122-3"><a href="data-science-and-tidyverse.html#cb122-3"></a></span>
+<span id="cb122-4"><a href="data-science-and-tidyverse.html#cb122-4"></a><span class="kw">ggplot</span>(iris_mean_mlt, <span class="kw">aes</span>(<span class="dt">x=</span>name, <span class="dt">y=</span>value, <span class="dt">fill=</span>Species)) <span class="op">+</span></span>
+<span id="cb122-5"><a href="data-science-and-tidyverse.html#cb122-5"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) </span></code></pre></div>
 <p>error bar 구현을 위해서는 각 그룹별 표준편차 <code>sd</code> 값이 필요합니다. 동일한 방법으로 sd 데이터를 구합니다.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-science-and-tidyverse.html#cb126-1"></a>iris_sd &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb126-2"><a href="data-science-and-tidyverse.html#cb126-2"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb126-3"><a href="data-science-and-tidyverse.html#cb126-3"></a><span class="st">  </span><span class="kw">summarize_all</span>(sd) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb126-4"><a href="data-science-and-tidyverse.html#cb126-4"></a><span class="st">  </span><span class="kw">melt</span>(<span class="dt">id.var=</span><span class="st">&quot;Species&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-science-and-tidyverse.html#cb123-1"></a>iris_sd_mlt &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb123-2"><a href="data-science-and-tidyverse.html#cb123-2"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb123-3"><a href="data-science-and-tidyverse.html#cb123-3"></a><span class="st">  </span><span class="kw">summarise_all</span>(sd) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb123-4"><a href="data-science-and-tidyverse.html#cb123-4"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span>Species)</span></code></pre></div>
 <p>이제 두 데이터를 병합 하겠습니다. 두 데이터를 병합할 때 key가 되는 변수가 필요하며 기본으로 동일한 이름을 가진 변수를 사용하지만 이 예제에서는 모든 변수가 동일한 이름을 가지고 있습니다. 따라서 by라는 옵션으로 key 변수를 지정해줄 수 있으며 다음과 같이 두 개 이상의 변수도 지정할 수 있습니다.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-science-and-tidyverse.html#cb127-1"></a>iris_new &lt;-<span class="st"> </span><span class="kw">inner_join</span>(iris_mean, iris_sd, <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Species&quot;</span>, <span class="st">&quot;variable&quot;</span>))</span>
-<span id="cb127-2"><a href="data-science-and-tidyverse.html#cb127-2"></a><span class="kw">head</span>(iris_mean)</span>
-<span id="cb127-3"><a href="data-science-and-tidyverse.html#cb127-3"></a><span class="kw">head</span>(iris_sd)</span>
-<span id="cb127-4"><a href="data-science-and-tidyverse.html#cb127-4"></a><span class="kw">head</span>(iris_new)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-science-and-tidyverse.html#cb124-1"></a>iris_new &lt;-<span class="st"> </span><span class="kw">left_join</span>(iris_mean_mlt, iris_sd_mlt, <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Species&quot;</span>, <span class="st">&quot;name&quot;</span>)) </span>
+<span id="cb124-2"><a href="data-science-and-tidyverse.html#cb124-2"></a><span class="kw">head</span>(iris_new)</span></code></pre></div>
 <p>위와 같이 각 해당하는 샘플의 mean과 sd 값을 직접 비교해 보면 적절한 value 값들이 병합된 것을 알 수 있습니다. 단, <code>value</code>라는 변수 이름이 두 테이블에서 동일하게 사용되어 병합될 경우 value.x, value.y와 같이 자동으로 변수 이름이 다르게 할당 됩니다. 이제 위 데이터를 이용해서 barplot을 그려 보겠습니다.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-science-and-tidyverse.html#cb128-1"></a><span class="kw">ggplot</span>(iris_new, <span class="kw">aes</span>(<span class="dt">x=</span>variable, <span class="dt">y=</span>value.x, <span class="dt">fill=</span>Species))<span class="op">+</span></span>
-<span id="cb128-2"><a href="data-science-and-tidyverse.html#cb128-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-science-and-tidyverse.html#cb125-1"></a><span class="kw">ggplot</span>(iris_new, <span class="kw">aes</span>(<span class="dt">x=</span>name, <span class="dt">y=</span>value.x, <span class="dt">fill=</span>Species)) <span class="op">+</span></span>
+<span id="cb125-2"><a href="data-science-and-tidyverse.html#cb125-2"></a><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>) </span></code></pre></div>
 <p>여기에 error bar를 추가하기 위해서는 다음과 같이 <code>geom_errorbar</code>라는 함수를 사용할 수 있습니다. 아래에서 <code>position_dodge(0.9)</code>는 error bar의 위치를 맞추기 위한 옵션으로 width를 사용할 경우는 일반적으로 <code>position_dodge(0.9)</code>를 사용한다고 외우는 것도 괜찮습니다.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-science-and-tidyverse.html#cb129-1"></a><span class="kw">ggplot</span>(iris_new, <span class="kw">aes</span>(<span class="dt">x=</span>variable, <span class="dt">y=</span>value.x, <span class="dt">fill=</span>Species))<span class="op">+</span></span>
-<span id="cb129-2"><a href="data-science-and-tidyverse.html#cb129-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
-<span id="cb129-3"><a href="data-science-and-tidyverse.html#cb129-3"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>value.x<span class="op">-</span>value.y, <span class="dt">ymax=</span>value.x<span class="op">+</span>value.y), </span>
-<span id="cb129-4"><a href="data-science-and-tidyverse.html#cb129-4"></a>                <span class="dt">position=</span><span class="kw">position_dodge</span>(<span class="fl">0.9</span>), </span>
-<span id="cb129-5"><a href="data-science-and-tidyverse.html#cb129-5"></a>                <span class="dt">width=</span><span class="fl">0.4</span>)</span></code></pre></div>
-<!-- ## Analysis example (ALL dataset) -->
-<!-- * 성별별로 각 유전자들의 발현값 차이 검정 하기 -->
-<!-- ```{r, eval=F} -->
-<!-- ## -->
-<!-- ex_data_male <- ex_data[,ph_data$sex=="M"] -->
-<!-- ex_data_female <- ex_data[,ph_data$sex=="F"] -->
-<!-- x <- ex_data_male[1,] -->
-<!-- y <- ex_data_female[1,] -->
-<!-- fit <- t.test(x, y) -->
-<!-- ## -->
-<!-- mytest <- function(z){ -->
-<!--   x <- z[1:86] -->
-<!--   y <- z[87:128] ## no good coding -->
-<!--   fit <- t.test(x, y) -->
-<!--   z <- c(tstat=fit$statistic, pval=fit$p.value) -->
-<!--   return(z) -->
-<!-- } -->
-<!-- newd <- c(x,y) -->
-<!-- mytest(newd) -->
-<!-- new_data <- cbind(ex_data_male, ex_data_female) -->
-<!-- test_results <- apply(new_data, 1, mytest) -->
-<!-- test_results <- t(test_results) -->
-<!-- test_results <- data.frame(test_results) -->
-<!-- barplot(test_results$tstat.t, col="green") -->
-<!-- mycol <- rep("green", length(test_results$pval)) -->
-<!-- barplot(test_results$tstat.t, col=mycol) -->
-<!-- mycol[test_results$pval<0.1] <- "red" -->
-<!-- barplot(test_results$tstat.t, col=mycol) -->
-<!-- ``` -->
-<!-- ```{r, eval=F} -->
-<!-- library(ALL) -->
-<!-- library(hgu95av2.db) -->
-<!-- data(ALL) -->
-<!-- ## data -->
-<!-- ex_data <- exprs(ALL)[1:100,] -->
-<!-- ph_data <- pData(ALL) -->
-<!-- feature_names <- featureNames(ALL)[1:100] -->
-<!-- gene_names <- unlist(as.list(hgu95av2SYMBOL[feature_names])) -->
-<!-- ## remove missing \ average the values of the same genes -->
-<!-- idx <- which(is.na(gene_names) | duplicated(gene_names)) -->
-<!-- ex_data2 <- data.frame(ex_data[-idx,]) -->
-<!-- rownames(ex_data2) <- gene_names[-idx] -->
-<!-- head(ex_data2)[,1:5] -->
-<!-- head(ph_data)[,1:5] -->
-<!-- ``` -->
-<!-- * BT 수준별로 각 유전자들의 평균 발현양 구하기 -->
-<!-- ```{r, eval=F} -->
-<!-- tmp <- pivot_longer(ex_data2, everything()) -->
-<!-- tmp$name  -->
-<!-- ph_data %>% select(columns = "cod", "BT") -->
-<!-- colnames(ex_data2) -->
-<!-- tmp <- ph_data %>%  -->
-<!--   mutate(xcod=paste("X", cod, sep="")) %>%  -->
-<!--   dplyr::select(xcod, BT)  -->
-<!-- ``` -->
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-science-and-tidyverse.html#cb126-1"></a><span class="kw">ggplot</span>(iris_new, <span class="kw">aes</span>(<span class="dt">x=</span>name, <span class="dt">y=</span>value.x, <span class="dt">fill=</span>Species)) <span class="op">+</span></span>
+<span id="cb126-2"><a href="data-science-and-tidyverse.html#cb126-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
+<span id="cb126-3"><a href="data-science-and-tidyverse.html#cb126-3"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>value.x<span class="op">-</span>value.y, <span class="dt">ymax=</span>value.x<span class="op">+</span>value.y), </span>
+<span id="cb126-4"><a href="data-science-and-tidyverse.html#cb126-4"></a>              <span class="dt">position=</span><span class="kw">position_dodge</span>(<span class="fl">0.9</span>),</span>
+<span id="cb126-5"><a href="data-science-and-tidyverse.html#cb126-5"></a>              <span class="dt">width =</span> <span class="fl">0.4</span>)</span></code></pre></div>
 <hr />
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 4.0 국제 라이선스</a>에 따라 이용할 수 있습니다.</p>
 
