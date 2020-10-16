@@ -1,14 +1,5 @@
-# Analysis example 
-
-
-## ALL dataset 
-
-* BT 그룹별 유전자들의 발현 분포를 boxplot 이용해서 비교 
-
-![](images/06/01.png)
-
-```{r, eval=F}
-
+## https://greendaygh.github.io/KRIBBR2020/
+  
 library(tidyverse)
 library(Biobase)
 library(ALL)
@@ -33,7 +24,7 @@ ex_data_mlt <- ex_data %>%
   pivot_longer(-symbol) %>% 
   mutate(bt=ph_data[name,"BT"])
 
-## === indexing example ===
+## indexing example
 m <- matrix(sample(100), 10, 10)
 rownames(m) <- LETTERS[1:10]
 m["A",]
@@ -45,37 +36,24 @@ ex_data_mlt %>%
   ggplot(aes(x=bt, y=value, group=bt)) + 
   geom_boxplot() +
   facet_wrap(~symbol, ncol=9, scales="free") +
-  theme_bw() +
   theme(
     axis.text.x = element_text(angle = 90, size=8, hjust = 1, vjust=0.5)
   ) 
-  
+  # theme_bw()
 
-```
+### ----------------
 
-
-* BT 그룹별 유전자 발현 평균 비교 
-
-![](images/06/02.png)
-
-```{r, eval=F}
 ex_summary <- ex_data_mlt %>% 
   group_by(symbol, bt) %>% 
   summarise(m = mean(value))
   
-ggplot(ex_summary, aes(x=bt, y=m, fill=bt)) +
+ggplot(ex_summary, aes(x=bt, y=m)) +
   geom_bar(stat="identity") +
-  facet_wrap(~symbol, nrow=3) +
-  theme_bw() +
-  theme(
-    axis.text.x = element_text(angle = 90, size=8, hjust = 1, vjust=0.5)
-  )
-```
+  facet_wrap(~symbol, nrow=3)
 
 
-* 성별별 유전자 발현 평균 검정 
+### ------------------------
 
-```{r, eval=F}
 ex_data_mlt <- ex_data %>% 
   rownames_to_column(var="symbol") %>% 
   pivot_longer(-symbol) %>% 
@@ -96,16 +74,6 @@ ex_data_mlt %>%
     tstat=t.test(value~sex)$statistic,
     pval=t.test(value~sex)$p.value
   )
-
-ex_data_mlt
-```
-
-
-* 성별별 유전자 발현 평균 검정 (전체 데이터)
-
-![](images/06/03.png)
-
-```{r, eval=F}
 
 #### test all
 data(ALL)
@@ -150,32 +118,13 @@ sel_genes %>%
   geom_boxplot() +
   facet_wrap(~symbol, ncol=8, scales="free") 
 
-## set color 
-sel_genes %>% 
-  group_by(symbol) %>% 
-  ggplot(aes(x=sex, y=value, fill=sex)) + 
-  geom_boxplot() +
-  facet_wrap(~symbol, ncol=8, scales="free") +
-  theme_bw() +
-  scale_fill_brewer(palette="BuPu")
-
-## set color 2
-sel_genes %>% 
-  group_by(symbol) %>% 
-  ggplot(aes(x=sex, y=value, fill=sex)) + 
-  geom_boxplot() +
-  facet_wrap(~symbol, ncol=8, scales="free") +
-  theme_bw() +
-  scale_fill_manual(values=c("#69b3a2", "orange")) 
-
-```
 
 
-* BT 그룹별 유전자 발현 anova 테스트 
 
-```{r, eval=F}
-### testing (anova)
-lm(data=ex_data_mlt, formula = value~bt)
+
+
+
+### ANOVA 
 
 ex_data_mlt <- ex_data %>% 
   rownames_to_column(var="symbol") %>% 
@@ -187,7 +136,6 @@ ex_data_mlt <- ex_data %>%
 fit <- anova(lm(data=ex_data_mlt, formula = value~bt))
 pval <- fit$`Pr(>F)`[1]
 
-## warning! it takes too long time 
 test_results <- ex_data_mlt %>% 
   group_by(symbol) %>% 
   summarise(
@@ -200,25 +148,15 @@ sig_results <- test_results %>%
 sel_genes <- ex_data_mlt %>% 
   filter(symbol %in% sig_results$symbol)
 
-## set color 
 sel_genes %>% 
   group_by(symbol) %>% 
   ggplot(aes(x=sex, y=value, fill=sex)) + 
   geom_boxplot() +
-  facet_wrap(~symbol, ncol=8, scales="free") +
-  theme_bw() +
-  scale_fill_manual(values=c("#69b3a2", "orange")) 
+  facet_wrap(~symbol, ncol=8, scales="free") 
 
 
-```
 
-
-## Heatmap with clustering
-
-https://github.com/greendaygh/KRIBBR2020/tree/master/ngs
-
-![](images/06/04.png)
-```{r, eval=F}
+## ggplot heatmap 
 
 library(tidyverse)
 library(Biostrings)
@@ -331,48 +269,47 @@ mydata_long %>%
 
 dev.off()
 
-```
 
 
-## Smooth line
 
-![](images/06/05.png)
 
-```{r, eval=F}
-## data generation
-tmpx <- seq(-5, 5, by=0.01)
-tmpx2 <- jitter(tmpx, 1000) 
-tmpy <- 1/(1+exp(-tmpx))
-idx <- sample(1:length(tmpx), 20)
-x <- tmpx2[idx]
-y <- tmpy[idx]
-z <- data.frame(x, y)
 
-ggplot(z, aes(x=x, y=y)) +
+
+
+
+mydata_long %>% 
+  #  filter(pos < 1000) %>% 
+  ggplot(aes(x=pos, y=name, fill=value)) +
+  scale_fill_viridis_c() +
+  geom_tile(color="black", size=0.5) 
+
+
+
+
+## annotate
+
+x <- seq(-5, 5, by=0.01)
+x2 <- x + runif(1001)
+y <- 1/(1+exp(-x))
+z <- data.frame(x2, y)
+
+ggplot(z, aes(x=x2, y=y)) +
   geom_point() +
   geom_smooth()
 
-ggplot(z, aes(x=x, y=y)) +
-  geom_point(size=3, shape=16, color="#333333") +
-  geom_smooth(method="loess", level=0.95, span=1) +
-  theme(panel.grid.minor = element_blank(),
-        axis.text.y = element_text(size=12),
-        axis.text.x = element_text(angle = 90, size=10, hjust = 1, vjust=0.5),
-        axis.title.x = element_text(size=16),
-        axis.title.y = element_text(size=16),
-        strip.text = element_text(size=12),
-        panel.grid.major = element_line(colour = "#eeeeee"),
-        panel.background = element_blank(),
-        strip.background = element_rect(colour = "gray", fill = "white"),
-        #legend.position="none",
-        panel.border = element_rect(color="grey", fill = NA))
 
 
-```
 
 
----
 
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 4.0 국제 라이선스</a>에 따라 이용할 수 있습니다.
+
+
+
+
+
+
+
+
+
 
