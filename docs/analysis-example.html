@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Analysis example | 연구데이터 분석과정 (R프로그래밍)</title>
+  <meta name="description" content="Lecture" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Analysis example | 연구데이터 분석과정 (R프로그래밍)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Lecture" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Analysis example | 연구데이터 분석과정 (R프로그래밍)" />
+  
+  <meta name="twitter:description" content="Lecture" />
+  
+
+<meta name="author" content="한국생명공학연구원 김하성" />
+
+
+<meta name="date" content="2020-10-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-science-and-tidyverse.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">[2020 KRIBB Lecture] R programming</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction 강의 개요</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#references-books-참고-교제"><i class="fa fa-check"></i><b>1.1</b> References books 참고 교제</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#references-참고-자료"><i class="fa fa-check"></i><b>1.2</b> References 참고 자료</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#schedule-강의-계획"><i class="fa fa-check"></i><b>1.3</b> Schedule 강의 계획</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html"><i class="fa fa-check"></i><b>2</b> R/Rstudio basics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#what-is-r-rstudio"><i class="fa fa-check"></i><b>2.1</b> What is R / Rstudio</a></li>
+<li class="chapter" data-level="2.2" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#r-rstudio-installation"><i class="fa fa-check"></i><b>2.2</b> R / Rstudio installation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#r-설치"><i class="fa fa-check"></i><b>2.2.1</b> R 설치</a></li>
+<li class="chapter" data-level="2.2.2" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#rstudio-설치"><i class="fa fa-check"></i><b>2.2.2</b> Rstudio 설치</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#rstudio-interface"><i class="fa fa-check"></i><b>2.3</b> Rstudio interface</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#keyboard-shortcuts"><i class="fa fa-check"></i><b>2.3.1</b> Keyboard shortcuts</a></li>
+<li class="chapter" data-level="2.3.2" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#set-a-working-directory"><i class="fa fa-check"></i><b>2.3.2</b> Set a working directory</a></li>
+<li class="chapter" data-level="2.3.3" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#set-a-project"><i class="fa fa-check"></i><b>2.3.3</b> Set a project</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#r-coding-practice"><i class="fa fa-check"></i><b>2.4</b> R coding practice</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#console-calculator"><i class="fa fa-check"></i><b>2.4.1</b> Console calculator</a></li>
+<li class="chapter" data-level="2.4.2" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#variables-and-values"><i class="fa fa-check"></i><b>2.4.2</b> Variables and values</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#supports"><i class="fa fa-check"></i><b>2.5</b> Supports</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#help"><i class="fa fa-check"></i><b>2.5.1</b> Help</a></li>
+<li class="chapter" data-level="2.5.2" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#cheatsheet"><i class="fa fa-check"></i><b>2.5.2</b> Cheatsheet</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#r-packages-and-dataset"><i class="fa fa-check"></i><b>2.6</b> R packages and Dataset</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#r-packages"><i class="fa fa-check"></i><b>2.6.1</b> R packages</a></li>
+<li class="chapter" data-level="2.6.2" data-path="rrstudio-basics.html"><a href="rrstudio-basics.html#data-sets"><i class="fa fa-check"></i><b>2.6.2</b> Data sets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>3</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="basic-statistics.html"><a href="basic-statistics.html#univariat-data"><i class="fa fa-check"></i><b>3.1</b> Univariat data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="basic-statistics.html"><a href="basic-statistics.html#vectors-for-univariate-data"><i class="fa fa-check"></i><b>3.1.1</b> Vectors for univariate data</a></li>
+<li class="chapter" data-level="3.1.2" data-path="basic-statistics.html"><a href="basic-statistics.html#storage-data-type"><i class="fa fa-check"></i><b>3.1.2</b> Storage data type</a></li>
+<li class="chapter" data-level="3.1.3" data-path="basic-statistics.html"><a href="basic-statistics.html#use-of-functions"><i class="fa fa-check"></i><b>3.1.3</b> Use of functions</a></li>
+<li class="chapter" data-level="3.1.4" data-path="basic-statistics.html"><a href="basic-statistics.html#numeric-summaries"><i class="fa fa-check"></i><b>3.1.4</b> Numeric summaries</a></li>
+<li class="chapter" data-level="3.1.5" data-path="basic-statistics.html"><a href="basic-statistics.html#center-for-a-univariat-variable"><i class="fa fa-check"></i><b>3.1.5</b> Center for a univariat variable</a></li>
+<li class="chapter" data-level="3.1.6" data-path="basic-statistics.html"><a href="basic-statistics.html#spread-for-a-univariat-variable"><i class="fa fa-check"></i><b>3.1.6</b> Spread for a univariat variable</a></li>
+<li class="chapter" data-level="3.1.7" data-path="basic-statistics.html"><a href="basic-statistics.html#shape-for-a-univariat-variable"><i class="fa fa-check"></i><b>3.1.7</b> Shape for a univariat variable</a></li>
+<li class="chapter" data-level="3.1.8" data-path="basic-statistics.html"><a href="basic-statistics.html#viewing-the-shape"><i class="fa fa-check"></i><b>3.1.8</b> Viewing the shape</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basic-statistics.html"><a href="basic-statistics.html#bivariate-data"><i class="fa fa-check"></i><b>3.2</b> Bivariate data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#independence-samples"><i class="fa fa-check"></i><b>3.2.1</b> Independence samples</a></li>
+<li class="chapter" data-level="3.2.2" data-path="basic-statistics.html"><a href="basic-statistics.html#data-comparison-with-plots"><i class="fa fa-check"></i><b>3.2.2</b> Data comparison with plots</a></li>
+<li class="chapter" data-level="3.2.3" data-path="basic-statistics.html"><a href="basic-statistics.html#data-manipulation"><i class="fa fa-check"></i><b>3.2.3</b> Data manipulation</a></li>
+<li class="chapter" data-level="3.2.4" data-path="basic-statistics.html"><a href="basic-statistics.html#paired-data"><i class="fa fa-check"></i><b>3.2.4</b> Paired data</a></li>
+<li class="chapter" data-level="3.2.5" data-path="basic-statistics.html"><a href="basic-statistics.html#bivariate-categorical-data"><i class="fa fa-check"></i><b>3.2.5</b> Bivariate categorical data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bioconductor.html"><a href="bioconductor.html"><i class="fa fa-check"></i><b>4</b> Bioconductor</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="bioconductor.html"><a href="bioconductor.html#working-with-objects"><i class="fa fa-check"></i><b>4.1</b> Working with objects</a></li>
+<li class="chapter" data-level="4.2" data-path="bioconductor.html"><a href="bioconductor.html#discovering-installing-and-learning-how-to-use-bioconductor-packages"><i class="fa fa-check"></i><b>4.2</b> Discovering, installing, and learning how to use Bioconductor packages</a></li>
+<li class="chapter" data-level="4.3" data-path="bioconductor.html"><a href="bioconductor.html#data-structure-and-management-for-genome-scale-experiments"><i class="fa fa-check"></i><b>4.3</b> Data structure and management for genome-scale experiments</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="bioconductor.html"><a href="bioconductor.html#expressionset-class"><i class="fa fa-check"></i><b>4.3.1</b> ExpressionSet Class</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="bioconductor.html"><a href="bioconductor.html#biostrings-package-for-sequence-analysis"><i class="fa fa-check"></i><b>4.4</b> Biostrings package for sequence analysis</a></li>
+<li class="chapter" data-level="4.5" data-path="bioconductor.html"><a href="bioconductor.html#download-sequence-information-from-ncbi"><i class="fa fa-check"></i><b>4.5</b> Download sequence information from NCBI</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-science-and-tidyverse.html"><a href="data-science-and-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Data science and tidyverse</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-science-and-tidyverse.html"><a href="data-science-and-tidyverse.html#tidy-data-structure"><i class="fa fa-check"></i><b>5.1</b> Tidy data structure</a></li>
+<li class="chapter" data-level="5.2" data-path="data-science-and-tidyverse.html"><a href="data-science-and-tidyverse.html#analysis-goal-all-dataset"><i class="fa fa-check"></i><b>5.2</b> Analysis Goal (ALL dataset)</a></li>
+<li class="chapter" data-level="5.3" data-path="data-science-and-tidyverse.html"><a href="data-science-and-tidyverse.html#apply-functions"><i class="fa fa-check"></i><b>5.3</b> Apply functions</a></li>
+<li class="chapter" data-level="5.4" data-path="data-science-and-tidyverse.html"><a href="data-science-and-tidyverse.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>5.4</b> Data manipulation with dplyr</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="data-science-and-tidyverse.html"><a href="data-science-and-tidyverse.html#dplyr---pipe-operator"><i class="fa fa-check"></i><b>5.4.1</b> dplyr - pipe operator</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data-science-and-tidyverse.html"><a href="data-science-and-tidyverse.html#dplyr---important-functions"><i class="fa fa-check"></i><b>5.4.2</b> dplyr - Important functions</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data-science-and-tidyverse.html"><a href="data-science-and-tidyverse.html#code-comparison"><i class="fa fa-check"></i><b>5.4.3</b> code comparison</a></li>
+<li class="chapter" data-level="5.4.4" data-path="data-science-and-tidyverse.html"><a href="data-science-and-tidyverse.html#dplyr-example-iris"><i class="fa fa-check"></i><b>5.4.4</b> dplyr example iris</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="analysis-example.html"><a href="analysis-example.html"><i class="fa fa-check"></i><b>6</b> Analysis example</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="analysis-example.html"><a href="analysis-example.html#all-dataset"><i class="fa fa-check"></i><b>6.1</b> ALL dataset</a></li>
+<li class="chapter" data-level="6.2" data-path="analysis-example.html"><a href="analysis-example.html#heatmap-with-sequence-data"><i class="fa fa-check"></i><b>6.2</b> Heatmap with sequence data</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">연구데이터 분석과정 (R프로그래밍)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysis-example" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Analysis example</h1>
+<div id="all-dataset" class="section level2">
+<h2><span class="header-section-number">6.1</span> ALL dataset</h2>
+<ul>
+<li>BT 그룹별 유전자들의 발현 분포를 boxplot 이용해서 비교</li>
+</ul>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="analysis-example.html#cb127-1"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb127-2"><a href="analysis-example.html#cb127-2"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb127-3"><a href="analysis-example.html#cb127-3"></a><span class="kw">library</span>(tibble)</span>
+<span id="cb127-4"><a href="analysis-example.html#cb127-4"></a><span class="kw">library</span>(Biobase)</span>
+<span id="cb127-5"><a href="analysis-example.html#cb127-5"></a><span class="kw">library</span>(ALL)</span>
+<span id="cb127-6"><a href="analysis-example.html#cb127-6"></a><span class="kw">library</span>(hgu95av2.db)</span>
+<span id="cb127-7"><a href="analysis-example.html#cb127-7"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb127-8"><a href="analysis-example.html#cb127-8"></a></span>
+<span id="cb127-9"><a href="analysis-example.html#cb127-9"></a><span class="kw">data</span>(ALL)</span>
+<span id="cb127-10"><a href="analysis-example.html#cb127-10"></a><span class="co">## data</span></span>
+<span id="cb127-11"><a href="analysis-example.html#cb127-11"></a>ex_data &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALL)[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>,]</span>
+<span id="cb127-12"><a href="analysis-example.html#cb127-12"></a>ph_data &lt;-<span class="st"> </span><span class="kw">pData</span>(ALL)[,<span class="kw">c</span>(<span class="st">&quot;cod&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;BT&quot;</span>)]</span>
+<span id="cb127-13"><a href="analysis-example.html#cb127-13"></a></span>
+<span id="cb127-14"><a href="analysis-example.html#cb127-14"></a><span class="co">## remove missing | duplicated genes</span></span>
+<span id="cb127-15"><a href="analysis-example.html#cb127-15"></a>ph_data &lt;-<span class="st"> </span>ph_data[<span class="kw">complete.cases</span>(ph_data),]</span>
+<span id="cb127-16"><a href="analysis-example.html#cb127-16"></a>feature_names &lt;-<span class="st"> </span><span class="kw">rownames</span>(ex_data)</span>
+<span id="cb127-17"><a href="analysis-example.html#cb127-17"></a>gene_names &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">as.list</span>(hgu95av2SYMBOL[feature_names]))</span>
+<span id="cb127-18"><a href="analysis-example.html#cb127-18"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(gene_names) <span class="op">|</span><span class="st"> </span><span class="kw">duplicated</span>(gene_names))</span>
+<span id="cb127-19"><a href="analysis-example.html#cb127-19"></a>ex_data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(ex_data[<span class="op">-</span>idx,])</span>
+<span id="cb127-20"><a href="analysis-example.html#cb127-20"></a><span class="kw">rownames</span>(ex_data) &lt;-<span class="st"> </span>gene_names[<span class="op">-</span>idx]</span>
+<span id="cb127-21"><a href="analysis-example.html#cb127-21"></a>ex_data[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
+<span id="cb127-22"><a href="analysis-example.html#cb127-22"></a></span>
+<span id="cb127-23"><a href="analysis-example.html#cb127-23"></a></span>
+<span id="cb127-24"><a href="analysis-example.html#cb127-24"></a>ex_data_mlt &lt;-<span class="st"> </span>ex_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-25"><a href="analysis-example.html#cb127-25"></a><span class="st">  </span><span class="kw">rownames_to_column</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-26"><a href="analysis-example.html#cb127-26"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span>rowname) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-27"><a href="analysis-example.html#cb127-27"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">bt =</span> ph_data[name,<span class="st">&quot;BT&quot;</span>])</span>
+<span id="cb127-28"><a href="analysis-example.html#cb127-28"></a></span>
+<span id="cb127-29"><a href="analysis-example.html#cb127-29"></a><span class="co">### boxplot</span></span>
+<span id="cb127-30"><a href="analysis-example.html#cb127-30"></a>ex_data_mlt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-31"><a href="analysis-example.html#cb127-31"></a><span class="st">  </span><span class="kw">group_by</span>(rowname) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-32"><a href="analysis-example.html#cb127-32"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>bt, <span class="dt">y=</span>value, <span class="dt">group=</span>bt)) <span class="op">+</span></span>
+<span id="cb127-33"><a href="analysis-example.html#cb127-33"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>rowname, <span class="dt">ncol=</span><span class="dv">9</span>, <span class="dt">scales=</span><span class="st">&quot;free&quot;</span>) <span class="op">+</span></span>
+<span id="cb127-34"><a href="analysis-example.html#cb127-34"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb127-35"><a href="analysis-example.html#cb127-35"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb127-36"><a href="analysis-example.html#cb127-36"></a>    <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">size=</span><span class="dv">8</span>, <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">vjust=</span><span class="fl">0.5</span>)</span>
+<span id="cb127-37"><a href="analysis-example.html#cb127-37"></a>  )</span>
+<span id="cb127-38"><a href="analysis-example.html#cb127-38"></a></span>
+<span id="cb127-39"><a href="analysis-example.html#cb127-39"></a><span class="co">## NA</span></span>
+<span id="cb127-40"><a href="analysis-example.html#cb127-40"></a>ph_data<span class="op">$</span>BT</span>
+<span id="cb127-41"><a href="analysis-example.html#cb127-41"></a>tmp &lt;-<span class="st"> </span>ex_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-42"><a href="analysis-example.html#cb127-42"></a><span class="st">  </span><span class="kw">rownames_to_column</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-43"><a href="analysis-example.html#cb127-43"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span>rowname) </span>
+<span id="cb127-44"><a href="analysis-example.html#cb127-44"></a>ph_data[tmp<span class="op">$</span>name,]<span class="op">$</span>BT</span>
+<span id="cb127-45"><a href="analysis-example.html#cb127-45"></a></span>
+<span id="cb127-46"><a href="analysis-example.html#cb127-46"></a></span>
+<span id="cb127-47"><a href="analysis-example.html#cb127-47"></a>ex_data_mlt &lt;-<span class="st"> </span>ex_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-48"><a href="analysis-example.html#cb127-48"></a><span class="st">  </span><span class="kw">rownames_to_column</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-49"><a href="analysis-example.html#cb127-49"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span>rowname) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-50"><a href="analysis-example.html#cb127-50"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">bt =</span> ph_data[name,<span class="st">&quot;BT&quot;</span>]) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-51"><a href="analysis-example.html#cb127-51"></a><span class="st">  </span><span class="kw">drop_na</span>()</span>
+<span id="cb127-52"><a href="analysis-example.html#cb127-52"></a>ex_data_mlt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">complete.cases</span>()</span></code></pre></div>
+<ul>
+<li>BT 그룹별 유전자 발현 평균 비교</li>
+</ul>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="analysis-example.html#cb128-1"></a><span class="co">### 평균 비교</span></span>
+<span id="cb128-2"><a href="analysis-example.html#cb128-2"></a>ex_summary &lt;-<span class="st"> </span>ex_data_mlt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-3"><a href="analysis-example.html#cb128-3"></a><span class="st">  </span><span class="kw">group_by</span>(bt, rowname) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-4"><a href="analysis-example.html#cb128-4"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">m=</span><span class="kw">mean</span>(value))</span>
+<span id="cb128-5"><a href="analysis-example.html#cb128-5"></a></span>
+<span id="cb128-6"><a href="analysis-example.html#cb128-6"></a></span>
+<span id="cb128-7"><a href="analysis-example.html#cb128-7"></a><span class="kw">ggplot</span>(ex_summary, <span class="kw">aes</span>(<span class="dt">x=</span>bt, <span class="dt">y=</span>m, <span class="dt">group=</span>bt)) <span class="op">+</span></span>
+<span id="cb128-8"><a href="analysis-example.html#cb128-8"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>rowname, <span class="dt">ncol=</span><span class="dv">9</span>, <span class="dt">scales=</span><span class="st">&quot;free&quot;</span>) <span class="op">+</span></span>
+<span id="cb128-9"><a href="analysis-example.html#cb128-9"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
+<span id="cb128-10"><a href="analysis-example.html#cb128-10"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb128-11"><a href="analysis-example.html#cb128-11"></a>    <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">size=</span><span class="dv">8</span>, <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">vjust=</span><span class="fl">0.5</span>)</span>
+<span id="cb128-12"><a href="analysis-example.html#cb128-12"></a>  )</span>
+<span id="cb128-13"><a href="analysis-example.html#cb128-13"></a></span>
+<span id="cb128-14"><a href="analysis-example.html#cb128-14"></a><span class="co">### scale </span></span>
+<span id="cb128-15"><a href="analysis-example.html#cb128-15"></a><span class="kw">ggplot</span>(ex_summary, <span class="kw">aes</span>(<span class="dt">x=</span>bt, <span class="dt">y=</span>m, <span class="dt">group=</span>bt)) <span class="op">+</span></span>
+<span id="cb128-16"><a href="analysis-example.html#cb128-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>rowname, <span class="dt">ncol=</span><span class="dv">9</span>) <span class="op">+</span></span>
+<span id="cb128-17"><a href="analysis-example.html#cb128-17"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
+<span id="cb128-18"><a href="analysis-example.html#cb128-18"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb128-19"><a href="analysis-example.html#cb128-19"></a>    <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">size=</span><span class="dv">8</span>, <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">vjust=</span><span class="fl">0.5</span>)</span>
+<span id="cb128-20"><a href="analysis-example.html#cb128-20"></a>  )</span>
+<span id="cb128-21"><a href="analysis-example.html#cb128-21"></a></span>
+<span id="cb128-22"><a href="analysis-example.html#cb128-22"></a></span>
+<span id="cb128-23"><a href="analysis-example.html#cb128-23"></a></span>
+<span id="cb128-24"><a href="analysis-example.html#cb128-24"></a><span class="co">### testing (t-test)</span></span>
+<span id="cb128-25"><a href="analysis-example.html#cb128-25"></a>ex_data_mlt &lt;-<span class="st"> </span>ex_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-26"><a href="analysis-example.html#cb128-26"></a><span class="st">  </span><span class="kw">rownames_to_column</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-27"><a href="analysis-example.html#cb128-27"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span>rowname) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-28"><a href="analysis-example.html#cb128-28"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">bt =</span> ph_data[name,<span class="st">&quot;sex&quot;</span>])</span>
+<span id="cb128-29"><a href="analysis-example.html#cb128-29"></a></span>
+<span id="cb128-30"><a href="analysis-example.html#cb128-30"></a>ex_data_mlt <span class="op">%&gt;%</span><span class="st"> </span>head</span>
+<span id="cb128-31"><a href="analysis-example.html#cb128-31"></a><span class="kw">t.test</span>(value<span class="op">~</span>bt, <span class="dt">data=</span>ex_data_mlt)</span>
+<span id="cb128-32"><a href="analysis-example.html#cb128-32"></a></span>
+<span id="cb128-33"><a href="analysis-example.html#cb128-33"></a>test_results &lt;-<span class="st"> </span>ex_data_mlt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-34"><a href="analysis-example.html#cb128-34"></a><span class="st">  </span><span class="kw">group_by</span>(rowname) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-35"><a href="analysis-example.html#cb128-35"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb128-36"><a href="analysis-example.html#cb128-36"></a>    <span class="dt">tval=</span><span class="kw">t.test</span>(value<span class="op">~</span>bt)<span class="op">$</span>statistic,</span>
+<span id="cb128-37"><a href="analysis-example.html#cb128-37"></a>    <span class="dt">pval=</span><span class="kw">t.test</span>(value<span class="op">~</span>bt)<span class="op">$</span>p.value,</span>
+<span id="cb128-38"><a href="analysis-example.html#cb128-38"></a>    )</span>
+<span id="cb128-39"><a href="analysis-example.html#cb128-39"></a></span>
+<span id="cb128-40"><a href="analysis-example.html#cb128-40"></a></span>
+<span id="cb128-41"><a href="analysis-example.html#cb128-41"></a></span>
+<span id="cb128-42"><a href="analysis-example.html#cb128-42"></a><span class="co">#### test all</span></span>
+<span id="cb128-43"><a href="analysis-example.html#cb128-43"></a><span class="kw">data</span>(ALL)</span>
+<span id="cb128-44"><a href="analysis-example.html#cb128-44"></a><span class="co">## data</span></span>
+<span id="cb128-45"><a href="analysis-example.html#cb128-45"></a>ex_data &lt;-<span class="st"> </span><span class="kw">exprs</span>(ALL)</span>
+<span id="cb128-46"><a href="analysis-example.html#cb128-46"></a>ph_data &lt;-<span class="st"> </span><span class="kw">pData</span>(ALL)[,<span class="kw">c</span>(<span class="st">&quot;cod&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;BT&quot;</span>)]</span>
+<span id="cb128-47"><a href="analysis-example.html#cb128-47"></a></span>
+<span id="cb128-48"><a href="analysis-example.html#cb128-48"></a><span class="co">## remove missing | duplicated genes</span></span>
+<span id="cb128-49"><a href="analysis-example.html#cb128-49"></a>ph_data &lt;-<span class="st"> </span>ph_data[<span class="kw">complete.cases</span>(ph_data),]</span>
+<span id="cb128-50"><a href="analysis-example.html#cb128-50"></a>feature_names &lt;-<span class="st"> </span><span class="kw">rownames</span>(ex_data)</span>
+<span id="cb128-51"><a href="analysis-example.html#cb128-51"></a>gene_names &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">as.list</span>(hgu95av2SYMBOL[feature_names]))</span>
+<span id="cb128-52"><a href="analysis-example.html#cb128-52"></a>idx &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(gene_names) <span class="op">|</span><span class="st"> </span><span class="kw">duplicated</span>(gene_names))</span>
+<span id="cb128-53"><a href="analysis-example.html#cb128-53"></a>ex_data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(ex_data[<span class="op">-</span>idx,])</span>
+<span id="cb128-54"><a href="analysis-example.html#cb128-54"></a><span class="kw">rownames</span>(ex_data) &lt;-<span class="st"> </span>gene_names[<span class="op">-</span>idx]</span>
+<span id="cb128-55"><a href="analysis-example.html#cb128-55"></a><span class="kw">dim</span>(ex_data)</span>
+<span id="cb128-56"><a href="analysis-example.html#cb128-56"></a></span>
+<span id="cb128-57"><a href="analysis-example.html#cb128-57"></a>ex_data_mlt &lt;-<span class="st"> </span>ex_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-58"><a href="analysis-example.html#cb128-58"></a><span class="st">  </span><span class="kw">rownames_to_column</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-59"><a href="analysis-example.html#cb128-59"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span>rowname) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-60"><a href="analysis-example.html#cb128-60"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">bt =</span> ph_data[name,<span class="st">&quot;sex&quot;</span>]) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-61"><a href="analysis-example.html#cb128-61"></a><span class="st">  </span><span class="kw">drop_na</span>()</span>
+<span id="cb128-62"><a href="analysis-example.html#cb128-62"></a></span>
+<span id="cb128-63"><a href="analysis-example.html#cb128-63"></a>test_results &lt;-<span class="st"> </span>ex_data_mlt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-64"><a href="analysis-example.html#cb128-64"></a><span class="st">  </span><span class="kw">group_by</span>(rowname) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-65"><a href="analysis-example.html#cb128-65"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb128-66"><a href="analysis-example.html#cb128-66"></a>    <span class="dt">tval=</span><span class="kw">t.test</span>(value<span class="op">~</span>bt)<span class="op">$</span>statistic,</span>
+<span id="cb128-67"><a href="analysis-example.html#cb128-67"></a>    <span class="dt">pval=</span><span class="kw">t.test</span>(value<span class="op">~</span>bt)<span class="op">$</span>p.value,</span>
+<span id="cb128-68"><a href="analysis-example.html#cb128-68"></a>  )</span>
+<span id="cb128-69"><a href="analysis-example.html#cb128-69"></a></span>
+<span id="cb128-70"><a href="analysis-example.html#cb128-70"></a><span class="kw">dim</span>(test_results)</span>
+<span id="cb128-71"><a href="analysis-example.html#cb128-71"></a><span class="kw">head</span>(test_results)</span>
+<span id="cb128-72"><a href="analysis-example.html#cb128-72"></a>sig_results &lt;-<span class="st"> </span>test_results <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-73"><a href="analysis-example.html#cb128-73"></a><span class="st">  </span><span class="kw">filter</span>(pval<span class="op">&lt;</span><span class="fl">0.01</span>) </span>
+<span id="cb128-74"><a href="analysis-example.html#cb128-74"></a></span>
+<span id="cb128-75"><a href="analysis-example.html#cb128-75"></a>sel_genes &lt;-<span class="st"> </span>ex_data_mlt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-76"><a href="analysis-example.html#cb128-76"></a><span class="st">  </span><span class="kw">filter</span>(rowname <span class="op">%in%</span><span class="st"> </span>sig_results<span class="op">$</span>rowname)</span>
+<span id="cb128-77"><a href="analysis-example.html#cb128-77"></a></span>
+<span id="cb128-78"><a href="analysis-example.html#cb128-78"></a>sel_genes <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-79"><a href="analysis-example.html#cb128-79"></a><span class="st">  </span><span class="kw">group_by</span>(rowname) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-80"><a href="analysis-example.html#cb128-80"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>bt, <span class="dt">y=</span>value, <span class="dt">group=</span>bt)) <span class="op">+</span></span>
+<span id="cb128-81"><a href="analysis-example.html#cb128-81"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>rowname, <span class="dt">ncol=</span><span class="dv">9</span>, <span class="dt">scales=</span><span class="st">&quot;free&quot;</span>) <span class="op">+</span></span>
+<span id="cb128-82"><a href="analysis-example.html#cb128-82"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb128-83"><a href="analysis-example.html#cb128-83"></a><span class="st">  </span><span class="kw">theme</span>(</span>
+<span id="cb128-84"><a href="analysis-example.html#cb128-84"></a>    <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">size=</span><span class="dv">8</span>, <span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">vjust=</span><span class="fl">0.5</span>)</span>
+<span id="cb128-85"><a href="analysis-example.html#cb128-85"></a>  )</span></code></pre></div>
+<ul>
+<li>BT 그룹별 유전자 발현 anova 테스트</li>
+</ul>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="analysis-example.html#cb129-1"></a><span class="co">### testing (anova)</span></span>
+<span id="cb129-2"><a href="analysis-example.html#cb129-2"></a><span class="kw">lm</span>(<span class="dt">data=</span>ex_data_mlt, <span class="dt">formula =</span> value<span class="op">~</span>bt)</span></code></pre></div>
+</div>
+<div id="heatmap-with-sequence-data" class="section level2">
+<h2><span class="header-section-number">6.2</span> Heatmap with sequence data</h2>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="analysis-example.html#cb130-1"></a><span class="co">### Let&#39;s do it together!</span></span></code></pre></div>
+<hr />
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">크리에이티브 커먼즈 저작자표시-비영리-변경금지 4.0 국제 라이선스</a>에 따라 이용할 수 있습니다.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-science-and-tidyverse.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

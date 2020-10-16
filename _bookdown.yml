@@ -3,7 +3,8 @@ rmd_files: [
   "02-Rintro.Rmd",
   "03-stat-basics.Rmd",
   "04-Bioconductor.Rmd",
-  "05-tidyverse.Rmd"
+  "05-tidyverse.Rmd",
+  "06-ggplot2.Rmd"
 #  "03-Rprogbasics.Rmd"
 ]
 book_filename: "Rprog"
