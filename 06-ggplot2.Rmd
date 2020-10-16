@@ -1,7 +1,6 @@
 # Analysis example 
 
 
-
 ## ALL dataset 
 
 * BT 그룹별 유전자들의 발현 분포를 boxplot 이용해서 비교 
@@ -171,6 +170,8 @@ lm(data=ex_data_mlt, formula = value~bt)
 
 
 ## Heatmap with sequence data 
+
+https://github.com/greendaygh/KRIBBR2020/tree/master/ngs
 
 ```{r, eval=F}
 ### Code
